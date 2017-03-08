@@ -31,7 +31,7 @@ var AppComponent = (function () {
     ], AppComponent);
     return AppComponent;
 }());
-//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/nodeTesting/src/app.component.js.map
+//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/currentlyWorking/candidateNew/src/app.component.js.map
 
 /***/ }),
 
@@ -98,7 +98,7 @@ var AuthenticationService = (function () {
     return AuthenticationService;
     var _a, _b;
 }());
-//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/nodeTesting/src/authentication.service.js.map
+//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/currentlyWorking/candidateNew/src/authentication.service.js.map
 
 /***/ }),
 
@@ -158,7 +158,7 @@ var JsonDataService = (function () {
         var _this = this;
         // console.log('service called');
         // console.log("josn data service : "+formData['fname']);
-        this.http.post('http://localhost:3000/adduser', formData).subscribe(function (data) {
+        this.http.post('http://localhost:3000/api/adduser', formData).subscribe(function (data) {
             _this.openSnackBar(formData.email, 'Register Successfully');
             _this.router.navigate(['/']);
         }, function (error) {
@@ -205,7 +205,7 @@ var JsonDataService = (function () {
     return JsonDataService;
     var _a, _b, _c;
 }());
-//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/nodeTesting/src/json-data.service.js.map
+//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/currentlyWorking/candidateNew/src/json-data.service.js.map
 
 /***/ }),
 
@@ -250,7 +250,7 @@ var AuthGuard = (function () {
     return AuthGuard;
     var _a;
 }());
-//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/nodeTesting/src/auth.guard.js.map
+//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/currentlyWorking/candidateNew/src/auth.guard.js.map
 
 /***/ }),
 
@@ -348,7 +348,7 @@ var routingComponents = [
     __WEBPACK_IMPORTED_MODULE_11_app_components_loginComponent_forgot_password_forgot_password_component__["a" /* ForgotPasswordComponent */],
     __WEBPACK_IMPORTED_MODULE_12_app_components_loginComponent_verify_email_verify_email_component__["a" /* VerifyEmailComponent */]
 ];
-//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/nodeTesting/src/app-routing.module.js.map
+//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/currentlyWorking/candidateNew/src/app-routing.module.js.map
 
 /***/ }),
 
@@ -426,7 +426,7 @@ var LayoutComponent = (function () {
     return LayoutComponent;
     var _a, _b, _c, _d, _e;
 }());
-//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/nodeTesting/src/layout.component.js.map
+//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/currentlyWorking/candidateNew/src/layout.component.js.map
 
 /***/ }),
 
@@ -531,7 +531,7 @@ var ForgotPasswordComponent = (function () {
     return ForgotPasswordComponent;
     var _a, _b, _c, _d, _e, _f, _g;
 }());
-//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/nodeTesting/src/forgot-password.component.js.map
+//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/currentlyWorking/candidateNew/src/forgot-password.component.js.map
 
 /***/ }),
 
@@ -642,7 +642,7 @@ var LoginComponent = (function () {
     return LoginComponent;
     var _a, _b, _c, _d, _e, _f, _g, _h, _j;
 }());
-//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/nodeTesting/src/login.component.js.map
+//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/currentlyWorking/candidateNew/src/login.component.js.map
 
 /***/ }),
 
@@ -738,7 +738,7 @@ var PasswordResetComponent = (function () {
     return PasswordResetComponent;
     var _a, _b, _c, _d, _e;
 }());
-//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/nodeTesting/src/password-reset.component.js.map
+//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/currentlyWorking/candidateNew/src/password-reset.component.js.map
 
 /***/ }),
 
@@ -835,7 +835,7 @@ var VerifyEmailComponent = (function () {
     return VerifyEmailComponent;
     var _a, _b, _c, _d, _e, _f;
 }());
-//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/nodeTesting/src/verify-email.component.js.map
+//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/currentlyWorking/candidateNew/src/verify-email.component.js.map
 
 /***/ }),
 
@@ -870,7 +870,7 @@ var LogoutComponent = (function () {
     ], LogoutComponent);
     return LogoutComponent;
 }());
-//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/nodeTesting/src/logout.component.js.map
+//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/currentlyWorking/candidateNew/src/logout.component.js.map
 
 /***/ }),
 
@@ -905,7 +905,7 @@ if (__WEBPACK_IMPORTED_MODULE_2__environments_environment__["a" /* environment *
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["a" /* enableProdMode */])();
 }
 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_3__app_app_module__["a" /* AppModule */]);
-//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/nodeTesting/src/main.js.map
+//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/currentlyWorking/candidateNew/src/main.js.map
 
 /***/ }),
 
@@ -1014,7 +1014,7 @@ var AppModule = (function () {
     ], AppModule);
     return AppModule;
 }());
-//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/nodeTesting/src/app.module.js.map
+//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/currentlyWorking/candidateNew/src/app.module.js.map
 
 /***/ }),
 
@@ -1049,7 +1049,7 @@ var AboutUsComponent = (function () {
     ], AboutUsComponent);
     return AboutUsComponent;
 }());
-//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/nodeTesting/src/about-us.component.js.map
+//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/currentlyWorking/candidateNew/src/about-us.component.js.map
 
 /***/ }),
 
@@ -1084,7 +1084,7 @@ var AppbarComponent = (function () {
     ], AppbarComponent);
     return AppbarComponent;
 }());
-//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/nodeTesting/src/appbar.component.js.map
+//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/currentlyWorking/candidateNew/src/appbar.component.js.map
 
 /***/ }),
 
@@ -1119,7 +1119,7 @@ var CandidateSearchComponent = (function () {
     ], CandidateSearchComponent);
     return CandidateSearchComponent;
 }());
-//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/nodeTesting/src/candidate-search.component.js.map
+//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/currentlyWorking/candidateNew/src/candidate-search.component.js.map
 
 /***/ }),
 
@@ -1161,7 +1161,7 @@ var DashboardComponent = (function () {
     return DashboardComponent;
     var _a, _b;
 }());
-//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/nodeTesting/src/dashboard.component.js.map
+//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/currentlyWorking/candidateNew/src/dashboard.component.js.map
 
 /***/ }),
 
@@ -1196,7 +1196,7 @@ var EventPostComponent = (function () {
     ], EventPostComponent);
     return EventPostComponent;
 }());
-//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/nodeTesting/src/event-post.component.js.map
+//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/currentlyWorking/candidateNew/src/event-post.component.js.map
 
 /***/ }),
 
@@ -1231,7 +1231,7 @@ var JobPostComponent = (function () {
     ], JobPostComponent);
     return JobPostComponent;
 }());
-//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/nodeTesting/src/job-post.component.js.map
+//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/currentlyWorking/candidateNew/src/job-post.component.js.map
 
 /***/ }),
 
@@ -1315,7 +1315,9 @@ var CandidateRegisterComponent = (function () {
         this.JsonDataService.getProfession().subscribe(function (resJsonData) { return _this.getProfession(resJsonData); });
         this.emailService.getRegister()
             .subscribe(function (resEmployeeData) {
-            [_this.emailId = resEmployeeData.usermail2, _this.checkEmail(_this.emailId)];
+            [_this.emailId = resEmployeeData.usermail2,
+                _this.checkEmail(_this.emailId)
+            ];
             // console.log(this.emailId)
         });
     };
@@ -1382,7 +1384,7 @@ var CandidateRegisterComponent = (function () {
     // on userverify button
     CandidateRegisterComponent.prototype.verifyUserRegistration = function () {
         var _this = this;
-        if (this.candidates === 'nouser,') {
+        if (this.candidates == 'nouser,') {
             this.userForm.value.email = this.emailId;
             this.formData = this.userForm.value;
             // console.log(this.formData);
@@ -1423,7 +1425,7 @@ var CandidateRegisterComponent = (function () {
     return CandidateRegisterComponent;
     var _a, _b, _c, _d, _e, _f, _g, _h;
 }());
-//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/nodeTesting/src/candidate-register.component.js.map
+//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/currentlyWorking/candidateNew/src/candidate-register.component.js.map
 
 /***/ }),
 
@@ -1470,7 +1472,7 @@ var LoginFooterComponent = (function () {
     return LoginFooterComponent;
     var _a;
 }());
-//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/nodeTesting/src/login-footer.component.js.map
+//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/currentlyWorking/candidateNew/src/login-footer.component.js.map
 
 /***/ }),
 
@@ -1517,7 +1519,7 @@ var LoginHeaderComponent = (function () {
     return LoginHeaderComponent;
     var _a;
 }());
-//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/nodeTesting/src/login-header.component.js.map
+//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/currentlyWorking/candidateNew/src/login-header.component.js.map
 
 /***/ }),
 
@@ -1560,7 +1562,7 @@ var UserService = (function () {
     return UserService;
     var _a;
 }());
-//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/nodeTesting/src/user.service.js.map
+//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/currentlyWorking/candidateNew/src/user.service.js.map
 
 /***/ }),
 
@@ -1576,7 +1578,7 @@ var UserService = (function () {
 var environment = {
     production: false
 };
-//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/nodeTesting/src/environment.js.map
+//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/currentlyWorking/candidateNew/src/environment.js.map
 
 /***/ }),
 
@@ -1857,7 +1859,7 @@ var EmailService = (function () {
     return EmailService;
     var _a;
 }());
-//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/nodeTesting/src/email.service.js.map
+//# sourceMappingURL=/home/divesh/workspace/Angular.io/Samarthya/currentlyWorking/candidateNew/src/email.service.js.map
 
 /***/ }),
 

@@ -48,7 +48,7 @@ export class JsonDataService {
   create(formData) {
     // console.log('service called');
     // console.log("josn data service : "+formData['fname']);
-    this.http.post('http://localhost:3000/adduser', formData).subscribe(data => {
+    this.http.post('http://localhost:3000/api/adduser', formData).subscribe(data => {
       this.openSnackBar(formData.email, 'Register Successfully');
       this.router.navigate(['/']);
     }, error => {
@@ -84,6 +84,4 @@ export class JsonDataService {
     return this.http.get(this.urlPincode + '?pincode=' + pincode)
       .map((response: Response) => response.json());
   };
-
 }
-

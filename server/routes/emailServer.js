@@ -43,7 +43,7 @@ apiRoutes.post('/', function(req, res) {
     var token = jwt.sign(jsonobj, 'I AM EMAIL TOKEN', { expiresIn: 1800 });
     console.log(token);
     host = req.get('host');
-    link = "http://" + req.get('host') + "/verify?token=" + token;
+    link = "http://" + req.get('host') + "/email/verify?token=" + token;
     //----------verify------------------
     var mailOptions = {
         from: "samarthyawave16@gmail.com",
@@ -91,6 +91,7 @@ apiRoutes.get('/verifiedmail', function(req, res) {
     console.log(usermail2);
     res.send({ "usermail2": usermail2 }); // sending email id to candidate register component
 });
+
 apiRoutes.post('/welcome', function(req, res) {
     var object1 = req.body.json;
     var jsonobj = JSON.parse(object1);
@@ -121,10 +122,5 @@ apiRoutes.post('/welcome', function(req, res) {
 // app.listen(3004, function() {
 //     console.log("Express Started on Port 3004");
 // });
-
-
-
-
-
 
 module.exports = apiRoutes;

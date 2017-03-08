@@ -44,7 +44,9 @@ export class CandidateRegisterComponent implements OnInit {
 
     this.emailService.getRegister()
       .subscribe(resEmployeeData => {
-        [this.emailId = resEmployeeData.usermail2, this.checkEmail(this.emailId)];
+        [this.emailId = resEmployeeData.usermail2
+        , this.checkEmail(this.emailId)
+        ];
         // console.log(this.emailId)
       });
   }
@@ -144,7 +146,7 @@ export class CandidateRegisterComponent implements OnInit {
 
   // on userverify button
   verifyUserRegistration() {
-    if (this.candidates === 'nouser,') {
+    if (this.candidates == 'nouser,') {
       this.userForm.value.email = this.emailId;
       this.formData = this.userForm.value;
       // console.log(this.formData);
