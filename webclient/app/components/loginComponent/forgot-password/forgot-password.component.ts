@@ -48,7 +48,7 @@ export class ForgotPasswordComponent implements OnInit {
 
   // verify user if already exist or not for password Reset
   verifyUserReset() {
-    if (this.candidates == 'found,') {
+    if (this.candidates[0] === 'found') {
       this.infoobj = {
         'to': this.userForm.value.email,
         'subject': 'Password Reset',

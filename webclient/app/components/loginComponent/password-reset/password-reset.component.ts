@@ -53,7 +53,7 @@ export class PasswordResetComponent implements OnInit {
       console.log('redireted');
       this.router.navigate(['/login']);
     } else {
-      this.loading = false; 
+      this.loading = false;
     }
   }
 

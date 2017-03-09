@@ -206,7 +206,7 @@
                         </div>
                         <div fxFlex>
                             <md-input-container class="full-width">
-                                <input mdInput formControlName="pincode" required id="pincode" type="text" class="validate" placeholder="Pincode" [(ngModel)]="pincode" />
+                                <input mdInput formControlName="pincode" required id="pincode" type="text" class="validate" placeholder="Pincode" (keyup)="getPincode()" [(ngModel)]="pincode" />
                                 <md-hint align="start" class="full-width">
                                     <div *ngIf="userForm.get('pincode').hasError('pattern')" class="errorStyle">Invaild Pincode</div>
                                     <div *ngIf="userForm.get('pincode').hasError('required') && userForm.get('pincode').touched" class="errorStyle">
@@ -215,9 +215,6 @@
                                     <!--<app-control-messages [control]="userForm.controls.pincode" class="errorStyle"></app-control-messages>-->
                                 </md-hint>
                             </md-input-container>
-                        </div>
-                        <div fxFlex.gt-xs="25" fxFlex.xs class="findAreaBtn">
-                            <button md-raised-button color="primary" (click)="getPincode()">Search Location</button>
                         </div>
                     </div>
 

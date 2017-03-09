@@ -14,10 +14,7 @@ md-card {
     display: block;
     height: 100%;
     width: 100%;
-    /*padding: 50%;*/
-    padding-left: 47%;
     opacity: .5;
-    padding-top: 10%;
 }
 
 .gender {
@@ -44,10 +41,6 @@ md-card {
 
 .location {
     margin-top: 10px;
-}
-
-.areaDropdown {
-    /*width: 10px;*/
 }
 
 .levelIcon {
@@ -84,4 +77,45 @@ md-card-title {
 .fbBtn {
     background-color: #3f51b5;
     color: white;
+}
+
+
+/*for smaller screens*/
+
+@media (min-width: 10px) {
+    md-card {
+        top: 56px;
+    }
+    .loading {
+        padding-left: 40%;
+        padding-top: 50%;
+    }
+}
+
+@media (min-width: 370px) {}
+
+
+/*for Medium screens*/
+
+@media (min-width: 480px) {
+    md-card {
+        top: 0px;
+    }
+    .loading {
+        padding-left: 40%;
+        padding-top: 50%;
+    }
+}
+
+
+/*for large screens*/
+
+@media (min-width: 768px) {
+    md-card {
+        top: 0px;
+    }
+    .loading {
+        padding-left: 47%;
+        padding-top: 10%;
+    }
 }

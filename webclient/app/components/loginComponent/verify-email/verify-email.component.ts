@@ -41,7 +41,7 @@ export class VerifyEmailComponent implements OnInit {
 
   // verify user if already exist or not for registration
   verifyUserRegistration() {
-    if (this.candidates == 'nouser,') {
+    if (this.candidates[0] === 'nouser') {
       this.infoobj = {
         'to': this.userForm.value.email,
         'subject': 'Email verification',

@@ -65,6 +65,7 @@ export class CandidateRegisterComponent implements OnInit {
       console.log(this.checkUserEmail[0]);
       console.log('redireted');
       this.router.navigate(['/login']);
+      // this.loading = false;
     } else {
       this.loading = false;
     }
@@ -133,8 +134,14 @@ export class CandidateRegisterComponent implements OnInit {
 
   // check Pincode
   getPincode() {
-    this.JsonDataService.getPincode(this.pincode).subscribe(
-      resPincodeData => [this.pincodeLocation = resPincodeData, this.getPincodeLocation()]);
+    if (this.pincode.length === 6) {
+      // console.log(this.pincode);
+      this.JsonDataService.getPincode(this.pincode).subscribe(
+        resPincodeData => [this.pincodeLocation = resPincodeData, this.getPincodeLocation()]);
+    } else if (this.pincode.length !== 6) {
+      this.areaList = [];
+      this.userForm.value.location = '';
+    }
   }
 
   // get pincode locations after checking pincode
