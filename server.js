@@ -5,6 +5,7 @@ const http = require('http');
 const bodyParser = require('body-parser');
 const https = require('https');
 const samarthyaPlatform = require('samarthyaPlatform');
+const morgan = require('morgan');
 
 // Get our API routes
 
@@ -13,6 +14,7 @@ const samarthyaPlatform = require('samarthyaPlatform');
 
 // const menuApi = require('./server/routes/menuApi');
 const app = express();
+app.use(morgan('dev'));
 
 
 // Parsers for POST data
