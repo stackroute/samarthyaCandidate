@@ -22,8 +22,8 @@ import { ForgotPasswordComponent } from 'app/components/loginComponent/forgot-pa
 import { VerifyEmailComponent } from 'app/components/loginComponent/verify-email/verify-email.component';
 import { LoginHeaderComponent } from 'app/components/loginComponent/login-header/login-header.component';
 import { LoginFooterComponent } from 'app/components/loginComponent/login-footer/login-footer.component';
+import { Logger } from "angular2-logger/core";
 import { Md2Module } from 'md2';
-
 
 @NgModule({
   imports: [
@@ -41,7 +41,8 @@ import { Md2Module } from 'md2';
     JsonDataService,
     AuthGuard,
     UserService,
-    AuthenticationService
+    AuthenticationService,
+    Logger
   ],
   bootstrap: [AppComponent],
   declarations: [
