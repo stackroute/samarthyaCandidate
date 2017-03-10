@@ -13,25 +13,25 @@ export class JsonDataService {
   public pincode;
 
   // url to store data from json file for Registration details
-  private urlRegister = 'http://localhost:3001/candidates';
+  private urlRegister = 'http://172.23.238.175:3001/candidates';
 
   // url to get pincode info
-  private urlPincode = 'http://localhost:3002/pincodeDetails';
+  private urlPincode = 'http://172.23.238.175:3002/pincodeDetails';
 
   // url to retrive data from json file for candidate navLinks
-  private urlNavlinks = 'http://localhost:3003/navList';
+  private urlNavlinks = 'http://172.23.238.175/navList';
 
   // url to get langauges
-  private urlLanguages = 'http://localhost:3003/languages';
+  private urlLanguages = 'http://172.23.238.175/languages';
 
   // url to get profession
-  private urlProfession = 'http://localhost:3003/profession';
+  private urlProfession = 'http://172.23.238.175:3003/profession';
 
   // url to get locations
-  private urlLocations = 'http://localhost:3003/locations';
+  private urlLocations = 'http://172.23.238.175:3003/locations';
 
   // url to get placementCenter
-  private urlPlacementCenter = 'http://localhost:3003/placementCenter';
+  private urlPlacementCenter = 'http://172.23.238.175:3003/placementCenter';
 
   public timer;
 

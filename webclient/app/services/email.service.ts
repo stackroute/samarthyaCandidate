@@ -1,3 +1,4 @@
+import { CandidateRegisterComponent } from './../components/loginComponent/candidate-register/candidate-register.component';
 // import { EmailService } from 'app/services/email.service';
 import { LoginComponent } from 'app/components/loginComponent/login/login.component';
 import { Injectable } from '@angular/core';
@@ -10,16 +11,11 @@ export class EmailService {
 
   public ref: LoginComponent;
 
-  // public linksend: any = {};
-  // public data2 :LoginComponent  ;
-
   constructor(private _http: Http) { }
 
   postdata(mailObj: LoginComponent) {
-    // var data1=JSON.stringify({to :"sheenamnarula1993@yahoo.com", subject:"abc", text:"hello" });
     const mailObjString = JSON.stringify(mailObj);
     const params = 'json=' + mailObjString;
-    // const res = '';
     const headers = new Headers();
 
     headers.append('Content-Type', 'application/X-www-form-urlencoded');
@@ -27,6 +23,27 @@ export class EmailService {
       headers: headers
     }).map(res => res.json());
   }
+  postdata2(mailObj: CandidateRegisterComponent) {
+     const mailObjString = JSON.stringify(mailObj);
+    const params = 'json=' + mailObjString;
+    const headers = new Headers();
+
+    headers.append('Content-Type', 'application/X-www-form-urlencoded');
+    return this._http.post('http://localhost:3000/email/welcome', params, {
+      headers: headers
+    }).map(res => res.json());
+  }
+  postdata3(mailObj: CandidateRegisterComponent) {
+     const mailObjString = JSON.stringify(mailObj);
+    const params = 'json=' + mailObjString;
+    const headers = new Headers();
+
+    headers.append('Content-Type', 'application/X-www-form-urlencoded');
+    return this._http.post('http://localhost:3000/email/reset', params, {
+      headers: headers
+    }).map(res => res.json());
+  }
+
 
   getRegister() {
     return <any>this._http.get('http://localhost:3000/email/verifiedmail')
