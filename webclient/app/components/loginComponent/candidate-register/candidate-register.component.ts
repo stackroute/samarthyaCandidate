@@ -9,6 +9,7 @@ import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
 import { ViewContainerRef } from '@angular/core';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { EmailService } from 'app/services/email.service';
+import { Logger } from 'angular2-logger/core';
 
 @Component({
   selector: 'app-candidate-register',
@@ -66,8 +67,8 @@ export class CandidateRegisterComponent implements OnInit {
     if (email === undefined || this.checkUserEmail[0] === 'found') {
       // console.log(this.checkUserEmail[0]);
       // console.log('redireted');
+      this.logger.error('Invaild Email id, redirected to login');
       this.router.navigate(['/login']);
-
     } else {
       this.loading = false;
     }
@@ -90,7 +91,7 @@ export class CandidateRegisterComponent implements OnInit {
 
   constructor( @Inject(FormBuilder) fb: FormBuilder, private JsonDataService: JsonDataService, private route: ActivatedRoute,
     private router: Router, private http: Http, private emailService: EmailService,
-    private snackBar: MdSnackBar, private viewContainerRef: ViewContainerRef, ) {
+    private snackBar: MdSnackBar, private viewContainerRef: ViewContainerRef, private logger: Logger) {
 
     // register candidate form
     this.userForm = fb.group({
@@ -137,6 +138,7 @@ export class CandidateRegisterComponent implements OnInit {
   // check Pincode
   getPincode() {
     if (this.pincode.length === 6) {
+      this.loading = true;
       // console.log(this.pincode);
       this.JsonDataService.getPincode(this.pincode).subscribe(
         resPincodeData => [this.pincodeLocation = resPincodeData, this.getPincodeLocation()]);
@@ -154,10 +156,12 @@ export class CandidateRegisterComponent implements OnInit {
       this.areaList.push(element['officename'] + ', ' + element['Districtname'] + ', ' + element['statename']);
     });
     if (this.areaList.length === 0) {
+      this.loading = false;
       this.openSnackBar('No Location Found', 'Please Try again');
       // this.areaList.push('Area Not Found');
     } else {
       this.openSnackBar(this.areaList.length + ' Locations Found', 'Please Select');
+      this.loading = false;
     }
   }
 
@@ -178,7 +182,7 @@ export class CandidateRegisterComponent implements OnInit {
         'mailBody': 'welcome to samarthya'
       };
       this.emailService.postdata2(this.infoObj).subscribe(data => this.postObject = data,
-        error => [this.openSnackBar('VERIFICATION MAIL SENT', 'Please Check your MAIL'),
+        error => [this.openSnackBar('WELCOME MAIL SENT', 'Please Check your MAIL'),
         this.timer = setTimeout(() => this.router.navigate(['/login']), 500)], () => console.log('finished'));
 
       this.timer = setTimeout(() => this.router.navigate(['/login']), 500);

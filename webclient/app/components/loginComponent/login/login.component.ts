@@ -24,9 +24,7 @@ export class LoginComponent implements OnInit {
   private postobject;
   public candidates = [];
   public result: any;
-  public showProgress = false;
-
-
+  public loading = false;
   public user: any = {};
   public returnUrl: String;
 
@@ -66,7 +64,7 @@ export class LoginComponent implements OnInit {
 
   // on login click
   login() {
-    this.showProgress = true;
+    this.loading = true;
     this.authenticationService.login(this.userForm.value.email, this.userForm.value.password)
       .subscribe(
       data => {
@@ -78,7 +76,7 @@ export class LoginComponent implements OnInit {
       },
       error => {
         this.openSnackBar('Username OR Password Wrong', 'Try Again');
-        // this.showProgress = false
+        this.loading = false
       }
       );
   }

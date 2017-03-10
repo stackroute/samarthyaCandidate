@@ -5,6 +5,12 @@
 * {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+.headerBtn{
+    color: white;
+}
+.headerBtn:hover{
+    /*background-color: indigo;*/
+}
 
 .fill-remaining-space {
     flex: 1 1 auto;
