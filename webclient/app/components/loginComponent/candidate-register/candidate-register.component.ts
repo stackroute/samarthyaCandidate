@@ -64,10 +64,8 @@ export class CandidateRegisterComponent implements OnInit {
   // redirect if user is undefined or already registered
   redirectInvalidUser(email) {
     if (email === undefined || this.checkUserEmail[0] === 'found') {
-      console.log(this.checkUserEmail[0]);
-      console.log('redireted');
-
-
+      // console.log(this.checkUserEmail[0]);
+      // console.log('redireted');
       this.router.navigate(['/login']);
 
     } else {
@@ -178,11 +176,12 @@ export class CandidateRegisterComponent implements OnInit {
         'to': this.emailId,
         'subject': 'Email verification',
         'mailBody': 'welcome to samarthya'
-      } ;
+      };
       this.emailService.postdata2(this.infoObj).subscribe(data => this.postObject = data,
         error => [this.openSnackBar('VERIFICATION MAIL SENT', 'Please Check your MAIL'),
         this.timer = setTimeout(() => this.router.navigate(['/login']), 500)], () => console.log('finished'));
-        this.timer = setTimeout(() => this.router.navigate(['/login']), 500);
-       }
+
+      this.timer = setTimeout(() => this.router.navigate(['/login']), 500);
+    }
   }
 }

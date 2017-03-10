@@ -24,7 +24,7 @@ export class EmailService {
     }).map(res => res.json());
   }
   postdata2(mailObj: CandidateRegisterComponent) {
-     const mailObjString = JSON.stringify(mailObj);
+    const mailObjString = JSON.stringify(mailObj);
     const params = 'json=' + mailObjString;
     const headers = new Headers();
 
@@ -34,7 +34,7 @@ export class EmailService {
     }).map(res => res.json());
   }
   postdata3(mailObj: CandidateRegisterComponent) {
-     const mailObjString = JSON.stringify(mailObj);
+    const mailObjString = JSON.stringify(mailObj);
     const params = 'json=' + mailObjString;
     const headers = new Headers();
 
@@ -43,7 +43,6 @@ export class EmailService {
       headers: headers
     }).map(res => res.json());
   }
-
 
   getRegister() {
     return <any>this._http.get('http://localhost:3000/email/verifiedmail')

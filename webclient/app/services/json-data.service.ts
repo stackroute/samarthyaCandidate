@@ -19,10 +19,10 @@ export class JsonDataService {
   private urlPincode = 'http://172.23.238.175:3002/pincodeDetails';
 
   // url to retrive data from json file for candidate navLinks
-  private urlNavlinks = 'http://172.23.238.175/navList';
+  private urlNavlinks = 'http://172.23.238.175:3003/navList';
 
   // url to get langauges
-  private urlLanguages = 'http://172.23.238.175/languages';
+  private urlLanguages = 'http://172.23.238.175:3003/languages';
 
   // url to get profession
   private urlProfession = 'http://172.23.238.175:3003/profession';
@@ -62,24 +62,32 @@ export class JsonDataService {
       response['_body'], console.log(response['_body'])]);
   };
 
-  // get json data for langauges and dropdown
+  // get json data for candidate navigatin links
   getNavLinks() {
     return this.http.get(this.urlNavlinks).map((response: Response) => response.json());
   };
-  // get json data for langauges and dropdown
+
+  // get json data for langauges
   getLanguages() {
     return this.http.get(this.urlLanguages).map((response: Response) => response.json());
-  }; // get json data for langauges and dropdown
+  };
+
+  // get json data for candidate register locations
   getLocations() {
     return this.http.get(this.urlLocations).map((response: Response) => response.json());
-  }; // get json data for langauges and dropdown
+  };
+
+  // get json data for candidate register profession
   getProfession() {
     return this.http.get(this.urlProfession).map((response: Response) => response.json());
-  }; // get json data for langauges and dropdown
+  };
+
+  // get json data for placementCenter
   getPlacementCenter() {
     return this.http.get(this.urlPlacementCenter).map((response: Response) => response.json());
-  }; // get json data for langauges and dropdown
+  };
 
+  // get json data for pincode details
   getPincode(pincode) {
     return this.http.get(this.urlPincode + '?pincode=' + pincode)
       .map((response: Response) => response.json());
