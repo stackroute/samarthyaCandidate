@@ -57,7 +57,7 @@
                     <!--sign in button-->
                     <div fxLayout="row">
                         <div fxFlex="100">
-                            <button md-raised-button color="accent" type="submit" class="full-width largeBtn" [disabled]="!userForm.valid">Sign in</button>
+                            <button md-raised-button color="primary" type="submit" class="full-width largeBtn" [disabled]="!userForm.valid">Sign in</button>
                         </div>
                     </div>
                 </form>
@@ -66,13 +66,6 @@
                 <div fxLayout="row">
                     <div fxFlex="100" fxLayoutAlign="center center">
                         <button md-button color="primary" (click)="forgotPassword()" class="">Forgot Password ?</button>
-                    </div>
-                </div>
-
-                <!--create account button-->
-                <div fxLayout="row">
-                    <div fxFlex="100">
-                        <button md-raised-button color="primary" (click)="verifyEmail()" class="full-width largeBtn">Create Account</button>
                     </div>
                 </div>
 

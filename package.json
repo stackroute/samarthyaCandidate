@@ -49,12 +49,9 @@
         "@types/jasmine": "2.5.38",
         "@types/node": "^6.0.42",
         "codelyzer": "~2.0.0-beta.1",
-        <<
-        << << < HEAD "eslint": "^3.17.1",
+        "eslint": "^3.17.1",
         "eslint-config-google": "^0.7.1",
-        ===
-        === = >>>
-        >>> > 8 cc7f9979aaee9fc89e40ce422cae0acc43069a5 "jasmine-core": "2.5.2",
+        "jasmine-core": "2.5.2",
         "jasmine-spec-reporter": "2.5.0",
         "karma": "1.2.0",
         "karma-chrome-launcher": "^2.0.0",

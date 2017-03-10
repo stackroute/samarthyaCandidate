@@ -64,10 +64,6 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/forgotPassword']);
   }
 
-  public verifyEmail() {
-    this.router.navigate(['/verifyEmail']);
-  }
-
   // on login click
   login() {
     this.showProgress = true;

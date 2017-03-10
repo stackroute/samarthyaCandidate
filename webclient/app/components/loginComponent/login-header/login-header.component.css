@@ -6,6 +6,10 @@
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.fill-remaining-space {
+    flex: 1 1 auto;
+}
+
 .mainHeader {
     top: 0px;
     position: fixed;
@@ -14,7 +18,8 @@
 
 .langBar {
     margin-top: 64px;
-    background-color: #EEEEEE;
+    /*background-color: #EEEEEE;*/
+    background-color: white;
     padding-left: 50px;
     padding-right: 50px;
     text-align: center;
@@ -27,9 +32,9 @@
 }
 
 .logo {
-    text-align: center;
-    margin: auto;
-    font-size: 30px;
+    /*text-align: center;*/
+    /*margin: auto;*/
+    font-size: 20px;
     font-weight: bold;
     color: whitesmoke;
     text-decoration-line: none
