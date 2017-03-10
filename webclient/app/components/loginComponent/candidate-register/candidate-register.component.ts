@@ -69,6 +69,8 @@ export class CandidateRegisterComponent implements OnInit {
       // console.log('redireted');
       this.logger.error('Invaild Email id, redirected to login');
       this.router.navigate(['/login']);
+      // this.loading = false;
+      
     } else {
       this.loading = false;
     }

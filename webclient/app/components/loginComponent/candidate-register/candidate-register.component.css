@@ -16,6 +16,15 @@ md-card {
     width: 100%;
     opacity: .5;
 }
+.division{
+    /*margin:10px;*/
+    margin-bottom: 20px;
+    margin-top: 30px;
+    padding-bottom: 20px;
+    font-size: 18px;
+    color:dimgray;
+    border-bottom: 2px solid lightgray;
+}
 
 .gender {
     height: 70px;

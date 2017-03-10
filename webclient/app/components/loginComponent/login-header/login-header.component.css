@@ -7,9 +7,13 @@
 }
 .headerBtn{
     color: white;
-}
-.headerBtn:hover{
-    /*background-color: indigo;*/
+    }
+.backgroundImage{
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    position: absolute;
+    z-index: -10000;
 }
 
 .fill-remaining-space {
@@ -20,6 +24,8 @@
     top: 0px;
     position: fixed;
     z-index: 1000;
+    padding-left: 3%;
+    padding-right: 3%;
 }
 
 .langBar {
@@ -29,6 +35,7 @@
     padding-left: 50px;
     padding-right: 50px;
     text-align: center;
+
 }
 
 .langBtn {
@@ -40,6 +47,7 @@
 .logo {
     /*text-align: center;*/
     /*margin: auto;*/
+    /*margin-left: 5%;*/
     font-size: 20px;
     font-weight: bold;
     color: whitesmoke;
@@ -70,7 +78,7 @@ md-select {
 
 .footerHead {
     margin: auto;
-    font-size: 20px;
+    font-size: 25px;
     text-align: center;
     color: white;
 }
