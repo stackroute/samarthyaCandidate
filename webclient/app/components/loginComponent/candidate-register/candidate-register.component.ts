@@ -35,6 +35,8 @@ export class CandidateRegisterComponent implements OnInit {
   public passwordMatchWarning = '';
   public checkUserEmail;
   public loading = true;
+  public infoObj;
+  public postObject;
 
   ngOnInit() {
     // getting languages and form data from json file
@@ -64,8 +66,10 @@ export class CandidateRegisterComponent implements OnInit {
     if (email === undefined || this.checkUserEmail[0] === 'found') {
       console.log(this.checkUserEmail[0]);
       console.log('redireted');
+
+
       this.router.navigate(['/login']);
-      // this.loading = false;
+
     } else {
       this.loading = false;
     }
@@ -170,7 +174,15 @@ export class CandidateRegisterComponent implements OnInit {
       this.formData = this.userForm.value;
       this.JsonDataService.create(this.formData);
       this.openSnackBar('Successfully Register', 'Please Login');
-      this.timer = setTimeout(() => this.router.navigate(['/login']), 500);
-    }
+      this.infoObj = {
+        'to': this.emailId,
+        'subject': 'Email verification',
+        'mailBody': 'welcome to samarthya'
+      } ;
+      this.emailService.postdata2(this.infoObj).subscribe(data => this.postObject = data,
+        error => [this.openSnackBar('VERIFICATION MAIL SENT', 'Please Check your MAIL'),
+        this.timer = setTimeout(() => this.router.navigate(['/login']), 500)], () => console.log('finished'));
+        this.timer = setTimeout(() => this.router.navigate(['/login']), 500);
+       }
   }
 }

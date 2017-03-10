@@ -55,7 +55,8 @@ export class ForgotPasswordComponent implements OnInit {
         'redirect': 'http://localhost:3000/passwordReset',
         'mailBody': 'Please Click on this link to Reset Account Password'
       };
-      this.emailservice.postdata(this.infoobj).subscribe(data => this.postobject = data,
+      console.log(this.infoobj.to);
+      this.emailservice.postdata3(this.infoobj).subscribe(data => this.postobject = data,
         error => [this.openSnackBar('PASSWORD RESET LINK SENT', 'Please Check your mail'),
         this.timer = setTimeout(() => this.router.navigate(['/login']), 500)
         ], () => console.log('finished'));
