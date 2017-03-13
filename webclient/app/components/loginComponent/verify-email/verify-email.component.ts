@@ -21,6 +21,7 @@ export class VerifyEmailComponent implements OnInit {
   private postobject;
   public candidates;
   public timer;
+  public loading = false;
 
   constructor( @Inject(FormBuilder) fb: FormBuilder, private emailservice: EmailService, private JsonDataService: JsonDataService,
     private snackBar: MdSnackBar, private viewContainerRef: ViewContainerRef, private router: Router) {
@@ -50,20 +51,23 @@ export class VerifyEmailComponent implements OnInit {
       };
       this.emailservice.postdata(this.infoobj).subscribe(data => this.postobject = data,
         error => [this.openSnackBar('VERIFICATION MAIL SENT', 'Please Check your MAIL'),
-        this.timer = setTimeout(() => this.router.navigate(['/login']), 500)], () => console.log('finished'));
+        this.timer = setTimeout(() => this.router.navigate(['/login']), 500),
+        this.loading = false], () => console.log('finished'));
     } else {
       this.openSnackBar('User already Exist', 'Please Login');
-      this.timer = setTimeout(() => this.router.navigate(['/login']), 500);
+      [this.timer = setTimeout(() => this.router.navigate(['/login']), 500),
+      this.loading = false];
     }
   }
 
   // on create account submit
   onVerifyLink() {
+    this.loading = true;
     // console.log(this.userForm.value.email);
     this.JsonDataService.getEmail(this.userForm.value.email).subscribe(resJsonData => [
       this.candidates = resJsonData, this.verifyUserRegistration()],
       error => {
-        this.openSnackBar('TECHNICAL ISSUE', 'Please Try after some time');
+        [this.openSnackBar('TECHNICAL ISSUE', 'Please Try after some time'), this.loading = false]
       });
   }
 

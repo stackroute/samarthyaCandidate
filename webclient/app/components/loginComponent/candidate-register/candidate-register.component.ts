@@ -70,7 +70,7 @@ export class CandidateRegisterComponent implements OnInit {
       this.logger.error('Invaild Email id, redirected to login');
       this.router.navigate(['/login']);
       // this.loading = false;
-      
+
     } else {
       this.loading = false;
     }
@@ -98,13 +98,13 @@ export class CandidateRegisterComponent implements OnInit {
     // register candidate form
     this.userForm = fb.group({
       fname: ['', [Validators.required, Validators.pattern('[A-Za-z]{2,}')]],
-      lname: ['', [Validators.required, Validators.pattern('[A-Za-z]{2,}')]],
+      lname: ['', [Validators.required]],
       gender: ['male', Validators.required],
       email: [{ value: '', disabled: true }],
       regId: ['', Validators.required],
       // dob:'',
       aadhar: ['', [Validators.required, Validators.pattern(/^\d{12}$/)]],
-      mob: ['', [Validators.required, , Validators.pattern('[0-9]{10}')]],
+      mob: ['', [Validators.required, , Validators.pattern('[0-9]{10,11}')]],
 
       password: ['', [Validators.required, Validators.pattern(/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,24}$/)]],
       conPassword: ['', [Validators.required, Validators.pattern(/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,24}$/)]],

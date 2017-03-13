@@ -51,9 +51,9 @@
                   <div *ngIf="userForm.get('lname').hasError('required') && userForm.get('lname').touched" class="errorStyle">
                     Last Name is required
                   </div>
-                  <div *ngIf="userForm.get('lname').hasError('pattern')" class="errorStyle">
+                  <!--<div *ngIf="userForm.get('lname').hasError('pattern')" class="errorStyle">
                     Last Name is too small
-                  </div>
+                  </div>-->
                   <!--<app-control-messages [control]="userForm.controls.lname" class="errorStyle"></app-control-messages>-->
                 </md-hint>
               </md-input-container>
@@ -177,7 +177,7 @@
 
           <!--Contact info division-->
           <div class="division">
-            Contact Dtails
+            Contact Details
           </div>
 
           <!--Mobile No-->
@@ -262,7 +262,7 @@
 
           <!--Register Button-->
           <div fxLayout="row">
-            <button md-raised-button color="accent" class="full-width registerBtn" type="submit" (click)="onRegister()" id="resetBtn"
+            <button md-raised-button color="primary" class="full-width registerBtn" type="submit" (click)="onRegister()" id="resetBtn"
               [disabled]="!userForm.valid">Register</button>
           </div>
 

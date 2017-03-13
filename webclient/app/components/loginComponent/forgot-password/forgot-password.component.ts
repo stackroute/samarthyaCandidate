@@ -22,6 +22,7 @@ export class ForgotPasswordComponent implements OnInit {
   public candidates;
   public timer;
   public emailId = '';
+  public loading = false;
 
   constructor( @Inject(FormBuilder) fb: FormBuilder, private emailservice: EmailService, private JsonDataService: JsonDataService,
     private snackBar: MdSnackBar, private viewContainerRef: ViewContainerRef, private router: Router, private emailService: EmailService) {
@@ -58,20 +59,22 @@ export class ForgotPasswordComponent implements OnInit {
       console.log(this.infoobj.to);
       this.emailservice.postdata3(this.infoobj).subscribe(data => this.postobject = data,
         error => [this.openSnackBar('PASSWORD RESET LINK SENT', 'Please Check your mail'),
-        this.timer = setTimeout(() => this.router.navigate(['/login']), 500)
+        [this.timer = setTimeout(() => this.router.navigate(['/login']), 500), this.loading = false]
         ], () => console.log('finished'));
     } else {
       this.openSnackBar('User not Registered', 'Please Register');
+      this.loading = false
     }
   }
 
   // on password reset submit
   onResetLink() {
+    this.loading = true;
     // console.log(this.userForm.value.email);
     this.JsonDataService.getEmail(this.userForm.value.email).subscribe(resEmailData => [
       this.candidates = resEmailData, this.verifyUserReset()],
       error => {
-        this.openSnackBar('TECHNICAL ISSUE', 'Please Try after some time');
+        [this.openSnackBar('TECHNICAL ISSUE', 'Please Try after some time'), this.loading = false]
       });
   }
   onBack() {

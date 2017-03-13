@@ -35,13 +35,14 @@
     padding-left: 50px;
     padding-right: 50px;
     text-align: center;
-
 }
 
 .langBtn {
     color: white;
     color: #616161;
     margin: 1px;
+
+     font-family: 'Baloo Tamma', cursive;
 }
 
 .logo {

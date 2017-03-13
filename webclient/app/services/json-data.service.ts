@@ -12,9 +12,6 @@ export class JsonDataService {
 
   public pincode;
 
-  // url to store data from json file for Registration details
-  private urlRegister = 'http://172.23.238.175:3001/candidates';
-
   // url to get pincode info
   private urlPincode = 'http://172.23.238.175:3002/pincodeDetails';
 
