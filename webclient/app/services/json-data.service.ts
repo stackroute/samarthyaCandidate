@@ -13,8 +13,9 @@ export class JsonDataService {
   public pincode;
 
   // url to get pincode info
-  private urlPincode = 'http://172.23.238.175:3002/pincodeDetails';
-
+  public mygovKey = 'bb69790db92cb17b4b5c8b3bf4f9fc02';
+  private urlPincode = 'https://data.gov.in/api/datastore/resource.json?resource_id=6176ee09-3d56-4a3b-8115-21841576b2f6&api-key=' + this.mygovKey + '&filters[pincode]=';
+ 
   // url to retrive data from json file for candidate navLinks
   private urlNavlinks = 'http://172.23.238.175:3003/navList';
 
@@ -86,7 +87,7 @@ export class JsonDataService {
 
   // get json data for pincode details
   getPincode(pincode) {
-    return this.http.get(this.urlPincode + '?pincode=' + pincode)
+    return this.http.get(this.urlPincode + pincode)
       .map((response: Response) => response.json());
   };
 }

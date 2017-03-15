@@ -36,6 +36,7 @@ export class CandidateRegisterComponent implements OnInit {
   public passwordMatchWarning = '';
   public checkUserEmail;
   public loading = true;
+  // public loading = false;
   public infoObj;
   public postObject;
 
@@ -152,17 +153,20 @@ export class CandidateRegisterComponent implements OnInit {
 
   // get pincode locations after checking pincode
   getPincodeLocation() {
+    let officeName;
     this.userForm.value.location = '';
     this.areaList = [];
-    this.pincodeLocation.forEach(element => {
-      this.areaList.push(element['officename'] + ', ' + element['Districtname'] + ', ' + element['statename']);
+    this.pincodeLocation.records.forEach(element => {
+      officeName = element['officename'];
+      officeName = officeName.substr(0, officeName.length - 4);
+      this.areaList.push(officeName + ', ' + element['Districtname'] + ', ' + element['statename']);
     });
     if (this.areaList.length === 0) {
       this.loading = false;
       this.openSnackBar('No Location Found', 'Please Try again');
       // this.areaList.push('Area Not Found');
     } else {
-      this.openSnackBar(this.areaList.length + ' Locations Found', 'Please Select');
+      this.openSnackBar(this.pincodeLocation.count + ' Locations Found', 'Please Select');
       this.loading = false;
     }
   }
