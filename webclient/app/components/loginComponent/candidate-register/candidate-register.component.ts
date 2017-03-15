@@ -141,7 +141,7 @@ export class CandidateRegisterComponent implements OnInit {
   // check Pincode
   getPincode() {
     if (this.pincode.length === 6) {
-      this.loading = true;
+      // this.loading = true;
       // console.log(this.pincode);
       this.JsonDataService.getPincode(this.pincode).subscribe(
         resPincodeData => [this.pincodeLocation = resPincodeData, this.getPincodeLocation()]);
@@ -162,12 +162,12 @@ export class CandidateRegisterComponent implements OnInit {
       this.areaList.push(officeName + ', ' + element['Districtname'] + ', ' + element['statename']);
     });
     if (this.areaList.length === 0) {
-      this.loading = false;
+      // this.loading = false;
       this.openSnackBar('No Location Found', 'Please Try again');
       // this.areaList.push('Area Not Found');
     } else {
       this.openSnackBar(this.pincodeLocation.count + ' Locations Found', 'Please Select');
-      this.loading = false;
+      // this.loading = false;
     }
   }
 

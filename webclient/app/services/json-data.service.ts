@@ -10,12 +10,11 @@ import { RequestOptions, Request, RequestMethod } from '@angular/http';
 @Injectable()
 export class JsonDataService {
 
-  public pincode;
-
   // url to get pincode info
   public mygovKey = 'bb69790db92cb17b4b5c8b3bf4f9fc02';
-  private urlPincode = 'https://data.gov.in/api/datastore/resource.json?resource_id=6176ee09-3d56-4a3b-8115-21841576b2f6&api-key=' + this.mygovKey + '&filters[pincode]=';
- 
+  private urlPincode = 'https://data.gov.in/api/datastore/resource.json?resource_id=6176ee09-3d56-4a3b-8115-21841576b2f6&api-key='
+  + this.mygovKey + '&filters[pincode]=';
+
   // url to retrive data from json file for candidate navLinks
   private urlNavlinks = 'http://172.23.238.175:3003/navList';
 
@@ -30,8 +29,6 @@ export class JsonDataService {
 
   // url to get placementCenter
   private urlPlacementCenter = 'http://172.23.238.175:3003/placementCenter';
-
-  public timer;
 
   constructor(private http: Http, private snackBar: MdSnackBar, private router: Router) { }
 

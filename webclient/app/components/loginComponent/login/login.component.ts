@@ -76,7 +76,7 @@ export class LoginComponent implements OnInit {
       },
       error => {
         this.openSnackBar('Username OR Password Wrong', 'Try Again');
-        this.loading = false
+        this.loading = false;
       }
       );
   }

@@ -67,7 +67,7 @@ export class VerifyEmailComponent implements OnInit {
     this.JsonDataService.getEmail(this.userForm.value.email).subscribe(resJsonData => [
       this.candidates = resJsonData, this.verifyUserRegistration()],
       error => {
-        [this.openSnackBar('TECHNICAL ISSUE', 'Please Try after some time'), this.loading = false]
+        [this.openSnackBar('TECHNICAL ISSUE', 'Please Try after some time'), this.loading = false];
       });
   }
 

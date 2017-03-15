@@ -63,7 +63,7 @@ export class ForgotPasswordComponent implements OnInit {
         ], () => console.log('finished'));
     } else {
       this.openSnackBar('User not Registered', 'Please Register');
-      this.loading = false
+      this.loading = false;
     }
   }
 
@@ -74,7 +74,7 @@ export class ForgotPasswordComponent implements OnInit {
     this.JsonDataService.getEmail(this.userForm.value.email).subscribe(resEmailData => [
       this.candidates = resEmailData, this.verifyUserReset()],
       error => {
-        [this.openSnackBar('TECHNICAL ISSUE', 'Please Try after some time'), this.loading = false]
+        [this.openSnackBar('TECHNICAL ISSUE', 'Please Try after some time'), this.loading = false];
       });
   }
   onBack() {
