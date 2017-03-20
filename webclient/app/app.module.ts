@@ -35,6 +35,8 @@ import { Md2Module } from 'md2';
     AppRoutingModule,
     ReactiveFormsModule,
     FlexLayoutModule,
+  ],exports: [
+    MaterialModule
   ],
   providers: [
     EmailService,

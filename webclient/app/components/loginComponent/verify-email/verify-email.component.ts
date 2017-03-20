@@ -1,73 +1,50 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { EmailService } from 'app/services/email.service';
-import { JsonDataService } from 'app/services/json-data.service';
 import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
 import { ViewContainerRef } from '@angular/core';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { Router } from '@angular/router';
+import { Data } from 'app/services/data.service'
 
 @Component({
   selector: 'app-verify-email',
   templateUrl: './verify-email.component.html',
   styleUrls: ['./verify-email.component.css'],
-  providers: [JsonDataService]
 })
 
 export class VerifyEmailComponent implements OnInit {
 
   public userForm: FormGroup;
   public infoobj;
-  private postobject;
-  public candidates;
   public timer;
-  public loading = false;
 
-  constructor( @Inject(FormBuilder) fb: FormBuilder, private emailservice: EmailService, private JsonDataService: JsonDataService,
+  constructor( @Inject(FormBuilder) fb: FormBuilder, private data: Data, private emailservice: EmailService,
     private snackBar: MdSnackBar, private viewContainerRef: ViewContainerRef, private router: Router) {
     // getting login form data
     this.userForm = fb.group({
       email: ['', [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
+      role: ['candidate']
     });
   }
 
   ngOnInit() { }
 
-  // snackBar for notification
-  openSnackBar(message, action) {
-    this.snackBar.open(message, action, {
-      duration: 5000,
-    });
-  }
-
-  // verify user if already exist or not for registration
-  verifyUserRegistration() {
-    if (this.candidates[0] === 'nouser') {
-      this.infoobj = {
-        'to': this.userForm.value.email,
-        'subject': 'Email verification',
-        'redirect': 'http://localhost:3000/candidateRegister',
-        'mailBody': 'Please Click on this link to verify your Email'
-      };
-      this.emailservice.postdata(this.infoobj).subscribe(data => this.postobject = data,
-        error => [this.openSnackBar('VERIFICATION MAIL SENT', 'Please Check your MAIL'),
-        this.timer = setTimeout(() => this.router.navigate(['/login']), 500),
-        this.loading = false], () => console.log('finished'));
-    } else {
-      this.openSnackBar('User already Exist', 'Please Login');
-      [this.timer = setTimeout(() => this.router.navigate(['/login']), 500),
-      this.loading = false];
-    }
-  }
-
   // on create account submit
   onVerifyLink() {
-    this.loading = true;
-    // console.log(this.userForm.value.email);
-    this.JsonDataService.getEmail(this.userForm.value.email).subscribe(resJsonData => [
-      this.candidates = resJsonData, this.verifyUserRegistration()],
+    this.infoobj = {
+      'title': this.userForm.value.role,
+      'username': this.userForm.value.email,
+      'subject': 'Email verification'
+    };
+    console.log(this.infoobj)
+    this.emailservice.sendEmail(this.infoobj).subscribe(resJsonData => {
+      this.data.openSnackBar('mail sent succefully', 'Please Check your MAIL');
+      this.timer = setTimeout(() => this.router.navigate(['/login']), 500);
+    },
       error => {
-        [this.openSnackBar('TECHNICAL ISSUE', 'Please Try after some time'), this.loading = false];
+        this.data.openSnackBar('TECHNICAL ISSUE', 'Please Try after some time');
+        this.timer = setTimeout(() => this.router.navigate(['/login']), 500);
       });
   }
 

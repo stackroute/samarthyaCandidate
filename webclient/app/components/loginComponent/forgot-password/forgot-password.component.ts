@@ -33,11 +33,11 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.emailService.getRegister()
-      .subscribe(resEmployeeData => {
-        this.emailId = resEmployeeData.usermail2;
-        console.log(this.emailId);
-      });
+    // this.emailService.getRegister()
+    //   .subscribe(resEmployeeData => {
+    //     this.emailId = resEmployeeData.usermail2;
+    //     console.log(this.emailId);
+    //   });
   }
 
   // snackBar for notification
@@ -57,10 +57,10 @@ export class ForgotPasswordComponent implements OnInit {
         'mailBody': 'Please Click on this link to Reset Account Password'
       };
       console.log(this.infoobj.to);
-      this.emailservice.postdata3(this.infoobj).subscribe(data => this.postobject = data,
-        error => [this.openSnackBar('PASSWORD RESET LINK SENT', 'Please Check your mail'),
-        [this.timer = setTimeout(() => this.router.navigate(['/login']), 500), this.loading = false]
-        ], () => console.log('finished'));
+      // this.emailservice.postdata3(this.infoobj).subscribe(data => this.postobject = data,
+      //   error => [this.openSnackBar('PASSWORD RESET LINK SENT', 'Please Check your mail'),
+      //   [this.timer = setTimeout(() => this.router.navigate(['/login']), 500), this.loading = false]
+      //   ], () => console.log('finished'));
     } else {
       this.openSnackBar('User not Registered', 'Please Register');
       this.loading = false;

@@ -48,10 +48,10 @@ export class CandidateRegisterComponent implements OnInit {
 
     this.JsonDataService.getProfession().subscribe(resJsonData => this.getProfession(resJsonData));
 
-    this.emailService.getRegister()
-      .subscribe(resEmployeeData => {
-        [this.emailId = resEmployeeData.usermail2, this.checkEmail(this.emailId)];
-      });
+    // this.emailService.getRegister()
+    //   .subscribe(resEmployeeData => {
+    //     [this.emailId = resEmployeeData.usermail2, this.checkEmail(this.emailId)];
+    //   });
   }
 
   // check if email is undefined or already exists
@@ -187,9 +187,9 @@ export class CandidateRegisterComponent implements OnInit {
         'subject': 'Email verification',
         'mailBody': 'welcome to samarthya'
       };
-      this.emailService.postdata2(this.infoObj).subscribe(data => this.postObject = data,
-        error => [this.openSnackBar('WELCOME MAIL SENT', 'Please Check your MAIL'),
-        this.timer = setTimeout(() => this.router.navigate(['/login']), 500)], () => console.log('finished'));
+      // this.emailService.postdata2(this.infoObj).subscribe(data => this.postObject = data,
+      //   error => [this.openSnackBar('WELCOME MAIL SENT', 'Please Check your MAIL'),
+      //   this.timer = setTimeout(() => this.router.navigate(['/login']), 500)], () => console.log('finished'));
 
       this.timer = setTimeout(() => this.router.navigate(['/login']), 500);
     }
