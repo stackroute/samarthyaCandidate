@@ -1,6 +1,6 @@
-<div *ngIf="loading" class="loading">
+<!--<div *ngIf="loading" class="loading">
   <md-spinner></md-spinner>
-</div>
+</div>-->
 <!--login Header-->
 <app-login-header></app-login-header>
 
@@ -109,7 +109,8 @@
             </div>
             <div fxFlex.xs="90" fxFlex.gt-xs="93">
               <md-input-container class="full-width">
-                <input mdInput formControlName="email" id="email" type="text" class="validate" value={{emailId}} placeholder="Email" />
+                <input mdInput formControlName="email" id="email" [readonly]="emailDisable" type="text" class="validate" placeholder="Email"
+                />
                 <md-hint align="start" class="full-width">
                   <!--<div *ngIf="userForm.get('aadhar').hasError('pattern')" class="errorStyle">Invaild Email</div>-->
                   <!--<app-control-messages [control]="userForm.controls.email" class="errorStyle"></app-control-messages>-->
@@ -262,8 +263,8 @@
 
           <!--Register Button-->
           <div fxLayout="row">
-            <button md-raised-button color="primary" class="full-width registerBtn" type="submit" (click)="onRegister()" id="resetBtn"
-              [disabled]="!userForm.valid">Register</button>
+            <button md-raised-button color="primary" class="full-width registerBtn" type="submit" (click)="onRegister(userForm)" id="resetBtn"
+              [disabled]="userForm.valid">Register</button>
           </div>
 
         </form>

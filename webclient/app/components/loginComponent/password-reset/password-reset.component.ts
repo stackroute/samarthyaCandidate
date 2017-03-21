@@ -33,10 +33,10 @@ export class PasswordResetComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.emailService.getRegister()
-      .subscribe(resEmployeeData => {
-        [this.emailId = resEmployeeData.usermail2, this.checkEmail(this.emailId)];
-      });
+    // this.emailService.getRegister()
+    //   .subscribe(resEmployeeData => {
+    //     [this.emailId = resEmployeeData.usermail2, this.checkEmail(this.emailId)];
+    //   });
   }
 
   // check if email is undefined or already exists

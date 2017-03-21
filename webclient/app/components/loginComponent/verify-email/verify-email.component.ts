@@ -18,8 +18,6 @@ export class VerifyEmailComponent implements OnInit {
 
   public userForm: FormGroup;
   public infoobj;
-  private postobject;
-  public candidates;
   public timer;
   public loading = false;
 
@@ -40,34 +38,25 @@ export class VerifyEmailComponent implements OnInit {
     });
   }
 
-  // verify user if already exist or not for registration
-  verifyUserRegistration() {
-    if (this.candidates[0] === 'nouser') {
-      this.infoobj = {
-        'to': this.userForm.value.email,
-        'subject': 'Email verification',
-        'redirect': 'http://localhost:3000/candidateRegister',
-        'mailBody': 'Please Click on this link to verify your Email'
-      };
-      this.emailservice.postdata(this.infoobj).subscribe(data => this.postobject = data,
-        error => [this.openSnackBar('VERIFICATION MAIL SENT', 'Please Check your MAIL'),
-        this.timer = setTimeout(() => this.router.navigate(['/login']), 500),
-        this.loading = false], () => console.log('finished'));
-    } else {
-      this.openSnackBar('User already Exist', 'Please Login');
-      [this.timer = setTimeout(() => this.router.navigate(['/login']), 500),
-      this.loading = false];
-    }
-  }
-
   // on create account submit
   onVerifyLink() {
-    this.loading = true;
-    // console.log(this.userForm.value.email);
-    this.JsonDataService.getEmail(this.userForm.value.email).subscribe(resJsonData => [
-      this.candidates = resJsonData, this.verifyUserRegistration()],
+    this.infoobj = {
+      'title': this.userForm.value.role,
+      'username': this.userForm.value.email,
+      'subject': 'Email verification'
+    };
+    console.log(this.infoobj)
+    this.emailservice.sendEmail(this.infoobj).subscribe(resJsonData => {
+      if (resJsonData.message === 'sent successfully') {
+        this.openSnackBar('Verification Mail Sent', 'Please Check Your Mail');
+      } else if (resJsonData.message === 'user already exist') {
+        this.openSnackBar('User already exists', 'Please Login');
+      }
+      this.timer = setTimeout(() => this.router.navigate(['/login']), 500);
+    },
       error => {
-        [this.openSnackBar('TECHNICAL ISSUE', 'Please Try after some time'), this.loading = false];
+        this.openSnackBar('TECHNICAL ISSUE', 'Please Try after some time');
+        this.timer = setTimeout(() => this.router.navigate(['/login']), 500);
       });
   }
 

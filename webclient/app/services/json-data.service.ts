@@ -16,19 +16,19 @@ export class JsonDataService {
   + this.mygovKey + '&filters[pincode]=';
 
   // url to retrive data from json file for candidate navLinks
-  private urlNavlinks = 'http://172.23.238.175:3003/navList';
+  private urlNavlinks = 'resources/navList';
 
   // url to get langauges
-  private urlLanguages = 'http://172.23.238.175:3003/languages';
+  private urlLanguages = 'resources/languages';
 
   // url to get profession
-  private urlProfession = 'http://172.23.238.175:3003/profession';
+  private urlProfession = 'resources/profession';
 
   // url to get locations
-  private urlLocations = 'http://172.23.238.175:3003/locations';
+  private urlLocations = 'resources/locations';
 
   // url to get placementCenter
-  private urlPlacementCenter = 'http://172.23.238.175:3003/placementCenter';
+  private urlPlacementCenter = 'resources/placementCenter';
 
   constructor(private http: Http, private snackBar: MdSnackBar, private router: Router) { }
 
@@ -40,12 +40,11 @@ export class JsonDataService {
   }
 
   // Store Registration details in databse
-  create(formData) {
-    // console.log('service called');
-    // console.log("josn data service : "+formData['fname']);
-    this.http.post('http://localhost:3000/api/adduser', formData).subscribe(data => {
-      this.openSnackBar(formData.email, 'Register Successfully');
-      this.router.navigate(['/']);
+  registerUser(formData): any {
+    console.log(formData);
+    return this.http.post('/users', formData).map(data => {
+      console.log(data.json),
+      data.json();
     }, error => {
       console.log(error.json());
     });
@@ -87,4 +86,9 @@ export class JsonDataService {
     return this.http.get(this.urlPincode + pincode)
       .map((response: Response) => response.json());
   };
+
+  verifyToken(token) {
+    return this.http.post("/auth/verify-email", { token: token }).map((response: Response) => response.json());
+
+  }
 }

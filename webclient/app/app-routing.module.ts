@@ -32,7 +32,7 @@ const routes: Routes = [
   { path: 'logout', component: LogoutComponent },
   { path: 'login', component: LoginComponent },
   { path: 'forgotPassword', component: ForgotPasswordComponent },
-  { path: 'candidateRegister', component: CandidateRegisterComponent },
+  { path: 'register', component: CandidateRegisterComponent },
   { path: 'verifyEmail', component: VerifyEmailComponent },
   { path: 'passwordReset', component: PasswordResetComponent },
   { path: '**', redirectTo: '/home' }

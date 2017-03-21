@@ -39,6 +39,7 @@ export class CandidateRegisterComponent implements OnInit {
   // public loading = false;
   public infoObj;
   public postObject;
+  public emailDisable = false;
 
   ngOnInit() {
     // getting languages and form data from json file
@@ -48,10 +49,24 @@ export class CandidateRegisterComponent implements OnInit {
 
     this.JsonDataService.getProfession().subscribe(resJsonData => this.getProfession(resJsonData));
 
-    this.emailService.getRegister()
-      .subscribe(resEmployeeData => {
-        [this.emailId = resEmployeeData.usermail2, this.checkEmail(this.emailId)];
-      });
+    this.JsonDataService.verifyToken(this.route.snapshot.queryParams['confirm']).subscribe(res => {
+      if (res.msg != 'Session Expired') {
+        if (res.data.username) {
+          this.userForm.patchValue({
+            'email': res.data.username
+          })
+          this.emailDisable = true;
+        }
+      }
+      else {
+        this.router.navigate(['/login']);
+        // this.data.openSnackBar(res.msg['msg'], "OK");
+      }
+    },
+      (err) => {
+        this.router.navigate(['/login']);
+        // this.data.openSnackBar("Session Expired", "OK");
+      })
   }
 
   // check if email is undefined or already exists
@@ -101,12 +116,12 @@ export class CandidateRegisterComponent implements OnInit {
       fname: ['', [Validators.required, Validators.pattern('[A-Za-z]{2,}')]],
       lname: ['', [Validators.required]],
       gender: ['male', Validators.required],
-      email: [{ value: '', disabled: true }],
+      email: ['', Validators.required],
       regId: ['', Validators.required],
       // dob:'',
       aadhar: ['', [Validators.required, Validators.pattern(/^\d{12}$/)]],
       mob: ['', [Validators.required, , Validators.pattern('[0-9]{10,11}')]],
-
+      role: ['candidate'],
       password: ['', [Validators.required, Validators.pattern(/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,24}$/)]],
       conPassword: ['', [Validators.required, Validators.pattern(/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,24}$/)]],
 
@@ -172,26 +187,34 @@ export class CandidateRegisterComponent implements OnInit {
   }
 
   // on form submit
-  onRegister() {
-    // console.log(this.userForm.value);
-    // console.log(this.emailId);
-    if (this.emailId === '') {
-      this.openSnackBar('No Email Id Present', 'Please Verify Email');
-    } else {
-      this.userForm.value.email = this.emailId;
-      this.formData = this.userForm.value;
-      this.JsonDataService.create(this.formData);
-      this.openSnackBar('Successfully Register', 'Please Login');
-      this.infoObj = {
-        'to': this.emailId,
-        'subject': 'Email verification',
-        'mailBody': 'welcome to samarthya'
-      };
-      this.emailService.postdata2(this.infoObj).subscribe(data => this.postObject = data,
-        error => [this.openSnackBar('WELCOME MAIL SENT', 'Please Check your MAIL'),
-        this.timer = setTimeout(() => this.router.navigate(['/login']), 500)], () => console.log('finished'));
+  onRegister(userdata) {
 
-      this.timer = setTimeout(() => this.router.navigate(['/login']), 500);
-    }
+    let userData = {
+      profileData: {
+        name: userdata.get('fname').value, lastName: userdata.get('lname').value,
+        gender: userdata.get('gender').value, email: userdata.get('email').value,
+        mobileNumber: userdata.get('mob').value, role: userdata.get('role').value,
+        profession: userdata.get('profession').value,
+        location: userdata.get('location').value,
+        placementCenter: userdata.get('placementCenter').value,
+        aadharNumber: userdata.get('aadhar').value,
+        registerID: userdata.get('regId').value,
+      },
+      userCredentialsData: {
+        username: userdata.get('email').value, password: userdata.get('password').value,
+        role: userdata.get('role').value,
+      }
+    };
+
+    this.JsonDataService.registerUser(userData).subscribe(res => {
+      console.log("res : " + res);
+      if (res['success'] == true) {
+        this.openSnackBar('Successfully Register', 'Please Login');
+        this.router.navigate(['/']);
+      } else {
+        this.openSnackBar('Failed', 'Please Try Again');
+        // this.router.navigate(['/']);
+      }
+    })
   }
 }
