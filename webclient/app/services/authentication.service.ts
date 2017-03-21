@@ -11,33 +11,40 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthenticationService {
+    public token: string;
+    private headers = new Headers({ 'Content-Type': 'application/json'});
+    
+    constructor(private http: Http, private router: Router) {
+        // set token if saved in local storage
+        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        this.token = currentUser && currentUser.token;
+    }
 
-  constructor(private http: Http, private router: Router) { }
+    login(username: string, password: string): Observable<string> {
+        return this.http.post('/auth', { username: username, password: password })
+            .map((response: Response) => {
+                // login successful if there's a jwt token in the response
+                let token = response.json().authToken;
+                if (token) {
+                    console.log(token);
+                    // set token property
+                    this.token = token;
+                    // store username and jwt token in local storage to keep user logged in between page refreshes
+                    localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token,role:response.json().role }));
+                    // return true to indicate successful login
+                    return response.json();
+                } else {
+                    // return false to indicate failed login
+                    return response.json();
+                }
+            });
+    }
 
-  login(email, password) {
+  logout(): void {
+        // clear token remove user from local storage to log user out
+        this.token = null;
 
-    return this.http.post('http://localhost:3000/api/authenticate', { email: email, password: password })
-      .map((response: Response) => {
-        const user = response.json();
-        if (user === 'userError') {
-          console.log('id wrong');
-        } else if (user === 'passwordError') {
-          console.log('password wrong');
-        }
-        // console.log(user);
-        // data from response store in variable
-        // login successful if there's a jwt token in the response
-        if (user && user.token) {
-          // store user details and jwt token in local storage
-          localStorage.setItem('currentUser', JSON.stringify(user));
-          // here we set that data in localstorage
-        }
-      });
-  }
-
-  logout() {
-    // remove user from local storage
-    localStorage.removeItem('currentUser');
-    this.router.navigate(['/login']);
-  }
+        localStorage.removeItem('currentUser');
+        this.router.navigate(['/'])
+    }
 }

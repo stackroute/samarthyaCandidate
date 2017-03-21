@@ -49,6 +49,7 @@ export class CandidateRegisterComponent implements OnInit {
 
     this.JsonDataService.getProfession().subscribe(resJsonData => this.getProfession(resJsonData));
 
+
     this.JsonDataService.verifyToken(this.route.snapshot.queryParams['confirm']).subscribe(res => {
       if (res.msg != 'Session Expired') {
         if (res.data.username) {
@@ -216,5 +217,4 @@ export class CandidateRegisterComponent implements OnInit {
         // this.router.navigate(['/']);
       }
     })
-  }
-}
+}}
