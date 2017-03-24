@@ -1,0 +1,54 @@
+<!--loading screen-->
+<div *ngIf="loading" class="loading">
+    <md-spinner></md-spinner>
+</div>
+
+<!--login Header-->
+<app-login-header></app-login-header>
+
+<!--login card-->
+<md-grid-list cols="1" rowHeight="470px">
+    <md-grid-tile>
+        <md-card class="loginCard">
+            <md-card-title>
+                Verify Email
+                <a md-icon-button (click)=onBack() class="closeBtn">
+                    <i class="material-icons">close</i>
+                </a>
+            </md-card-title>
+            <md-card-content>
+                <form class="col s12" [formGroup]="userForm" (ngSubmit)="onVerifyLink()">
+                    <!--Email input-->
+                    <div fxLayout="row" fxLayoutAlign="start end">
+                        <div fxFlex="35px">
+                            <i class="material-icons formIcons">email</i>
+                        </div>
+                        <div fxFlex>
+                            <md-input-container class="full-width">
+                                <input mdInput formControlName="email" id="email" type="text" class="validate" placeholder="Email" />
+                                <md-hint align="start" class="full-width">
+                                    <div *ngIf="userForm.get('email').hasError('required') && userForm.get('email').touched" class="errorStyle">
+                                        Email is required
+                                    </div>
+                                    <div *ngIf="userForm.get('email').hasError('pattern') && userForm.get('email')" class="errorStyle">
+                                        Invalid email
+                                    </div>
+                                </md-hint>
+                            </md-input-container>
+                        </div>
+                    </div>
+
+                    <!--Reset in button-->
+                    <div>
+                        <button md-raised-button color="primary" class="full-width" type="submit" [disabled]="!userForm.valid">Send Verification Link</button>
+                    </div>
+
+                </form>
+            </md-card-content>
+        </md-card>
+        <!--card-ends-->
+    </md-grid-tile>
+</md-grid-list>
+
+<!--footer-->
+<app-login-footer></app-login-footer>
