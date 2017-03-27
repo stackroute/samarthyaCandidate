@@ -17,10 +17,8 @@ import { Data } from './../../../services/data.service';
 export class ForgotPasswordComponent implements OnInit {
 
   public userForm: FormGroup;
-  public infoobj;
-  private postobject;
-  public candidates;
-  public timer;
+  public infoobj: any;
+  public timer: any;
   public emailId = '';
   public loading = false;
 
@@ -63,6 +61,7 @@ export class ForgotPasswordComponent implements OnInit {
         this.data.openSnackBar('TECHNICAL ISSUE', 'Please Try after some time');
         this.timer = setTimeout(() => this.router.navigate(['/login']), 500);
       });
+
   }
   onBack() {
     this.router.navigate(['/login']);

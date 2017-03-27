@@ -10,14 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginFooterComponent implements OnInit {
 
-  public languages = [];
+  public languages: any = [];
   constructor(private JsonDataService: JsonDataService) { }
 
   ngOnInit() {
     // getting languages form json file
     this.JsonDataService.getLanguages().subscribe(resJsonData => this.getdata(resJsonData));
   }
-  getdata(jsonData) {
+  getdata(jsonData: any) {
     this.languages = jsonData;
   }
 }

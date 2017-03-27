@@ -11,14 +11,7 @@ export class SamProfileSectionConfigService {
         //make HTTP Call to get the section config data 
         //As this is a service, we assume this code is called only once, 
         //hence don't have to go to server to get the configurations for profile sections
-
-        // @TODO remove the hard coding to get it from server
-        // this.sectionConfigColln = {
-        //     'personalInfo': {}
-        // };
     }
-
-
 
     // for composite and nested type of values 
     // dataFieldName :{
@@ -26,7 +19,9 @@ export class SamProfileSectionConfigService {
     //     "fields" :['field1','field2'],
     //     "delimiter":' '/' ,';
     // }
+    
     getProfileSectionConfig() {
+        // hardcoaded data need to take from json
         return {
             'personalInfo': {
                 "fields": [

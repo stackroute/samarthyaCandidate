@@ -61,10 +61,16 @@ export class LayoutComponent implements OnInit {
     }
   }
 
+  profile() {
+    this.router.navigate(['/home']);
+  }
 
   // on logout click
   logout() {
     this.authenticationService.logout();
     this.data.openSnackBar('Successfully', 'Logged Out');
+  }
+  changePassword() {
+    this.router.navigate(['/home/passwordReset/reset']);
   }
 }

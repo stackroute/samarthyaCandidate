@@ -7,7 +7,6 @@ import { CandidateRegisterComponent } from './components/loginComponent/candidat
 import { EmployersComponent } from './components/employers/employers.component';
 import { EventPostComponent } from './components/event-post/event-post.component';
 import { JobPostComponent } from './components/job-post/job-post.component';
-import { LogoutComponent } from './components/logout/logout.component';
 import { LoginComponent } from './components/loginComponent/login/login.component';
 import { PasswordResetComponent } from './components/loginComponent/password-reset/password-reset.component';
 import { ForgotPasswordComponent } from './components/loginComponent/forgot-password/forgot-password.component';
@@ -22,10 +21,11 @@ const routes: Routes = [
     path: 'home', component: LayoutComponent,
     children: [
       { path: '', component: DashboardComponent, canActivate: [AuthGuard] },
-      { path: 'aboutUs', component: AboutUsComponent },
-      { path: 'candidateSearch', component: CandidateSearchComponent },
-      { path: 'eventPost', component: EventPostComponent },
-      { path: 'jobPost', component: JobPostComponent },
+      { path: 'aboutUs', component: AboutUsComponent, canActivate: [AuthGuard] },
+      { path: 'candidateSearch', component: CandidateSearchComponent, canActivate: [AuthGuard] },
+      { path: 'eventPost', component: EventPostComponent, canActivate: [AuthGuard] },
+      { path: 'jobPost', component: JobPostComponent, canActivate: [AuthGuard] },
+      { path: 'passwordReset/:reset', component: PasswordResetComponent, canActivate: [AuthGuard] }
     ]
   },
   { path: 'home', component: DashboardComponent, canActivate: [AuthGuard] },
@@ -53,7 +53,6 @@ export const routingComponents = [
   CandidateSearchComponent,
   EventPostComponent,
   JobPostComponent,
-  LogoutComponent,
   PasswordResetComponent,
   ForgotPasswordComponent,
   VerifyEmailComponent

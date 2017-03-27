@@ -7,7 +7,6 @@ import { Data } from './services/data.service';
 import { AuthenticationService } from './services/authentication.service';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { ModuleWithProviders } from '@angular/core';
-import { LogoutComponent } from './components/logout/logout.component';
 import { VerifyEmailComponent } from './components/loginComponent/verify-email/verify-email.component';
 import { PasswordResetComponent } from './components/loginComponent/password-reset/password-reset.component';
 import { LoginHeaderComponent } from './components/loginComponent/login-header/login-header.component';
@@ -21,7 +20,6 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { EmployersComponent } from './components/employers/employers.component';
 import { CandidateRegisterComponent } from './components/loginComponent/candidate-register/candidate-register.component';
 import { CandidateSearchComponent } from './components/candidate-search/candidate-search.component';
-import { AppbarComponent } from './components/appbar/appbar.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { NgModule } from '@angular/core';
 import { MaterialModule } from '@angular/material';
@@ -52,7 +50,6 @@ import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-p
 	],
 	declarations: [
 		AboutUsComponent,
-		AppbarComponent,
 		CandidateSearchComponent,
 		CandidateRegisterComponent,
 		DashboardComponent,
@@ -67,18 +64,13 @@ import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-p
 		LoginHeaderComponent,
 		PasswordResetComponent,
 		VerifyEmailComponent,
-		LogoutComponent,
 		MainComponent,
 		routingComponents,
-		// SamDynamicElementComponent,
-		// SamDynamicViewComponent,
-		// SamProfileCardComponent,
-		// SamProfileSectionComponent
+
 	],
 	bootstrap: [MainComponent],
 	exports: [
 		AboutUsComponent,
-		AppbarComponent,
 		CandidateSearchComponent,
 		CandidateRegisterComponent,
 		DashboardComponent,
@@ -93,11 +85,8 @@ import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-p
 		LoginHeaderComponent,
 		PasswordResetComponent,
 		VerifyEmailComponent,
-		LogoutComponent,
 		MainComponent,
 		routingComponents,
-		// SamDynamicElementComponent,
-		// SamDynamicViewComponent,
 		SamProfileCardComponent,
 		SamProfileSectionComponent
 	]

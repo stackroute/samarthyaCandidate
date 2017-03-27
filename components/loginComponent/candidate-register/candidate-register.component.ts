@@ -13,6 +13,7 @@ import { EmailService } from './../../../services/email.service';
 import { Logger } from 'angular2-logger/core';
 import { AuthenticationService } from './../../../services/authentication.service';
 import { Data } from './../../../services/data.service';
+import { Linter } from 'tslint';
 
 @Component({
   selector: 'app-candidate-register',
@@ -22,15 +23,10 @@ import { Data } from './../../../services/data.service';
 })
 export class CandidateRegisterComponent implements OnInit {
 
-  public jsonObj = {};
-  public languages: any = [];
   public profession: any = [];
   public placementCenter: any = [];
   public userForm: FormGroup;
-  public emailId = '';
   public formData = {};
-  // public candidates;
-  // public timer;
   public pincode: string;
   public pincodeLocation: any;
   public areaList: any = [];
@@ -38,9 +34,6 @@ export class CandidateRegisterComponent implements OnInit {
   public passwordMatchWarning = '';
   public checkUserEmail: any;
   public loading = true;
-  // public loading = false;
-  // public infoObj;
-  // public postObject;
   public emailDisable = false;
   public createdBy: any;
   public district: any;

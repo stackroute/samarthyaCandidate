@@ -19,14 +19,7 @@ import { Data } from './../../../services/data.service';
 export class LoginComponent implements OnInit {
 
   public userForm: FormGroup;
-  public modalVerify: FormGroup;
-  public modalReset: FormGroup;
-  public infoobj;
-  private postobject;
-  public candidates = [];
-  public result: any;
   public loading = false;
-  public user: any = {};
   public returnUrl: String;
 
   constructor( @Inject(FormBuilder) fb: FormBuilder, private emailservice: EmailService, private JsonDataService: JsonDataService,

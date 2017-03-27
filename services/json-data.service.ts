@@ -36,16 +36,13 @@ export class JsonDataService {
   registerUser(formData: any) {
     return this.http.post('/candidates', formData).map(data =>
       data.json()
-      , error => {
+      , (error: any) => {
         error.json();
-        console.log('GOT ERROR');
-        console.log(error.json());
-
       });
   }
 
   // get json data for candidate navigatin links
-  getNavLinks(token) {
+  getNavLinks(token: any) {
     return this.http.get(this.urlNavlinks, this.authoriZation(token)).map((response: Response) => response.json());
   };
 

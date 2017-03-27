@@ -12,8 +12,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class AuthenticationService {
     public token: string;
-    private headers = new Headers({ 'Content-Type': 'application/json'});
-    
+    private headers = new Headers({ 'Content-Type': 'application/json' });
+
     constructor(private http: Http, private router: Router) {
         // set token if saved in local storage
         var currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -30,7 +30,7 @@ export class AuthenticationService {
                     // set token property
                     this.token = token;
                     // store username and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token,role:response.json().role }));
+                    localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token, role: response.json().role }));
                     // return true to indicate successful login
                     return response.json();
                 } else {
@@ -40,7 +40,7 @@ export class AuthenticationService {
             });
     }
 
-  logout(): void {
+    logout(): void {
         // clear token remove user from local storage to log user out
         this.token = null;
 
@@ -48,15 +48,29 @@ export class AuthenticationService {
         this.router.navigate(['/login'])
     }
 
-    getCreatedBy(){
-            let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    getCreatedBy() {
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
-    if(currentUser){
-        return currentUser.username;
-    }
-    else{
-        return currentUser;
-    }
+        if (currentUser) {
+            return currentUser.username;
+        }
+        else {
+            return currentUser;
+        }
 
-}
+    }
+    passwordChange(email: any, password: any) {
+        return this.http.post('/auth/reset-password', { username: email, password: password })
+            .map((response: Response) => {
+                // login successful if there's a jwt token in the response
+                return response.json();
+            });
+    }
+    getEmail(token: any) {
+        return this.http.post('/auth/verify-email', { token: token })
+            .map((response: Response) => {
+                // login successful if there's a jwt token in the response
+                return response.json();
+            });
+    }
 }

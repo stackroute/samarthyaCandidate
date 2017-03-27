@@ -15,7 +15,7 @@ export class ProfileService {
   //     .map((response: Response) => response.json());
   // }
 
-  read(username) {
+  read(username:string) {
     return this.http.get('/profile?username=' + username).map((response: Response) => response.json());
   }
 

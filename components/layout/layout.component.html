@@ -59,13 +59,13 @@
           <p md-line><b>User</b></p>
         </md-list-item>
         <md-list-item>
-          <p md-line>Profile</p>
+          <p md-line (click)="profile()" routerLinkActive="active">Profile</p>
         </md-list-item>
         <md-list-item>
-          <p md-line>Change Password</p>
+          <p md-line (click)="changePassword()" routerLinkActive="active">Change Password</p>
         </md-list-item>
         <md-list-item>
-          <p md-line (click)="logout()">
+          <p md-line (click)="logout()" routerLinkActive="active">
             Log Out
           </p>
         </md-list-item>
@@ -80,11 +80,11 @@
   <router-outlet></router-outlet>
 
 
-<!--footer-->
-<div class="footer">
-  
-<app-login-footer ></app-login-footer>
-</div>
+  <!--footer-->
+  <div class="footer">
+
+    <app-login-footer></app-login-footer>
+  </div>
 
 </md-sidenav-container>
 

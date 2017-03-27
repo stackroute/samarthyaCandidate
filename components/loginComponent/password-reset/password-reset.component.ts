@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 //import { JsonDataService } from 'app/services/json-data.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Data } from './../../../services/data.service';
+import { AuthenticationService } from './../../../services/authentication.service';
 
 //import { EmailService } from 'app/services/email.service';
 // declare var $: any;
@@ -17,56 +18,61 @@ import { Data } from './../../../services/data.service';
 
 export class PasswordResetComponent implements OnInit {
 
-  public jsonObj = {};
-  public languages = [];
   public userForm: FormGroup;
-  public emailId = '';
   public password = '';
   public passwordMatchWarning = '';
-  public checkUserEmail;
+  public checkUserEmail: any;
   public loading = true;
   public emailDisable = false;
+  public reset: any;
+  private token: any;
+  private loginStatus: boolean;
 
-
-  constructor( @Inject(FormBuilder) fb: FormBuilder, private JsonDataService: JsonDataService, private route: ActivatedRoute,
-    private router: Router, private emailService: EmailService, private data: Data) {
+  constructor(
+    @Inject(FormBuilder) fb: FormBuilder,
+    private JsonDataService: JsonDataService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private emailService: EmailService,
+    private data: Data,
+    private AuthenticationService: AuthenticationService
+  ) {
     // register candidate form
     this.userForm = fb.group({
-      email: ['', Validators.required],
+      email: [{ value: '', disabled: true }],
       password: ['', [Validators.required, Validators.pattern(/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,24}$/)]],
       conPassword: ['', [Validators.required, Validators.pattern(/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,24}$/)]],
     });
   }
 
   ngOnInit() {
-
-    this.JsonDataService.verifyToken(this.route.snapshot.queryParams['confirm']).subscribe(res => {
-      if (res.msg != 'Session Expired') {
-        if (res.data.username) {
-          this.userForm.patchValue({
-            'email': res.data.username
-          })
-          this.emailDisable = true;
-        }
-        console.log(this.userForm.value.email);
-
-        this.verifyUser(this.userForm.value.email);
-
-      }
-      else {
-        this.router.navigate(['/login']);
-        this.data.openSnackBar(res.msg['msg'], "OK");
-      }
-    },
-      (err) => {
-        this.router.navigate(['/login']);
-        this.data.openSnackBar("Session Expired", "OK");
+    this.route.params.subscribe(params => this.reset = params['reset']);
+    if (this.reset == 'reset') {
+      this.loginStatus = true;
+      var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      let email = currentUser.username;
+      this.userForm.patchValue({
+        'email': email
+      });
+      this.loading = false;
+    }
+    else {
+      this.loginStatus = false;
+      this.token = this.route.snapshot.queryParams['confirm']
+      // this.route.params.subscribe(params => this.token = params['confirm']);
+      let email;
+      this.AuthenticationService.getEmail(this.token).subscribe((res) => {
+        email = res.data['username'];
+        this.userForm.patchValue({
+          'email': email
+        });
+        this.loading = false;
       })
-
+    }
   }
 
   // check if email is undefined or already exists
-  verifyUser(email) {
+  verifyUser(email: any) {
     this.JsonDataService.verifyUser(email).subscribe(resJsonData => {
       if (resJsonData['msg'] === 'user not exist') {
         this.router.navigate(['/login']);
@@ -78,22 +84,19 @@ export class PasswordResetComponent implements OnInit {
   }
 
   // redirect if user is undefined or already registered
-  redirectInvalidUser(email) {
+  redirectInvalidUser(email: any) {
     if (email === undefined || this.checkUserEmail[0] === 'nouser') {
-      console.log(this.checkUserEmail[0]);
-      console.log('redireted');
       this.router.navigate(['/login']);
     } else {
       this.loading = false;
     }
   }
 
-
   // password confirm Validators
-  passwordValue(pass) {
+  passwordValue(pass: string) {
     this.password = pass;
   }
-  conPasswordValue(conPass, pass) {
+  conPasswordValue(conPass: string, pass: string) {
     if (pass !== conPass) {
       this.passwordMatchWarning = 'Password Not Match';
       (<HTMLInputElement>document.getElementById('resetBtn')).disabled = true;
@@ -105,9 +108,18 @@ export class PasswordResetComponent implements OnInit {
 
   // on form submit
   onSubmit() {
-    console.log('submit');
-    this.userForm.value.email = this.emailId;
-    // console.log(this.userForm.value);
+    this.AuthenticationService.passwordChange(this.userForm.get('email').value, this.userForm.get('password').value).subscribe(
+      res => {
+        if (res.success == true) {
+          this.router.navigate(['/home']);
+          this.data.openSnackBar(res.msg, 'OK');
+        }
+        else {
+          this.data.openSnackBar(res.msg, 'OK');
+          this.router.navigate(['/home']);
+        }
+      }
+    );
   }
 
   // on back button

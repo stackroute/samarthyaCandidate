@@ -12,15 +12,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class LoginHeaderComponent implements OnInit {
 
-  public languages = [];
+  public languages: any = [];
 
   constructor(private JsonDataService: JsonDataService, private router: Router) { }
 
   ngOnInit() {
     // getting languages form json file
     this.JsonDataService.getLanguages().subscribe(resJsonData => this.getLanguages(resJsonData));
-  }
-  getLanguages(jsonData) {
+  } 
+  getLanguages(jsonData: any) {
     this.languages = jsonData;
   }
   public verifyEmail() {
