@@ -1,55 +1,57 @@
 import { UserService } from './../../services/user.service';
 import { AuthenticationService } from './../../services/authentication.service';
-// import { AuthenticationService } from 'app/services/authentication.service';
-// import { UserService } from 'app/services/user.service';
-import { SamProfileCardService } from './../../sam-profile-section-services/sam-profile-card.service';
-import { SamProfileSectionPersonalinfoService } from './../../sam-profile-section-services/sam-profile-section-personalinfo.service';
-import { SamProfileSectionSkillsService } from './../../sam-profile-section-services/sam-profile-section-skills.service';
+import { SamProfileCardService } from './../../services/sam-profile-card.service';
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from './../../services/profile.service';
+import { SamProfileSectionConfigService } from './../../services/sam-profile-section-config.service';
 //import { AppComponent } from 'app/app.component';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
-  providers: [ProfileService, SamProfileSectionPersonalinfoService]
+  providers: [ProfileService, SamProfileSectionConfigService]
 })
 
 export class DashboardComponent implements OnInit {
-  sections: any[];
+  profileSections: any[];
+  profileData: Object;
+  sectionsEdit: any[];
   profileCardData: any;
+  profileConfig: any;
 
-  constructor(private authenticationService: AuthenticationService,
-    //private appComponent: AppComponent,
-    private profileService: ProfileService,
-    private SamProfileSectionPersonalinfoService: SamProfileSectionPersonalinfoService,
-    private SamProfileSectionSkillsService: SamProfileSectionSkillsService,
-    private SamProfileCardService: SamProfileCardService,
+  constructor(
+    // service for getting data for profile sections
+    private SamProfileService: ProfileService,
+    //Service for getting rendering config of profile sections
+    private SamProfileSectionConfigService: SamProfileSectionConfigService,
+    // service for providing sam profile card
+    private SamProfileCardService: SamProfileCardService
   ) {
-    this.sections = [
-      SamProfileSectionPersonalinfoService.getPersonalInfo(),
-      SamProfileSectionSkillsService.getSkills()
-    ];
+    // this will get the data for profile section according to usename
+    this.profileData = SamProfileService.getProfileData(JSON.parse(localStorage.getItem('currentUser'))["username"]);
+
+    // this will get the data for profile card according to username
     this.profileCardData = SamProfileCardService.getProfileCardData();
+
+    // this will get the data for profile config
+    this.profileConfig = SamProfileSectionConfigService.getProfileSectionConfig();
+    // remove hardcodding
+    this.profileSections = [
+      { 'name': 'personalInfo', 'title': 'Personal Informations', 'align': 'column' },
+      // { 'name': 'skills', 'title': 'Skills Informations' }
+    ];
   }
 
-  ngOnInit() {
-    this.SamProfileSectionPersonalinfoService.getProfileData(JSON.parse(localStorage.getItem('currentUser'))["username"])
+  ngOnInit() { }
+
+  // this will provide section config for perticular sections from profile config section
+  getSectionConfig(sectionName: string) {
+    return this.profileConfig[sectionName];
   }
 
-  create() {
-    this.profileService.create();
-  }
-
-  // read() {
-  //   this.profileService.read();
-  // }
-
-  update() {
-    this.profileService.update();
-  }
-  delete() {
-    this.profileService.delete();
+  // this will provide section data for perticular sections from profile service
+  getSectiondata(sectionName: string) {
+    return this.profileData[sectionName];
   }
 }

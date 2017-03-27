@@ -10,11 +10,14 @@
   <!--view profile sections dynamic-->
   <div fxFlex class="profileSection">
     <div fxLayout="row" fxLayoutWrap>
-      <div *ngFor="let section of sections" fxFlex>
-        <sam-profile-section [section]="section.data" [sectionTitle]="section.title" [align]="section.align">
-        </sam-profile-section>
+      <div *ngFor="let section of profileSections" fxFlex>
+        <sam-profile-section 
+        [sectionFieldConfig]="getSectionConfig(section.name)" 
+        [sectionData]="getSectiondata(section.name)" 
+        [sectionTitle]="section.title"
+        [alignElement]="section.align">
+          </sam-profile-section>
       </div>
     </div>
   </div>
 </div>
-

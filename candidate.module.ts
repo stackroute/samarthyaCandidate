@@ -32,11 +32,8 @@ import 'hammerjs';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { Md2Module } from 'md2';
 import { SamarthyaWebComponentsModule } from 'samarthyaWebcomponent';
-import { SamProfileSectionPersonalinfoService } from './sam-profile-section-services/sam-profile-section-personalinfo.service';
-import { SamProfileCardService } from './sam-profile-section-services/sam-profile-card.service';
-import { SamProfileSectionSkillsService } from './sam-profile-section-services/sam-profile-section-skills.service';
-// import { SamDynamicElementComponent } from 'samarthyaWebcomponent/sam-dynamic-section/sam-dynamic-element/sam-dynamic-element.component';
-// import { SamDynamicViewComponent } from 'samarthyaWebcomponent/sam-dynamic-section/sam-dynamic-view/sam-dynamic-view.component';
+import { SamProfileCardService } from './services/sam-profile-card.service';
+import { SamProfileSectionConfigService } from './services/sam-profile-section-config.service';
 import { SamProfileSectionComponent } from 'samarthyaWebcomponent/sam-profile/sam-profile-section/sam-profile-section.component';
 import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-profile-card/sam-profile-card.component';
 
@@ -117,9 +114,8 @@ export class CandidateModule {
 				JsonDataService,
 				ProfileService,
 				UserService,
-				SamProfileSectionPersonalinfoService,
-				SamProfileSectionSkillsService,
 				SamProfileCardService,
+				SamProfileSectionConfigService,
 			]
 		}
 	}

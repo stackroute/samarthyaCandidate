@@ -107,7 +107,6 @@ export class PasswordResetComponent implements OnInit {
   onSubmit() {
     console.log('submit');
     this.userForm.value.email = this.emailId;
-    
     // console.log(this.userForm.value);
   }
 

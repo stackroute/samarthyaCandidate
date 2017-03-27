@@ -204,12 +204,12 @@ export class CandidateRegisterComponent implements OnInit {
         landmark: this.landmark,
         state: this.state,
         pincode: userdata.get('pincode').value,
-
         location: userdata.get('location').value,
         placementCenter: userdata.get('placementCenter').value,
         aadharNumber: userdata.get('aadhar').value,
         registerID: userdata.get('regId').value,
-        createdBy: this.createdBy
+        createdBy: this.createdBy,
+        updatedBy: this.createdBy
       },
       userCredentialsData: {
         username: userdata.get('email').value, password: userdata.get('password').value,
@@ -218,14 +218,16 @@ export class CandidateRegisterComponent implements OnInit {
     };
 
     this.JsonDataService.registerUser(userData).subscribe(res => {
-      // console.log(res);
-      if (res['success'] == true) {
+      console.log(res);
+      if (res['success']) {
         this.data.openSnackBar('Successfully Register', 'Please Login');
         this.router.navigate(['/login']);
       } else {
-        this.data.openSnackBar('Failed', 'Please Try Again');
-        this.router.navigate(['/login']);
+        this.data.openSnackBar('Registration Failed', 'Please Try Again');
+        // this.router.navigate(['/login']);
       }
+    }, error => {
+      this.data.openSnackBar('Registration Failed', 'Please Try Again');
     })
   }
 }

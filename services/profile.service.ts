@@ -20,8 +20,61 @@ export class ProfileService {
   }
 
   getProfileConfig() {
-    console.log('asdasd');
-    return this.http.get('http://localhost:3001/personalInfo').map((response: Response) => console.log(response.json()));
+    return this.http.get('http://localhost:3001/personalInfo').map((response: Response) => response.json());
+  }
+
+  public getProfileData(username: string) {
+
+
+    return {
+      "personalInfo": {
+        "displayname": "Divesh Sankhla",
+        "fname": "Divesh",
+        "lname": "Sankhla",
+        "gender": "male",
+        "email": "sankhlasaini@gmail.com",
+        'dob': '11-11-1992',
+        'altemail': 'muruga55@gmail.com',
+
+        "address": [
+          {
+            "address1": 'Vijay Nagar',
+            "address2": 'Scheme No-4',
+            "landmark": "Railway Station Alwar",
+            "district": " Alwar",
+            "state": "RAJASTHAN",
+            "pincode": "301001",
+          },
+          {
+            "address1": 'Nagar',
+            "address2": '4',
+            "landmark": "sajdkajhdkasjd",
+            "district": " dskfjhksdfksdjf",
+            "state": "ksadlasjdlsajdlasd",
+            "pincode": "301001",
+          }
+        ],
+        "contact": {
+          "I": "99123499123",
+          "II": "12312312333"
+        },
+        "married": true,
+        "preLang": "English",
+        "nativeLang": "Hindi",
+        "lang": [{
+          "name": "Hindi",
+          "r": true,
+          "w": true,
+          "s": true,
+        }, {
+          "name": "English",
+          "r": true,
+          "w": true,
+          "s": false,
+        }
+        ]
+      }
+    }
   }
 
   // update() {
