@@ -32,6 +32,7 @@ import { Md2Module } from 'md2';
 import { SamarthyaWebComponentsModule } from 'samarthyaWebcomponent';
 import { SamProfileCardService } from './services/sam-profile-card.service';
 import { SamProfileSectionConfigService } from './services/sam-profile-section-config.service';
+import { SamProfileSectionFormComponent } from 'samarthyaWebcomponent/sam-profile/sam-profile-section-form/sam-profile-section-form.component';
 import { SamProfileSectionComponent } from 'samarthyaWebcomponent/sam-profile/sam-profile-section/sam-profile-section.component';
 import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-profile-card/sam-profile-card.component';
 
@@ -88,7 +89,8 @@ import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-p
 		MainComponent,
 		routingComponents,
 		SamProfileCardComponent,
-		SamProfileSectionComponent
+		SamProfileSectionComponent,
+		SamProfileSectionFormComponent
 	]
 })
 

@@ -5,7 +5,7 @@ import { Http, Headers, Response, RequestOptions } from '@angular/http';
 
 @Injectable()
 export class SamProfileSectionConfigService {
-    sectionConfigColln: Object;
+    sectionConfigColln: Object = {};
 
     constructor() {
         //make HTTP Call to get the section config data 
@@ -19,7 +19,7 @@ export class SamProfileSectionConfigService {
     //     "fields" :['field1','field2'],
     //     "delimiter":' '/' ,';
     // }
-    
+
     getProfileSectionConfig() {
         // hardcoaded data need to take from json
         return {
@@ -77,7 +77,7 @@ export class SamProfileSectionConfigService {
                         "elemOrder": 3,
                         "dataDescriptor": {
                             "dataFieldName": {
-                                "type": "nested",
+                                "type": "nestedArrey",
                                 "fields": ["contact", "II"]
                             },
                             "icon": "phone",
@@ -94,27 +94,30 @@ export class SamProfileSectionConfigService {
                             "label": "Primary Address",
                         }
                     },
-                    // {
-                    //     "elemType": "title-div",
-                    //     "elemName": "address1",
-                    //     "elemLabel": "Address Line 1",
-                    //     "elemOrder": 7,
-                    //     "dataDescriptor": {
-                    //         "dataFieldName": {
-                    //             "type": "nestedArrey",
-                    //             "fields": ["address", "landmark"]
-                    //         },
-                    //         "title": "Line 1",
-                    //         "info": "Address Line 1"
-                    //     }
-                    // }, 
+                    {
+                        "elemType": "title-div",
+                        "elemName": "address1",
+                        "elemLabel": "Address Line 1",
+                        "elemOrder": 7,
+                        "dataDescriptor": {
+                            "dataFieldName": {
+                                "type": "nestedArrey",
+                                "fields": ["address", 0, "address1"]
+                            },
+                            "title": "Line 1",
+                            "info": "Address Line 1"
+                        }
+                    },
                     {
                         "elemType": "title-div",
                         "elemName": "address2",
                         "elemLabel": "Address Line 2",
                         "elemOrder": 8,
                         "dataDescriptor": {
-                            "dataFieldName": "address-line2",
+                            "dataFieldName": {
+                                "type": "nestedArrey",
+                                "fields": ["address", 0, "address2"]
+                            },
                             "title": "Line 2",
                             "info": "Address Line 2"
                         }
@@ -125,7 +128,10 @@ export class SamProfileSectionConfigService {
                         "elemLabel": "Landmark",
                         "elemOrder": 9,
                         "dataDescriptor": {
-                            "dataFieldName": "address-landmark",
+                            "dataFieldName": {
+                                "type": "nestedArrey",
+                                "fields": ["address", 0, "landmark"]
+                            },
                             "title": "Landmark",
                             "info": "Landmark"
                         }
@@ -136,7 +142,10 @@ export class SamProfileSectionConfigService {
                         "elemLabel": "District",
                         "elemOrder": 10,
                         "dataDescriptor": {
-                            "dataFieldName": "address-district",
+                            "dataFieldName": {
+                                "type": "nestedArrey",
+                                "fields": ["address", 0, "district"]
+                            },
                             "title": "District",
                             "info": "District"
                         }
@@ -147,28 +156,78 @@ export class SamProfileSectionConfigService {
                         "elemLabel": "State",
                         "elemOrder": 11,
                         "dataDescriptor": {
-                            "dataFieldName": "address-state",
+                            "dataFieldName": {
+                                "type": "nestedArrey",
+                                "fields": ["address", 0, "state"]
+                            },
                             "title": "State",
                             "info": "State"
                         }
                     }
                 ]
             },
-            // "skills": {
-            //     "fields": [
-            //         {
-            //             "elemType": "icon-div",
-            //             "elemName": "name",
-            //             "elemLabel": "Name",
-            //             "elemOrder": 1,
-            //             "dataDescriptor": {
-            //                 "dataFieldName": 'displayname',
-            //                 "icon": "person",
-            //                 "info": "Your Full Name"
-            //             }
-            //         },
-            //     ]
-            // }
+            'skills': {
+                "fields": [
+                    {
+                        "elemType": "icon-div",
+                        "elemName": "name",
+                        "elemLabel": "Name",
+                        "elemOrder": 1,
+                        "dataDescriptor": {
+                            "dataFieldName": 'skillname',
+                            "icon": "mood",
+                            "info": "my skill"
+                        }
+                    }
+                ]
+            }
+        }
+    }
+
+    getProfileSectionFormConfig() {
+        // hardcoaded data need to take from json
+        return {
+            'personalInfo': {
+                "fields": [
+                    {
+                        "elemType": "icon-div",
+                        "elemName": "name",
+                        "elemLabel": "Name",
+                        "elemOrder": 1,
+                        "dataDescriptor": {
+                            "dataFieldName": 'displayname',
+                            "icon": "person",
+                            "info": "Your Full Name"
+                        }
+                    }
+                ]
+            },
+            'skills': {
+                "fields": [
+                    {
+                        "elemType": "icon-div",
+                        "elemName": "form",
+                        "elemLabel": "form",
+                        "elemOrder": 1,
+                        "dataDescriptor": {
+                            "dataFieldName": 'skillname',
+                            "icon": "wc",
+                            "info": "my form"
+                        }
+                    },
+                    {
+                        "elemType": "icon-div",
+                        "elemName": "form",
+                        "elemLabel": "form",
+                        "elemOrder": 1,
+                        "dataDescriptor": {
+                            "dataFieldName": 'skillname',
+                            "icon": "wc",
+                            "info": "my form"
+                        }
+                    }
+                ]
+            }
         }
 
     }

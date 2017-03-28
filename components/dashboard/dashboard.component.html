@@ -11,13 +11,33 @@
   <div fxFlex class="profileSection">
     <div fxLayout="row" fxLayoutWrap>
       <div *ngFor="let section of profileSections" fxFlex>
-        <sam-profile-section 
-        [sectionFieldConfig]="getSectionConfig(section.name)" 
-        [sectionData]="getSectiondata(section.name)" 
-        [sectionTitle]="section.title"
-        [alignElement]="section.align">
+        <sam-profile-section [sectionFieldConfig]="getSectionConfig(section.name)" [sectionData]="getSectiondata(section.name)" [sectionTitle]="section.title"
+          [alignElement]="section.align">
+          <div editBtn>
+            <button md-raised-button (click)="onEdit(sectionFormDialog,section.name)">EDIT</button>
+          </div>
           </sam-profile-section>
       </div>
     </div>
   </div>
 </div>
+
+
+<!--this is the template to open dialog when edit btn clicked-->
+<md2-dialog #sectionFormDialog class="dialog">
+  <md2-dialog-title>Confirm Title</md2-dialog-title>
+  <div *ngFor="let section of profileFormSections">
+    <div *ngIf="section.name==currentSection">
+      <sam-profile-section-form [sectionFieldConfig]="getSectionFormConfig(section.name)" [sectionData]="getSectiondata(section.name)"
+        [sectionTitle]="section.title" [alignElement]="section.align">
+        </sam-profile-section-form>
+        <!--<md2-dialog-footer>-->
+        <div formBtn fxLayout="row">
+          <div fxFlex></div>
+          <button md-raised-button (click)="onSave(section.name)">SAVE</button>
+        </div>
+        <!--</md2-dialog-footer>-->
+    </div>
+
+  </div>
+</md2-dialog>

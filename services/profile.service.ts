@@ -15,7 +15,7 @@ export class ProfileService {
   //     .map((response: Response) => response.json());
   // }
 
-  read(username:string) {
+  read(username: string) {
     return this.http.get('/profile?username=' + username).map((response: Response) => response.json());
   }
 
@@ -24,7 +24,6 @@ export class ProfileService {
   }
 
   public getProfileData(username: string) {
-
 
     return {
       "personalInfo": {
@@ -72,8 +71,12 @@ export class ProfileService {
           "w": true,
           "s": false,
         }
-        ]
+        ],
+      },
+      "skills": {
+        "skillname": "JAVA"
       }
+
     }
   }
 

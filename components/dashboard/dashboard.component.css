@@ -10,3 +10,9 @@
 .profileSection{
     margin-top: 100px;
 }
+.dialog{
+    width: 100%;
+}
+md2-dialog{
+    min-width: 100px;
+}
