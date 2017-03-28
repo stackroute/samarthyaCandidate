@@ -18,7 +18,7 @@ export class LoginHeaderComponent implements OnInit {
 
   ngOnInit() {
     // getting languages form json file
-    this.JsonDataService.getLanguages().subscribe(resJsonData => this.getLanguages(resJsonData));
+    this.JsonDataService.getLanguages().subscribe((resJsonData : any) => this.getLanguages(resJsonData));
   } 
   getLanguages(jsonData: any) {
     this.languages = jsonData;

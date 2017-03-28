@@ -49,14 +49,14 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.authenticationService.login(this.userForm.value.email, this.userForm.value.password)
       .subscribe(
-      data => {
+      (data : any) => {
         [
           this.router.navigate([this.returnUrl]),
           this.data.openSnackBar('WELCOME : ', this.userForm.value.email),
           // console.log(this.returnUrl)
         ];
       },
-      error => {
+      (error : any) => {
         this.data.openSnackBar('Username OR Password Wrong', 'Try Again');
         this.loading = false;
       }

@@ -46,7 +46,7 @@ export class PasswordResetComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.params.subscribe(params => this.reset = params['reset']);
+    this.route.params.subscribe((params :any) => this.reset = params['reset']);
     if (this.reset == 'reset') {
       this.loginStatus = true;
       var currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -61,7 +61,7 @@ export class PasswordResetComponent implements OnInit {
       this.token = this.route.snapshot.queryParams['confirm']
       // this.route.params.subscribe(params => this.token = params['confirm']);
       let email;
-      this.AuthenticationService.getEmail(this.token).subscribe((res) => {
+      this.AuthenticationService.getEmail(this.token).subscribe((res : any) => {
         email = res.data['username'];
         this.userForm.patchValue({
           'email': email
@@ -73,7 +73,7 @@ export class PasswordResetComponent implements OnInit {
 
   // check if email is undefined or already exists
   verifyUser(email: any) {
-    this.JsonDataService.verifyUser(email).subscribe(resJsonData => {
+    this.JsonDataService.verifyUser(email).subscribe((resJsonData : any) => {
       if (resJsonData['msg'] === 'user not exist') {
         this.router.navigate(['/login']);
 
@@ -109,7 +109,7 @@ export class PasswordResetComponent implements OnInit {
   // on form submit
   onSubmit() {
     this.AuthenticationService.passwordChange(this.userForm.get('email').value, this.userForm.get('password').value).subscribe(
-      res => {
+      (res : any) => {
         if (res.success == true) {
           this.router.navigate(['/home']);
           this.data.openSnackBar(res.msg, 'OK');

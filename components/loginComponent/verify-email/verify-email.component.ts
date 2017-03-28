@@ -18,8 +18,8 @@ import { Router } from '@angular/router';
 export class VerifyEmailComponent implements OnInit {
 
   public userForm: FormGroup;
-  public infoobj;
-  public timer;
+  public infoobj : any;
+  public timer : any;
   public loading = false;
 
   constructor( @Inject(FormBuilder) fb: FormBuilder, private data: Data, private emailservice: EmailService,
@@ -41,7 +41,7 @@ export class VerifyEmailComponent implements OnInit {
       'username': this.userForm.value.email,
       'subject': 'Email verification'
     };
-    this.emailservice.sendEmail(this.infoobj).subscribe(resJsonData => {
+    this.emailservice.sendEmail(this.infoobj).subscribe((resJsonData : any) => {
       if (resJsonData['msg'] === 'user already exist') {
         this.loading = false;
         this.data.openSnackBar('Already Registered', 'Please Login');
@@ -52,7 +52,7 @@ export class VerifyEmailComponent implements OnInit {
         this.timer = setTimeout(() => this.router.navigate(['/login']), 500);
       }
     },
-      error => {
+      (error: any) => {
         this.data.openSnackBar('TECHNICAL ISSUE', 'Please Try after some time');
         this.timer = setTimeout(() => this.router.navigate(['/login']), 500);
       });
