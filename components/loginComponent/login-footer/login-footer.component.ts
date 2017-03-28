@@ -15,7 +15,7 @@ export class LoginFooterComponent implements OnInit {
 
   ngOnInit() {
     // getting languages form json file
-    this.JsonDataService.getLanguages().subscribe(resJsonData => this.getdata(resJsonData));
+    this.JsonDataService.getLanguages().subscribe((resJsonData : any) => this.getdata(resJsonData));
   }
   getdata(jsonData: any) {
     this.languages = jsonData;

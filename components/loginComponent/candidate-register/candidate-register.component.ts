@@ -42,11 +42,11 @@ export class CandidateRegisterComponent implements OnInit {
 
   ngOnInit() {
     // getting languages and form data from json file
-    this.JsonDataService.getPlacementCenter().subscribe(resJsonData => this.getPlacementCenter(resJsonData));
+    this.JsonDataService.getPlacementCenter().subscribe((resJsonData : any) => this.getPlacementCenter(resJsonData));
 
-    this.JsonDataService.getProfession().subscribe(resJsonData => this.getProfession(resJsonData));
+    this.JsonDataService.getProfession().subscribe((resJsonData : any) => this.getProfession(resJsonData));
 
-    this.JsonDataService.verifyToken(this.route.snapshot.queryParams['confirm']).subscribe(res => {
+    this.JsonDataService.verifyToken(this.route.snapshot.queryParams['confirm']).subscribe((res : any) => {
       if (res.msg != 'Session Expired') {
         if (res.data.username) {
           this.userForm.patchValue({
@@ -70,7 +70,7 @@ export class CandidateRegisterComponent implements OnInit {
 
   // check if email is undefined or already exists
   verifyUser(email: any) {
-    this.JsonDataService.verifyUser(email).subscribe(resJsonData => {
+    this.JsonDataService.verifyUser(email).subscribe((resJsonData : any) => {
       if (resJsonData['msg'] === 'user not exist') {
         this.loading = false;
       } else if (resJsonData['msg'] === 'user already exist') {
@@ -147,7 +147,7 @@ export class CandidateRegisterComponent implements OnInit {
     } else if (this.pincode.length === 6) {
       // this.loading = true;
       this.JsonDataService.getPincode(this.pincode).subscribe(
-        resPincodeData => [this.pincodeLocation = resPincodeData, this.getPincodeLocation()]);
+        (resPincodeData :any) => [this.pincodeLocation = resPincodeData, this.getPincodeLocation()]);
     } else if (this.pincode.length !== 6) {
       this.areaList = [];
       this.userForm.value.location = '';
@@ -159,7 +159,7 @@ export class CandidateRegisterComponent implements OnInit {
     let officeName;
     this.userForm.value.location = '';
     this.areaList = [];
-    this.pincodeLocation.records.forEach(element => {
+    this.pincodeLocation.records.forEach((element :any) => {
       officeName = element['officename'];
       officeName = officeName.substr(0, officeName.length - 4);
       this.areaList.push(officeName + ', ' + element['Districtname'] + ', ' + element['statename']);
@@ -210,7 +210,7 @@ export class CandidateRegisterComponent implements OnInit {
       }
     };
 
-    this.JsonDataService.registerUser(userData).subscribe(res => {
+    this.JsonDataService.registerUser(userData).subscribe((res  :any) => {
       console.log(res);
       if (res['success']) {
         this.data.openSnackBar('Successfully Register', 'Please Login');
@@ -219,7 +219,7 @@ export class CandidateRegisterComponent implements OnInit {
         this.data.openSnackBar('Registration Failed', 'Please Try Again');
         // this.router.navigate(['/login']);
       }
-    }, error => {
+    }, (error :any) => {
       this.data.openSnackBar('Registration Failed', 'Please Try Again');
     })
   }
