@@ -1,4 +1,3 @@
-import { log } from 'util';
 import { Component, OnInit, Inject, } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { JsonDataService } from './../../../services/json-data.service';
@@ -13,7 +12,6 @@ import { EmailService } from './../../../services/email.service';
 import { Logger } from 'angular2-logger/core';
 import { AuthenticationService } from './../../../services/authentication.service';
 import { Data } from './../../../services/data.service';
-import { Linter } from 'tslint';
 
 @Component({
   selector: 'app-candidate-register',
@@ -42,11 +40,11 @@ export class CandidateRegisterComponent implements OnInit {
 
   ngOnInit() {
     // getting languages and form data from json file
-    this.JsonDataService.getPlacementCenter().subscribe((resJsonData : any) => this.getPlacementCenter(resJsonData));
+    this.JsonDataService.getPlacementCenter().subscribe((resJsonData: any) => this.getPlacementCenter(resJsonData));
 
-    this.JsonDataService.getProfession().subscribe((resJsonData : any) => this.getProfession(resJsonData));
+    this.JsonDataService.getProfession().subscribe((resJsonData: any) => this.getProfession(resJsonData));
 
-    this.JsonDataService.verifyToken(this.route.snapshot.queryParams['confirm']).subscribe((res : any) => {
+    this.JsonDataService.verifyToken(this.route.snapshot.queryParams['confirm']).subscribe((res: any) => {
       if (res.msg != 'Session Expired') {
         if (res.data.username) {
           this.userForm.patchValue({
@@ -70,7 +68,7 @@ export class CandidateRegisterComponent implements OnInit {
 
   // check if email is undefined or already exists
   verifyUser(email: any) {
-    this.JsonDataService.verifyUser(email).subscribe((resJsonData : any) => {
+    this.JsonDataService.verifyUser(email).subscribe((resJsonData: any) => {
       if (resJsonData['msg'] === 'user not exist') {
         this.loading = false;
       } else if (resJsonData['msg'] === 'user already exist') {
@@ -147,7 +145,7 @@ export class CandidateRegisterComponent implements OnInit {
     } else if (this.pincode.length === 6) {
       // this.loading = true;
       this.JsonDataService.getPincode(this.pincode).subscribe(
-        (resPincodeData :any) => [this.pincodeLocation = resPincodeData, this.getPincodeLocation()]);
+        (resPincodeData: any) => [this.pincodeLocation = resPincodeData, this.getPincodeLocation()]);
     } else if (this.pincode.length !== 6) {
       this.areaList = [];
       this.userForm.value.location = '';
@@ -159,7 +157,7 @@ export class CandidateRegisterComponent implements OnInit {
     let officeName;
     this.userForm.value.location = '';
     this.areaList = [];
-    this.pincodeLocation.records.forEach((element :any) => {
+    this.pincodeLocation.records.forEach((element: any) => {
       officeName = element['officename'];
       officeName = officeName.substr(0, officeName.length - 4);
       this.areaList.push(officeName + ', ' + element['Districtname'] + ', ' + element['statename']);
@@ -210,7 +208,7 @@ export class CandidateRegisterComponent implements OnInit {
       }
     };
 
-    this.JsonDataService.registerUser(userData).subscribe((res  :any) => {
+    this.JsonDataService.registerUser(userData).subscribe((res: any) => {
       console.log(res);
       if (res['success']) {
         this.data.openSnackBar('Successfully Register', 'Please Login');
@@ -219,7 +217,7 @@ export class CandidateRegisterComponent implements OnInit {
         this.data.openSnackBar('Registration Failed', 'Please Try Again');
         // this.router.navigate(['/login']);
       }
-    }, (error :any) => {
+    }, (error: any) => {
       this.data.openSnackBar('Registration Failed', 'Please Try Again');
     })
   }
