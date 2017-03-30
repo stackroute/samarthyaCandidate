@@ -73,15 +73,15 @@ export class JsonDataService {
   };
 
   verifyToken(token: any) {
-    return this.http.post("/auth/verify-email", { token: token }).map((response: Response) => response.json());
+    return this.http.post('/auth/verify-email', { token: token }).map((response: Response) => response.json());
   }
 
   verifyEmail(email: any) {
-    return this.http.post("auth/register-email", { username: email }).map((response: Response) => response.json());
+    return this.http.post('auth/register-email', { username: email }).map((response: Response) => response.json());
   }
 
   verifyUser(email: any) {
-    return this.http.post("auth/verify-user", { username: email }).map((response: Response) => response.json());
+    return this.http.post('auth/verify-user', { username: email }).map((response: Response) => response.json());
   }
   private authoriZation(userToken: any) {
     if (userToken) {

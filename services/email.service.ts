@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class EmailService {
-  private url: string = "";
+  private url: string = '';
   //   public data2 :LoginComponent  ;
   constructor(private http: Http) { }
   sendEmail(mailObj: any) {

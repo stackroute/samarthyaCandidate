@@ -1,16 +1,11 @@
 import { JsonDataService } from './../../services/json-data.service';
 import { UserService } from './../../services/user.service';
 import { AuthenticationService } from './../../services/authentication.service';
-//import { AuthenticationService } from 'app/services/authentication.service';
-//import { UserService } from 'app/services/user.service';
 import { Router } from '@angular/router'
 import { Component, OnInit } from '@angular/core';
-//import { AppComponent } from 'app/app.component';
 import { ViewContainerRef } from '@angular/core';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { Data } from './../../services/data.service';
-//import { JsonDataService } from 'app/services/json-data.service';
-
 
 @Component({
   selector: 'app-layout',
@@ -26,7 +21,7 @@ export class LayoutComponent implements OnInit {
     private router: Router, private data: Data, private viewContainerRef: ViewContainerRef, private JsonDataService: JsonDataService) { }
 
   ngOnInit() {
-    let tokenVerification = JSON.parse(localStorage.getItem('currentUser'))["token"];
+    let tokenVerification = JSON.parse(localStorage.getItem('currentUser'))['token'];
     this.JsonDataService.getNavLinks(tokenVerification)
       .subscribe(
       role => {
