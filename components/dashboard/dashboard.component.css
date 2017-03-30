@@ -14,5 +14,10 @@
     width: 100%;
 }
 md2-dialog{
-    min-width: 100px;
+    /*min-width: 100px;*/
+}
+
+.mainHeader {
+    margin: 0px;
+    padding: 0px;
 }

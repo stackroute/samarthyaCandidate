@@ -169,13 +169,30 @@ export class SamProfileSectionConfigService {
             'skills': {
                 "fields": [
                     {
-                        "elemType": "icon-div",
+                        "elemType": "chips",
                         "elemName": "name",
                         "elemLabel": "Name",
                         "elemOrder": 1,
                         "dataDescriptor": {
-                            "dataFieldName": 'skillname',
-                            "icon": "mood",
+                            "dataFieldName": {
+                                "type": "nestedArrey",
+                                "fields": [0, "name"]
+                            },
+                            // "icon": "mood",
+                            "info": "my skill"
+                        }
+                    },
+                    {
+                        "elemType": "chips",
+                        "elemName": "name",
+                        "elemLabel": "Name",
+                        "elemOrder": 1,
+                        "dataDescriptor": {
+                            "dataFieldName": {
+                                "type": "nestedArrey",
+                                "fields": [1, "name"]
+                            },
+                            // "icon": "mood",
                             "info": "my skill"
                         }
                     }
@@ -189,41 +206,138 @@ export class SamProfileSectionConfigService {
         return {
             'personalInfo': {
                 "fields": [
+                    // {
+                    //     "elemType": "label",
+                    //     "elemName": "name",
+                    //     "elemLabel": "Name",
+                    //     "elemOrder": 1,
+                    //     "dataDescriptor": {
+                    //         // "dataFieldName": 'displayname',
+                    //         "label": "My Name is "
+                    //     }
+                    // },
                     {
-                        "elemType": "icon-div",
-                        "elemName": "name",
+                        "elemType": "input",
+                        "elemName": "displayname",
                         "elemLabel": "Name",
                         "elemOrder": 1,
                         "dataDescriptor": {
                             "dataFieldName": 'displayname',
-                            "icon": "person",
-                            "info": "Your Full Name"
+                            "label": "Display Name"
                         }
-                    }
+                    },
+                    // {
+                    //     "elemType": "label",
+                    //     "elemName": "name",
+                    //     "elemLabel": "Name",
+                    //     "elemOrder": 1,
+                    //     "dataDescriptor": {
+                    //         // "dataFieldName": 'displayname',
+                    //         "label": "My Primary Email is "
+                    //     }
+
+                    // }, 
+                    {
+                        "elemType": "input",
+                        "elemName": "email",
+                        "elemLabel": "Name",
+                        "elemOrder": 1,
+                        "dataDescriptor": {
+                            "dataFieldName": 'email',
+                            "label": "Primary email"
+                        }
+                    },
+                    // {
+                    //     "elemType": "label",
+                    //     "elemName": "name",
+                    //     "elemLabel": "Name",
+                    //     "elemOrder": 1,
+                    //     "dataDescriptor": {
+                    //         // "dataFieldName": 'displayname',
+                    //         "label": "My Alternate Email is "
+                    //     }
+                    // },
+                    {
+                        "elemType": "input",
+                        "elemName": "altemail",
+                        "elemLabel": "Name",
+                        "elemOrder": 1,
+                        "dataDescriptor": {
+                            "dataFieldName": 'altemail',
+                            "label": "Alternate Email"
+                        }
+                    },
+                    // {
+                    //     "elemType": "label",
+                    //     "elemName": "name",
+                    //     "elemLabel": "Name",
+                    //     "elemOrder": 1,
+                    //     "dataDescriptor": {
+                    //         // "dataFieldName": 'displayname',
+                    //         "label": "My Primary Contact No. is "
+                    //     }
+                    // },
+                    {
+                        "elemType": "input",
+                        "elemName": "contact-I",
+                        "elemLabel": "Name",
+                        "elemOrder": 1,
+                        "dataDescriptor": {
+                            "dataFieldName": {
+                                "type": "nestedArrey",
+                                "fields": ["contact", "I"]
+                            },
+                            "label": "Primary Contact No."
+                        }
+                    },
+                    // {
+                    //     "elemType": "label",
+                    //     "elemName": "name",
+                    //     "elemLabel": "Name",
+                    //     "elemOrder": 1,
+                    //     "dataDescriptor": {
+                    //         // "dataFieldName": 'displayname',
+                    //         "label": "My Alternate Contact No. is "
+                    //     }
+                    // },
+                    {
+                        "elemType": "input",
+                        "elemName": "contact-II",
+                        "elemLabel": "Name",
+                        "elemOrder": 1,
+                        "dataDescriptor": {
+                            "dataFieldName": {
+                                "type": "nestedArrey",
+                                "fields": ["contact", "II"]
+                            },
+                            "label": "Alternate Contact No."
+                        }
+                    },
+
                 ]
             },
             'skills': {
                 "fields": [
                     {
-                        "elemType": "icon-div",
+                        "elemType": "label",
                         "elemName": "form",
                         "elemLabel": "form",
                         "elemOrder": 1,
                         "dataDescriptor": {
-                            "dataFieldName": 'skillname',
-                            "icon": "wc",
-                            "info": "my form"
+                            // "dataFieldName": 'skillname',
+                            // "icon": "wc",
+                            "label": "skills here"
                         }
                     },
                     {
-                        "elemType": "icon-div",
+                        "elemType": "label",
                         "elemName": "form",
                         "elemLabel": "form",
                         "elemOrder": 1,
                         "dataDescriptor": {
-                            "dataFieldName": 'skillname',
-                            "icon": "wc",
-                            "info": "my form"
+                            // "dataFieldName": 'skillname',
+                            // "icon": "wc",
+                            "info": "skillls 2222"
                         }
                     }
                 ]

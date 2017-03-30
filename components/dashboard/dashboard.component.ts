@@ -17,11 +17,10 @@ import { Md2Dialog } from 'md2';
 export class DashboardComponent implements OnInit {
   profileSections: any[];
   profileData: Object;
-  sectionsEdit: any[];
   profileCardData: any;
   profileConfig: any;
   profileFormConfig: any;
-  profileFormSections: any;
+  profileFormSections: any[];
 
   constructor(
     private dialog: Md2Dialog,
@@ -46,35 +45,38 @@ export class DashboardComponent implements OnInit {
 
     // this will provide all section related info
     this.profileSections = [
-      { 'name': 'personalInfo', 'title': 'Personal Informations', 'align': 'column', 'type': 'view' },
-      { 'name': 'skills', 'title': 'Skills Informations', 'align': 'column', 'type': 'view' }
+      { 'name': 'personalInfo', 'title': 'Personal Informations', 'align': 'column' },
+      { 'name': 'skills', 'title': 'Skills Informations', 'align': 'column' }
     ];
     this.profileFormSections = [
-      { 'name': 'personalInfo', 'title': 'Personal Informations Form', 'align': 'row', 'type': 'form' },
-      { 'name': 'skills', 'title': 'Skills Informations Form', 'align': 'row', 'type': 'view' }
+      { 'name': 'personalInfo', 'title': 'Personal Informations Form', 'align': 'row' },
+      { 'name': 'skills', 'title': 'Skills Informations Form', 'align': 'row' }
     ];
   }
 
-  public profileFormSection: any = {};
-  public profiledata: any = {};
-  public currentSection: string;
-  public formTitle: string;
-  public formAlign: string;
-  public formData: any;
-  public formConfig: any;
+  public currentSectionTitle: string;
+  public currentSectionAlign: string;
+  public currentSectionName: string;
+
 
 
   onEdit(dialog: Md2Dialog, sectionName: string) {
-    this.currentSection = sectionName;
+    this.profileFormSections.forEach(section => {
+      if (section.name == sectionName) {
+        this.currentSectionName = sectionName;
+        this.currentSectionTitle = section.title;
+        this.currentSectionAlign = section.align;
+      }
+    });
     dialog.open();
   }
+
 
   onSave(sectionName: string) {
     console.log(sectionName);
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   // this will provide section config for perticular sections from profile config section
   getSectionConfig(sectionName: string) {

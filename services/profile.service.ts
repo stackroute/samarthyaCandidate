@@ -73,9 +73,38 @@ export class ProfileService {
         }
         ],
       },
-      "skills": {
-        "skillname": "JAVA"
-      }
+      "skills": [{
+        "name": "JAVA" ,
+        expertise : "moderate",
+        experience : 1
+      },
+      {
+        "name": "ANGULAR JS" ,
+        expertise : "moderate",
+        experience : 2
+      },{
+        "name": "ANGULAR 2" ,
+        expertise : "moderate",
+        experience : 1
+      },{
+        "name": "JAVASCRIPT" ,
+        expertise : "moderate",
+        experience : 3
+      },{
+        "name": "J2EEE" ,
+        expertise : "moderate",
+        experience : 2
+      },{
+        "name": "MEAN" ,
+        expertise : "moderate",
+        experience : 1
+      }]
+      
+    //   skills: [{
+    //     name: { type: String },
+    //     experience: { type: Number, default: 0 },
+    //     expertise: { type: String }
+    // }],
 
     }
   }
@@ -89,5 +118,6 @@ export class ProfileService {
   //   return this.http.get('')
   //     .map((response: Response) => response.json());
   // }
+
 
 }
