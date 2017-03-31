@@ -559,11 +559,9 @@
             "fields": [
                 {
                     "elemType": "label",
-                    "elemName": "name",
-                    "elemLabel": "Name",
                     "elemOrder": 1,
                     "dataDescriptor": {
-                        "dataFieldName": "displayname",
+                        "dataFieldName": "",
                         "label": "My Name is "
                     }
                 },
@@ -579,11 +577,9 @@
                 },
                 {
                     "elemType": "label",
-                    "elemName": "name",
-                    "elemLabel": "Name",
                     "elemOrder": 1,
                     "dataDescriptor": {
-                        "dataFieldName": "displayname",
+                        "dataFieldName": "",
                         "label": "My Primary Email is "
                     }
                 },
@@ -599,11 +595,9 @@
                 },
                 {
                     "elemType": "label",
-                    "elemName": "name",
-                    "elemLabel": "Name",
                     "elemOrder": 1,
                     "dataDescriptor": {
-                        "dataFieldName": "displayname",
+                        "dataFieldName": "",
                         "label": "My Alternate Email is "
                     }
                 },
@@ -619,11 +613,9 @@
                 },
                 {
                     "elemType": "label",
-                    "elemName": "name",
-                    "elemLabel": "Name",
                     "elemOrder": 1,
                     "dataDescriptor": {
-                        "dataFieldName": "displayname",
+                        "dataFieldName": "",
                         "label": "My Primary Contact No. is "
                     }
                 },
@@ -645,11 +637,9 @@
                 },
                 {
                     "elemType": "label",
-                    "elemName": "name",
-                    "elemLabel": "Name",
                     "elemOrder": 1,
                     "dataDescriptor": {
-                        "dataFieldName": "displayname",
+                        "dataFieldName": "",
                         "label": "My Alternate Contact No. is "
                     }
                 },

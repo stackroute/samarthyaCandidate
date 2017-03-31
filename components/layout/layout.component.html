@@ -11,6 +11,11 @@
 
     <!--sidenav ites list-->
     <md-nav-list>
+      <md-list-item>
+        DARK THEME
+        <md-slide-toggle class="toggleSwitch" (click)="toggleTheme()">
+        </md-slide-toggle>
+      </md-list-item>
       <md-list-item *ngFor="let navItem of navList" routerLink={{navItem.path}} routerLinkActive="active" (click)="sidenav.toggle()">
         <i class="material-icons navIcon">{{navItem.icon}}</i>
         <p class="navItem"> {{navItem.name}}</p>
@@ -29,13 +34,6 @@
     <span><b class="headerSmall">Samarthya</b></span>
 
     <span class="fill-remaining-space"></span>
-
-    <md-slide-toggle class="example-margin" (click)="toggleTheme()" fxHide.xs>
-      DARK THEME
-    </md-slide-toggle>
-    <md-slide-toggle class="example-margin" (click)="toggleTheme()" fxHide.gt-xs>
-    </md-slide-toggle>
-
 
     <!--appbar buttons-->
     <!--notification button-->
@@ -80,11 +78,7 @@
   <router-outlet></router-outlet>
 
 
-  <!--footer-->
-  <div class="footer">
 
-    <app-login-footer></app-login-footer>
-  </div>
 
 </md-sidenav-container>
 
