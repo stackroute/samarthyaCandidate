@@ -17,52 +17,44 @@ export class ProfileService {
   // this will get profile data of user
   public getProfileData(username: string) {
 
-    return {
+    return { // add center code
       'personalInfo': {
-        'displayname': 'Divesh Sankhla',
+        'name': 'Divesh Sankhla',
         'fname': 'Divesh',
         'lname': 'Sankhla',
         'gender': 'male',
         'email': 'sankhlasaini@gmail.com',
         'dob': '11-11-1992',
         'altemail': 'muruga55@gmail.com',
-
-        'address': [
-          {
-            'address1': 'Vijay Nagar',
-            'address2': 'Scheme No-4',
-            'landmark': 'Railway Station Alwar',
-            'district': ' Alwar',
-            'state': 'RAJASTHAN',
-            'pincode': '301001',
-          },
-          {
-            'address1': 'Nagar',
-            'address2': '4',
-            'landmark': 'sajdkajhdkasjd',
-            'district': ' dskfjhksdfksdjf',
-            'state': 'ksadlasjdlsajdlasd',
-            'pincode': '301001',
-          }
-        ],
+        'address':
+        {
+          'address1': 'Vijay Nagar',
+          'address2': 'Scheme No-4',
+          'landmark': 'Railway Station Alwar',
+          'district': ' Alwar',
+          'state': 'RAJASTHAN',
+          'pincode': '301001',
+        },
         'contact': {
           'I': '99123499123',
           'II': '12312312333'
         },
         'married': true,
-        'preLang': 'English',
+        'prefLang': 'English',
         'nativeLang': 'Hindi',
-        'lang': [{
-          'name': 'Hindi',
-          'r': true,
-          'w': true,
-          's': true,
-        }, {
-          'name': 'English',
-          'r': true,
-          'w': true,
-          's': false,
-        }
+        'lang': [
+          {
+            'name': 'Hindi',
+            'r': 'Read',  // 'r': true,
+            'w': 'Write',  // 'w': true,
+            's': 'Speak',  // 's': true,
+          },
+          {
+            'name': 'English',
+            'r': 'Read',  // 'r': true,
+            'w': '',  // 'w': true,
+            's': 'Speak',  // 's': true,
+          },
         ],
       },
       'skills': [{
@@ -83,7 +75,7 @@ export class ProfileService {
         expertise: 'moderate',
         experience: 3
       }, {
-        'name': 'J2EEE',
+        'name': 'J2EE',
         expertise: 'moderate',
         experience: 2
       }, {
@@ -140,7 +132,7 @@ export class ProfileService {
       ],
       'jobPreferences': {
         'looking': 'Looking For Job',
-        'roles': [
+        'jobRoles': [
           {
             'name': 'Team Lead',
             'engagement': 'Full Time',
@@ -158,19 +150,15 @@ export class ProfileService {
       'projects': [
         {
           'name': 'Samarth',
-          'duration': 2,
           'role': 'Developer',
           'skill': 'Angular',
-          'location': 'Bangalore'
-        },
-        {
-          'name': 'BOB',
-          'duration': 1,
-          'role': 'Tester',
-          'skill': 'React',
-          'location': 'Pune'
+          'location': 'Bangalore',
+          'jobRole': 'Project Engineer'
         }
-      ]
+      ],
+      'summary': {
+        "summaryText": 'summary sill come here'
+      }
 
     }
   }

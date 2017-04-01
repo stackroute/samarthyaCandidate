@@ -43,9 +43,9 @@ export class DashboardComponent implements OnInit {
 
     // this will provide all section related info
     this.profileSections = [
-      { 'name': 'personalInfo', 'title': 'Personal Informations', 'align': 'column' },
+      { 'name': 'personalInfo', 'title': 'Personal Informations', 'align': 'row' },
       { 'name': 'qualifications', 'title': 'Educational Qualification', 'align': 'column' },
-      { 'name': 'jobPreferences', 'title': 'Job Preferences', 'align': 'column' },
+      // { 'name': 'jobPreferences', 'title': 'Job Preferences', 'align': 'column' },
       { 'name': 'experiences', 'title': 'Experiences', 'align': 'column' },
       { 'name': 'skills', 'title': 'Skills', 'align': 'row' },
       { 'name': 'projects', 'title': 'Projects', 'align': 'column' },

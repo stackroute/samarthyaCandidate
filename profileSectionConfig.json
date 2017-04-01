@@ -6,18 +6,32 @@
                     "elemType": "icon-div",
                     "elemName": "name",
                     "elemLabel": "Name",
+                    "block": 1,
                     "elemOrder": 1,
                     "dataDescriptor": {
-                        "dataFieldName": "displayname",
+                        "dataFieldName": "name",
                         "icon": "person",
                         "info": "Your Full Name"
                     }
                 },
                 {
                     "elemType": "icon-div",
+                    "elemName": "dob",
+                    "elemLabel": "Date of Birth",
+                    "elemOrder": 1,
+                    "block": 2,
+                    "dataDescriptor": {
+                        "dataFieldName": "dob",
+                        "icon": "cake",
+                        "info": "BirthDay"
+                    }
+                },
+                {
+                    "elemType": "icon-div",
                     "elemName": "email",
                     "elemLabel": "E-Mail",
-                    "elemOrder": 2,
+                    "elemOrder": 1,
+                    "block": 2,
                     "dataDescriptor": {
                         "dataFieldName": "email",
                         "icon": "email",
@@ -29,6 +43,7 @@
                     "elemName": "altemail",
                     "elemLabel": "Alternate E-Mail",
                     "elemOrder": 3,
+                    "block": 2,
                     "dataDescriptor": {
                         "dataFieldName": "altemail",
                         "icon": "email",
@@ -40,6 +55,7 @@
                     "elemName": "phone",
                     "elemLabel": "Phone number",
                     "elemOrder": 3,
+                    "block": 1,
                     "dataDescriptor": {
                         "dataFieldName": {
                             "type": "nested",
@@ -57,6 +73,7 @@
                     "elemName": "altephone",
                     "elemLabel": "Alternate Phone number",
                     "elemOrder": 3,
+                    "block": 2,
                     "dataDescriptor": {
                         "dataFieldName": {
                             "type": "nestedArrey",
@@ -70,103 +87,43 @@
                     }
                 },
                 {
-                    "elemType": "text-div",
-                    "elemName": "address1",
+                    "elemType": "listColl",
+                    "elemName": "address",
                     "elemLabel": "Address",
-                    "elemOrder": 7,
+                    "elemOrder": 1,
                     "dataDescriptor": {
-                        "dataFieldName": "",
-                        "label": "Primary Address"
+                        "dataFieldName": {
+                            "type": "collObj",
+                            "location": "address",
+                            "title": "Address",
+                            "fields": [
+                                "address1",
+                                "address2",
+                                "landmark",
+                                "district",
+                                "state",
+                                "pincode"
+                            ]
+                        }
                     }
                 },
                 {
-                    "elemType": "title-div",
-                    "elemName": "address1",
-                    "elemLabel": "Address Line 1",
-                    "elemOrder": 7,
+                    "elemType": "listColl",
+                    "elemName": "address",
+                    "elemLabel": "Address",
+                    "elemOrder": 1,
                     "dataDescriptor": {
                         "dataFieldName": {
-                            "type": "nestedArrey",
+                            "type": "nestedCollArray",
+                            "location": "lang",
+                            "title": "Languages Known",
                             "fields": [
-                                "address",
-                                0,
-                                "address1"
+                                "name",
+                                "r",
+                                "w",
+                                "s"
                             ]
-                        },
-                        "title": "Line 1",
-                        "info": "Address Line 1"
-                    }
-                },
-                {
-                    "elemType": "title-div",
-                    "elemName": "address2",
-                    "elemLabel": "Address Line 2",
-                    "elemOrder": 8,
-                    "dataDescriptor": {
-                        "dataFieldName": {
-                            "type": "nestedArrey",
-                            "fields": [
-                                "address",
-                                0,
-                                "address2"
-                            ]
-                        },
-                        "title": "Line 2",
-                        "info": "Address Line 2"
-                    }
-                },
-                {
-                    "elemType": "title-div",
-                    "elemName": "landmark",
-                    "elemLabel": "Landmark",
-                    "elemOrder": 9,
-                    "dataDescriptor": {
-                        "dataFieldName": {
-                            "type": "nestedArrey",
-                            "fields": [
-                                "address",
-                                0,
-                                "landmark"
-                            ]
-                        },
-                        "title": "Landmark",
-                        "info": "Landmark"
-                    }
-                },
-                {
-                    "elemType": "title-div",
-                    "elemName": "district",
-                    "elemLabel": "District",
-                    "elemOrder": 10,
-                    "dataDescriptor": {
-                        "dataFieldName": {
-                            "type": "nestedArrey",
-                            "fields": [
-                                "address",
-                                0,
-                                "district"
-                            ]
-                        },
-                        "title": "District",
-                        "info": "District"
-                    }
-                },
-                {
-                    "elemType": "title-div",
-                    "elemName": "state",
-                    "elemLabel": "State",
-                    "elemOrder": 11,
-                    "dataDescriptor": {
-                        "dataFieldName": {
-                            "type": "nestedArrey",
-                            "fields": [
-                                "address",
-                                0,
-                                "state"
-                            ]
-                        },
-                        "title": "State",
-                        "info": "State"
+                        }
                     }
                 }
             ]
@@ -174,36 +131,18 @@
         "skills": {
             "fields": [
                 {
-                    "elemType": "chips",
+                    "elemType": "chipsColl",
                     "elemName": "name",
                     "elemLabel": "Name",
                     "elemOrder": 1,
                     "dataDescriptor": {
                         "dataFieldName": {
-                            "type": "nestedArrey",
+                            "type": "collArray",
                             "fields": [
-                                0,
-                                "name"
+                                "name",
+                                "experience"
                             ]
-                        },
-                        "info": "my skill"
-                    }
-                },
-                {
-                    "elemType": "chips",
-                    "elemName": "name",
-                    "elemLabel": "Name",
-                    "elemOrder": 1,
-                    "dataDescriptor": {
-                        "dataFieldName": {
-                            "type": "nestedArrey",
-                            "fields": [
-                                1,
-                                "name"
-                            ]
-                        },
-                        "icon": "mood",
-                        "info": "my skill"
+                        }
                     }
                 }
             ]
@@ -211,105 +150,23 @@
         "qualifications": {
             "fields": [
                 {
-                    "elemType": "title-div",
+                    "elemType": "listColl",
                     "elemName": "name1",
                     "elemLabel": "Qualification Name",
                     "elemOrder": 1,
                     "dataDescriptor": {
                         "dataFieldName": {
-                            "type": "nestedArrey",
+                            "type": "collArray",
                             "fields": [
-                                0,
-                                "name"
-                            ]
-                        },
-                        "title": "Name",
-                        "info": "Qualification Name"
-                    }
-                },
-                {
-                    "elemType": "title-div",
-                    "elemName": "name1",
-                    "elemLabel": "Subject Name",
-                    "elemOrder": 1,
-                    "dataDescriptor": {
-                        "dataFieldName": {
-                            "type": "nestedArrey",
-                            "fields": [
-                                0,
-                                "subject"
-                            ]
-                        },
-                        "title": "Subject",
-                        "info": "Subject Name"
-                    }
-                },
-                {
-                    "elemType": "title-div",
-                    "elemName": "name1",
-                    "elemLabel": "Academic Type Name",
-                    "elemOrder": 1,
-                    "dataDescriptor": {
-                        "dataFieldName": {
-                            "type": "nestedArrey",
-                            "fields": [
-                                0,
-                                "academictype"
-                            ]
-                        },
-                        "title": "Academic Type",
-                        "info": "Academic Type"
-                    }
-                },
-                {
-                    "elemType": "title-div",
-                    "elemName": "Batch",
-                    "elemLabel": "Batch",
-                    "elemOrder": 1,
-                    "dataDescriptor": {
-                        "dataFieldName": {
-                            "type": "nestedArrey",
-                            "fields": [
-                                0,
-                                "batch"
-                            ]
-                        },
-                        "title": "Batch",
-                        "info": "Batch"
-                    }
-                },
-                {
-                    "elemType": "title-div",
-                    "elemName": "institute",
-                    "elemLabel": "Institute",
-                    "elemOrder": 1,
-                    "dataDescriptor": {
-                        "dataFieldName": {
-                            "type": "nestedArrey",
-                            "fields": [
-                                0,
-                                "institute"
-                            ]
-                        },
-                        "title": "Institute Name",
-                        "info": "Institute Name"
-                    }
-                },
-                {
-                    "elemType": "title-div",
-                    "elemName": "location",
-                    "elemLabel": "Location",
-                    "elemOrder": 1,
-                    "dataDescriptor": {
-                        "dataFieldName": {
-                            "type": "nestedArrey",
-                            "fields": [
-                                0,
+                                "name",
+                                "subject",
+                                "academictype",
+                                "batch",
+                                "institute",
+                                "affiliation",
                                 "location"
                             ]
-                        },
-                        "title": "Location Name",
-                        "info": "Location Name"
+                        }
                     }
                 }
             ]
@@ -317,71 +174,20 @@
         "experiences": {
             "fields": [
                 {
-                    "elemType": "title-div",
+                    "elemType": "listColl",
                     "elemName": "name1",
-                    "elemLabel": "Experience Name",
+                    "elemLabel": "Experience",
                     "elemOrder": 1,
                     "dataDescriptor": {
                         "dataFieldName": {
-                            "type": "nestedArrey",
+                            "type": "collArray",
                             "fields": [
-                                0,
-                                "workplace"
-                            ]
-                        },
-                        "title": "Workplace",
-                        "info": "Workplace"
-                    }
-                },
-                {
-                    "elemType": "title-div",
-                    "elemName": "name1",
-                    "elemLabel": "Subject Name",
-                    "elemOrder": 1,
-                    "dataDescriptor": {
-                        "dataFieldName": {
-                            "type": "nestedArrey",
-                            "fields": [
-                                0,
-                                "designation"
-                            ]
-                        },
-                        "title": "Designation",
-                        "info": "Designation"
-                    }
-                },
-                {
-                    "elemType": "title-div",
-                    "elemName": "name1",
-                    "elemLabel": "Academic Type Name",
-                    "elemOrder": 1,
-                    "dataDescriptor": {
-                        "dataFieldName": {
-                            "type": "nestedArrey",
-                            "fields": [
-                                0,
-                                "role"
-                            ]
-                        },
-                        "title": "Role",
-                        "info": "Role"
-                    }
-                },
-                {
-                    "elemType": "title-div",
-                    "elemName": "Batch",
-                    "elemLabel": "Batch",
-                    "elemOrder": 1,
-                    "dataDescriptor": {
-                        "dataFieldName": {
-                            "type": "nestedArrey",
-                            "fields": [
-                                0,
+                                "workplace",
+                                "designation",
+                                "role",
                                 "location"
                             ]
-                        },
-                        "title": "Location",
-                        "info": "Location"
+                        }
                     }
                 }
             ]
@@ -475,80 +281,21 @@
         "projects": {
             "fields": [
                 {
-                    "elemType": "text-div",
-                    "elemName": "Batch",
-                    "elemLabel": "Batch",
-                    "elemOrder": 1,
-                    "dataDescriptor": {
-                        "dataFieldName": "",
-                        "label": "Projects"
-                    }
-                },
-                {
-                    "elemType": "title-div",
-                    "elemName": "Batch",
-                    "elemLabel": "Batch",
+                    "elemType": "listColl",
+                    "elemName": "name1",
+                    "elemLabel": "projects",
                     "elemOrder": 1,
                     "dataDescriptor": {
                         "dataFieldName": {
-                            "type": "nestedArrey",
+                            "type": "collArray",
                             "fields": [
-                                0,
-                                "name"
+                                "name",
+                                "role",
+                                "skill",
+                                "location",
+                                "jobRole"
                             ]
-                        },
-                        "title": "Project Name",
-                        "info": "Project Name"
-                    }
-                },
-                {
-                    "elemType": "title-div",
-                    "elemName": "Batch",
-                    "elemLabel": "Batch",
-                    "elemOrder": 1,
-                    "dataDescriptor": {
-                        "dataFieldName": {
-                            "type": "nestedArrey",
-                            "fields": [
-                                0,
-                                "role"
-                            ]
-                        },
-                        "title": "Role",
-                        "info": "Role"
-                    }
-                },
-                {
-                    "elemType": "chips",
-                    "elemName": "Batch",
-                    "elemLabel": "Batch",
-                    "elemOrder": 1,
-                    "dataDescriptor": {
-                        "dataFieldName": {
-                            "type": "nestedArrey",
-                            "fields": [
-                                0,
-                                "skill"
-                            ]
-                        },
-                        "info": "Skill"
-                    }
-                },
-                {
-                    "elemType": "title-div",
-                    "elemName": "Batch",
-                    "elemLabel": "Batch",
-                    "elemOrder": 1,
-                    "dataDescriptor": {
-                        "dataFieldName": {
-                            "type": "nestedArrey",
-                            "fields": [
-                                0,
-                                "location"
-                            ]
-                        },
-                        "title": "Location",
-                        "info": "Proejct Location"
+                        }
                     }
                 }
             ]
