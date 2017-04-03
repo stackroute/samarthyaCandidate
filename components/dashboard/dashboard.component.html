@@ -2,12 +2,12 @@
   <div fxLayout="row" fxLayout.xs="column" class="profilePage">
     <!--profile Card section-->
     <div fxFlex.gt-xs="14%"></div>
-    <div fxFlex.gt-xs="350px" fxFlex.xs="550px" class="profileCard">
+    <div class="profileCard">
       <sam-profile-card [profileCardData]="profileCardData"> </sam-profile-card>
     </div>
 
     <!--spacing between components-->
-    <div fxFlex="30px"></div>
+    <div fxFlex="10px"></div>
     <!--view profile sections dynamic-->
     <div fxFlex class="profileSection">
       <div fxLayout="row" fxLayoutWrap>
@@ -15,34 +15,12 @@
           <sam-profile-section [sectionFieldConfig]="getSectionConfig(section.name)" [sectionData]="getSectiondata(section.name)" [sectionTitle]="section.title"
             [alignElement]="section.align">
             <div editBtn>
-              <button md-raised-button (click)="onEdit(section.name)" >EDIT</button>
+              <button md-raised-button (click)="onEdit(section.name)">EDIT</button>
             </div>
             </sam-profile-section>
         </div>
       </div>
     </div>
     <div fxFlex.gt-xs="14%"></div>
-  </div>
-
-
-  <!--this is the template to open dialog when edit btn clicked-->
-  <md2-dialog #sectionFormDialog class="dialog">
-    <div *ngFor="let section of profileFormSections">
-      <div *ngIf="section.name==currentSectionName">
-        <md-toolbar color="primary">
-          {{currentSectionTitle}}
-        </md-toolbar>
-        <sam-profile-section-form (childEvent)="onSaveFromData($event)" [sectionFieldConfig]="getSectionFormConfig(currentSectionName)"
-          [sectionData]="getSectiondata(currentSectionName)" [sectionTitle]="currentSectionTitle" [alignElement]="currentSectionAlign">
-          </sam-profile-section-form>
-      </div>
-    </div>
-  </md2-dialog>
-
-
-  <!--footer-->
-  <div class="footer">
-
-    <app-login-footer></app-login-footer>
   </div>
 </div>

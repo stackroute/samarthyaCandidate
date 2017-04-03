@@ -44,14 +44,6 @@ export class DashboardComponent implements OnInit {
       { 'name': 'skills', 'title': 'Skills', 'align': 'row' },
       { 'name': 'projects', 'title': 'Projects', 'align': 'column' },
     ];
-    this.profileFormSections = [
-      { 'name': 'personalInfo', 'title': 'Personal Informations Form', 'align': 'column' },
-      { 'name': 'qualification', 'title': 'Educational Qualification', 'align': 'column' },
-      { 'name': 'jobPreferences', 'title': 'Job Preferences', 'align': 'column' },
-      { 'name': 'experiences', 'title': 'Experiences', 'align': 'column' },
-      { 'name': 'skills', 'title': 'Skills', 'align': 'column' },
-      { 'name': 'projects', 'title': 'Projects', 'align': 'column' },
-    ];
   }
 
   public currentSectionTitle: string;
@@ -67,13 +59,14 @@ export class DashboardComponent implements OnInit {
   }
 
   openPersonalInfoDialog() {
-    let data = 'sadasdasd';
-    let dialogRef = this.dialog.open(PersonalInfoForm, { data: this.personalInfoData });
+    let dialogRef = this.dialog.open(PersonalInfoForm, {
+      height: '80%',
+      // width:'100%',
+      data: this.personalInfoData
+    });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
     })
   }
-
 
   ngOnInit() {
     // this will get the data for profile config
@@ -94,11 +87,6 @@ export class DashboardComponent implements OnInit {
   // this will provide section config for perticular sections for VIEW profile config section
   getSectionConfig(sectionName: string) {
     return this.profileConfig[sectionName];
-  }
-
-  // this will provide section config for perticular sections for  FORM profile config section
-  getSectionFormConfig(sectionName: string) {
-    return this.profileFormConfig[sectionName];
   }
 
   // this will provide section data for perticular sections from profile service

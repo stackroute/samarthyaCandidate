@@ -1,45 +1,150 @@
-<span>I am</span>
-<md-input-container class="full-width">
-  <input mdInput type="text" class="validate" placeholder="Display Name" />
-</md-input-container>
-<!--
-<div fxLayout="row" fxLayoutAlign="start end">
-  <div fxFlex>
-    <md2-datepicker placeholder="Date Of Birth" [(ngModel)]="date" class="full-width">date</md2-datepicker>
+<h2 md-dialog-title>
+
+  <div fxLayout="row">
+    <div>Edit Personal Information</div>
+    <div fxFlex></div>
+    <div>
+      <button md-icon-button class="closeBtn" md-dialog-close>
+          <i class="material-icons">close</i>
+        </button>
+
+    </div>
   </div>
-</div>-->
 
-<span>my email Id is</span>
-<md-input-container class="full-width">
-  <input mdInput type="text" class="validate" placeholder="Primary Email" />
-</md-input-container>
+</h2>
+<md-dialog-content>
+  <form [formGroup]="userForm">
+    <span>I am</span>
+    <md-input-container class="full-width">
+      <input mdInput formControlName="name" id="name" type="text" class="validate" placeholder="Display Name" />
+      <md-hint align="start" class="full-width">
+        <div *ngIf="userForm.get('name').hasError('required') && userForm.get('name').touched" class="errorStyle">
+          Name is Required
+        </div>
+        <div *ngIf="userForm.get('name').hasError('pattern') && userForm.get('name')" class="errorStyle">
+          Invalid Name
+        </div>
+      </md-hint>
+    </md-input-container>
 
-<span>and my alternate email is</span>
-<md-input-container class="full-width">
-  <input mdInput type="text" class="validate" placeholder="Alternate Email" />
-</md-input-container>
+    <span>i was born on </span>
+    <!--Date of Birth-->
+    <md2-datepicker formControlName="dob" id="dob" placeholder="Date Of Birth" class="full-width">date</md2-datepicker>
+    <div *ngIf="userForm.get('dob').hasError('required')" class="errorStyle">
+    </div>
 
-<span> you can call me on this number</span>
-<md-input-container class="full-width">
-  <input mdInput type="text" class="validate" placeholder="Primary Contact No." />
-</md-input-container>
 
-<span>or</span>
-<md-input-container class="full-width">
-  <input mdInput type="text" class="validate" placeholder="Alternate Contact No." />
-</md-input-container>
+    <span>my email Id is</span>
 
-<span>I live in</span>
-<md-input-container class="full-width">
-  <input mdInput type="text" class="validate" placeholder="District" />
-</md-input-container>
+    <md-input-container class="full-width">
+      <input mdInput formControlName="email" id="email" type="text" class="validate" placeholder="Email" />
+      <md-hint align="start" class="full-width">
+        <div *ngIf="userForm.get('email').hasError('required') && userForm.get('email').touched" class="errorStyle">
+          Email is required
+        </div>
+        <div *ngIf="userForm.get('email').hasError('pattern') && userForm.get('email')" class="errorStyle">
+          Invalid email
+        </div>
+      </md-hint>
+    </md-input-container>
 
-<md-input-container class="full-width">
-  <input mdInput type="text" class="validate" placeholder="State" />
-</md-input-container>
+    <span>and my alternate email is</span>
 
-<span>and my pincode is</span>
+    <md-input-container class="full-width">
+      <input mdInput formControlName="altemail" id="altemail" type="text" class="validate" placeholder="Alternate Email" />
+      <md-hint align="start" class="full-width">
+        <div *ngIf="userForm.get('altemail').hasError('pattern') && userForm.get('altemail')" class="errorStyle">
+          Invalid email
+        </div>
+      </md-hint>
+    </md-input-container>
 
-<md-input-container class="full-width">
-  <input mdInput type="text" class="validate" placeholder="Pincode" />
-</md-input-container>
+    <span> you can call me on </span>
+
+
+    <md-input-container class="full-width">
+      <input mdInput formControlName="mob" id="mob" type="text" class="validate" placeholder="Mobile No." />
+      <md-hint align="start" class="full-width">
+        <div *ngIf="userForm.get('mob').hasError('required') && userForm.get('mob').touched" class="errorStyle">
+          Mobile No. is required
+        </div>
+        <div *ngIf="userForm.get('mob').hasError('pattern') && userForm.get('mob')" class="errorStyle">
+          Invalid Mobile No.
+        </div>
+      </md-hint>
+    </md-input-container>
+
+    <span> or </span>
+
+    <md-input-container class="full-width">
+      <input mdInput formControlName="phone" id="phone" type="text" class="validate" placeholder="Alternate Contact No." />
+      <md-hint align="start" class="full-width">
+
+        <div *ngIf="userForm.get('phone').hasError('pattern') && userForm.get('phone')" class="errorStyle">
+          Invalid Phone No.
+        </div>
+      </md-hint>
+    </md-input-container>
+
+    <span> I live in </span>
+
+    <md-input-container class="full-width">
+      <input mdInput formControlName="district" id="district" type="text" class="validate" placeholder="City" />
+      <md-hint align="start" class="full-width">
+        <div *ngIf="userForm.get('district').hasError('required') && userForm.get('district').touched" class="errorStyle">
+          City Name is required
+        </div>
+        <div *ngIf="userForm.get('district').hasError('pattern') && userForm.get('district')" class="errorStyle">
+          Invalid City Name
+        </div>
+      </md-hint>
+    </md-input-container>
+
+    <span> which is in </span>
+
+    <md-input-container class="full-width">
+      <input mdInput formControlName="state" id="state" type="text" class="validate" placeholder="State" />
+      <md-hint align="start" class="full-width">
+        <div *ngIf="userForm.get('state').hasError('required') && userForm.get('state').touched" class="errorStyle">
+          State is required
+        </div>
+        <div *ngIf="userForm.get('state').hasError('pattern') && userForm.get('state')" class="errorStyle">
+          Invalid State
+        </div>
+      </md-hint>
+    </md-input-container>
+
+    <span> my pincode is </span>
+
+    <md-input-container class="full-width">
+      <input mdInput formControlName="pincode" id="pincode" type="text" class="validate" placeholder="Pincode" />
+      <md-hint align="start" class="full-width">
+        <div *ngIf="userForm.get('pincode').hasError('required') && userForm.get('pincode').touched" class="errorStyle">
+          Pincode is required
+        </div>
+        <div *ngIf="userForm.get('pincode').hasError('pattern') && userForm.get('pincode')" class="errorStyle">
+          Invalid Pincode
+        </div>
+      </md-hint>
+    </md-input-container>
+
+    <span> and my Aadhar No. is </span>
+
+    <md-input-container class="full-width">
+      <input mdInput formControlName="aadhar" id="aadhar" type="text" class="validate" placeholder="Aadhar No." />
+      <md-hint align="start" class="full-width">
+        <div *ngIf="userForm.get('aadhar').hasError('required') && userForm.get('aadhar').touched" class="errorStyle">
+          Aadhar is required
+        </div>
+        <div *ngIf="userForm.get('aadhar').hasError('pattern') && userForm.get('aadhar')" class="errorStyle">
+          Invalid Aadhar
+        </div>
+      </md-hint>
+    </md-input-container>
+
+  </form>
+  <div fxLayout="row">
+    <div fxFlex></div>
+    <button md-raised-button type="submit" color="primary" md-dialog-close (click)="onSave()">Save</button>
+  </div>
+</md-dialog-content>

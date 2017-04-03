@@ -30,13 +30,7 @@ export class ForgotPasswordComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    // this.emailService.getRegister()
-    //   .subscribe(resEmployeeData => {
-    //     this.emailId = resEmployeeData.usermail2;
-    //     console.log(this.emailId);
-    //   });
-  }
+  ngOnInit() { }
 
   // on password reset submit
   onResetLink() {
@@ -46,7 +40,7 @@ export class ForgotPasswordComponent implements OnInit {
       'username': this.userForm.value.email,
       'subject': 'Password Reset'
     };
-    this.emailservice.sendResetPasswordEmail(this.infoobj).subscribe((resJsonData : any)=> {
+    this.emailservice.sendResetPasswordEmail(this.infoobj).subscribe((resJsonData: any) => {
       // console.log(resJsonData);
       if (resJsonData['msg'] === 'user does not exist') {
         this.loading = false;
@@ -57,7 +51,7 @@ export class ForgotPasswordComponent implements OnInit {
         this.timer = setTimeout(() => this.router.navigate(['/login']), 500);
       }
     },
-      (error :any) => {
+      (error: any) => {
         this.data.openSnackBar('TECHNICAL ISSUE', 'Please Try after some time');
         this.timer = setTimeout(() => this.router.navigate(['/login']), 500);
       });
