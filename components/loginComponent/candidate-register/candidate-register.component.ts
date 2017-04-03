@@ -38,6 +38,33 @@ export class CandidateRegisterComponent implements OnInit {
   public state: any;
   public landmark: any;
 
+  constructor( @Inject(FormBuilder) fb: FormBuilder, private authenticationService: AuthenticationService, private JsonDataService: JsonDataService, private route: ActivatedRoute,
+    private router: Router, private http: Http, private emailService: EmailService, private data: Data,
+    private snackBar: MdSnackBar, private viewContainerRef: ViewContainerRef, private logger: Logger) {
+
+    // register candidate form
+    this.userForm = fb.group({
+      name: ['', [Validators.required]],
+      fname: ['', [Validators.required, Validators.pattern('[A-Za-z]{2,}')]],
+      lname: ['', [Validators.required]],
+      gender: ['male', Validators.required],
+      email: ['', Validators.required],
+      regId: ['', Validators.required],
+      dob: ['', Validators.required],
+      aadhar: ['', [Validators.required, Validators.pattern(/^\d{12}$/)]],
+      mob: ['', [Validators.required, , Validators.pattern('[0-9]{10}')]],
+      role: ['candidate'],
+      password: ['', [Validators.required, Validators.pattern(/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,24}$/)]],
+      conPassword: ['', [Validators.required, Validators.pattern(/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,24}$/)]],
+      profession: ['', [Validators.required]],
+      pincode: ['', [Validators.required, Validators.pattern('[0-9]{6}')]],
+      location: ['', Validators.required],
+      placementCenter: ['', [Validators.required]]
+    });
+  }
+
+
+
   ngOnInit() {
     // getting languages and form data from json file
     this.JsonDataService.getPlacementCenter().subscribe((resJsonData: any) => this.getPlacementCenter(resJsonData));
@@ -99,32 +126,6 @@ export class CandidateRegisterComponent implements OnInit {
     this.profession = jsonData;
   }
 
-  constructor( @Inject(FormBuilder) fb: FormBuilder, private authenticationService: AuthenticationService, private JsonDataService: JsonDataService, private route: ActivatedRoute,
-    private router: Router, private http: Http, private emailService: EmailService, private data: Data,
-    private snackBar: MdSnackBar, private viewContainerRef: ViewContainerRef, private logger: Logger) {
-
-    // register candidate form
-    this.userForm = fb.group({
-      fname: ['', [Validators.required, Validators.pattern('[A-Za-z]{2,}')]],
-      lname: ['', [Validators.required]],
-      gender: ['male', Validators.required],
-      email: ['', Validators.required],
-      regId: ['', Validators.required],
-      // dob:'',
-      aadhar: ['', [Validators.required, Validators.pattern(/^\d{12}$/)]],
-      mob: ['', [Validators.required, , Validators.pattern('[0-9]{10}')]],
-      role: ['candidate'],
-      password: ['', [Validators.required, Validators.pattern(/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,24}$/)]],
-      conPassword: ['', [Validators.required, Validators.pattern(/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,24}$/)]],
-
-      profession: ['', [Validators.required]],
-      pincode: ['', [Validators.required, Validators.pattern('[0-9]{6}')]],
-      location: ['', Validators.required],
-      placementCenter: ['', [Validators.required]]
-    });
-  }
-
-
   // password confirm Validators
   passwordValue(pass: string) {
     this.password = pass;
@@ -184,12 +185,26 @@ export class CandidateRegisterComponent implements OnInit {
     this.landmark = userdata.get('location').value.split(',')[0];
     this.district = userdata.get('location').value.split(',')[1];
     this.state = userdata.get('location').value.split(',')[2];
+    let profilePic = '';
+    console.log(userdata.get('gender').value)
+    if (userdata.get('gender').value == 'male') {
+      console.log('male')
+      profilePic = 'assets/img/male.jpg';
+    } else if (userdata.get('gender').value == 'female') {
+      profilePic = 'assets/img/female.jpg';
+    }
+    console.log(profilePic)
     let userData = {
       profileData: {
+        name: userdata.get('name').value,
         username: userdata.get('email').value,
-        fname: userdata.get('fname').value, lname: userdata.get('lname').value,
-        gender: userdata.get('gender').value, email: userdata.get('email').value,
-        mobileNumber: userdata.get('mob').value, role: userdata.get('role').value,
+        fname: userdata.get('fname').value,
+        lname: userdata.get('lname').value,
+        gender: userdata.get('gender').value,
+        dob: userdata.get('dob').value,
+        email: userdata.get('email').value,
+        mobileNumber: userdata.get('mob').value,
+        role: userdata.get('role').value,
         profession: userdata.get('profession').value,
         district: this.district,
         landmark: this.landmark,
@@ -200,13 +215,15 @@ export class CandidateRegisterComponent implements OnInit {
         aadharNumber: userdata.get('aadhar').value,
         registerID: userdata.get('regId').value,
         createdBy: this.createdBy,
-        updatedBy: this.createdBy
+        updatedBy: this.createdBy,
+        profilePic: profilePic
       },
       userCredentialsData: {
         username: userdata.get('email').value, password: userdata.get('password').value,
         role: userdata.get('role').value,
       }
     };
+    console.log(userData)
 
     this.JsonDataService.registerUser(userData).subscribe((res: any) => {
       console.log(res);

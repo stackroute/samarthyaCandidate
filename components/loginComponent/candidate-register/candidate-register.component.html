@@ -7,7 +7,7 @@
 <app-login-header></app-login-header>
 
 <!--Register card-->
-<md-grid-list cols="1" rowHeight="1500">
+<md-grid-list cols="1" rowHeight="1600">
   <md-grid-tile>
     <!--card Start-->
     <md-card class="loginCard">
@@ -20,12 +20,29 @@
             Personal Details
           </div>
 
+          <!--Display Name-->
+          <div fxLayout="row" fxLayoutAlign="start end">
+            <div fxFlex="35px">
+              <i class="material-icons formIcons">person</i>
+            </div>
+            <div fxFlex>
+              <md-input-container class="full-width">
+                <input mdInput formControlName="name" id="name" type="text" class="validate" placeholder="Display Name" />
+                <md-hint align="start" class="full-width">
+                  <div *ngIf="userForm.get('name').hasError('required') && userForm.get('name').touched" class="errorStyle">
+                    First Name is required
+                  </div>
+                </md-hint>
+              </md-input-container>
+            </div>
+          </div>
+
           <!--First Name-->
           <div fxLayout="row" fxLayoutAlign="start end">
-            <div fxFlex.xs="10" fxFlex.gt-xs="7">
+            <div fxFlex="35px">
               <i class="material-icons formIcons">perm_identity</i>
             </div>
-            <div fxFlex.xs="90" fxFlex.gt-xs="93">
+            <div fxFlex>
               <md-input-container class="full-width">
                 <input mdInput formControlName="fname" id="fname" type="text" class="validate" placeholder="First Name" />
                 <md-hint align="start" class="full-width">
@@ -43,10 +60,10 @@
 
           <!--Last Name-->
           <div fxLayout="row" fxLayoutAlign="start end">
-            <div fxFlex.xs="10" fxFlex.gt-xs="7">
+            <div fxFlex="35px">
               <i class="material-icons formIcons">perm_identity</i>
             </div>
-            <div fxFlex.xs="90" fxFlex.gt-xs="93">
+            <div fxFlex>
               <md-input-container class="full-width">
                 <input mdInput formControlName="lname" id="lname" type="text" class="validate" placeholder="Last Name" />
                 <md-hint align="start" class="full-width">
@@ -64,10 +81,10 @@
 
           <!--Gender-->
           <div fxLayout="row" fxLayoutAlign="start end" class="gender">
-            <div fxFlex.xs="10" fxFlex.gt-xs="7">
+            <div fxFlex="35px">
               <i class="material-icons formIcons levelIcon">wc</i>
             </div>
-            <div fxFlex.xs="90" fxFlex.gt-xs="93" class="full-width">
+            <div fxFlex class="full-width">
               <md-radio-group formControlName="gender">
                 <md-radio-button value="male">Male</md-radio-button>
                 <md-radio-button value="female">Female</md-radio-button>
@@ -81,10 +98,10 @@
           </div>
           <!--Registration ID-->
           <div fxLayout="row" fxLayoutAlign="start end">
-            <div fxFlex.xs="10" fxFlex.gt-xs="7">
+            <div fxFlex="35px">
               <i class="material-icons formIcons">assignment_ind</i>
             </div>
-            <div fxFlex.xs="90" fxFlex.gt-xs="93">
+            <div fxFlex>
               <md-input-container class="full-width">
                 <input mdInput formControlName="regId" id="regId" type="text" class="validate" placeholder="Registration Id" />
                 <md-hint align="start" class="full-width">
@@ -98,18 +115,20 @@
           </div>
 
           <!--Date of Birth-->
-          <!--<div fxLayout="row" fxLayoutAlign="start end">
+          <div fxLayout="row" fxLayoutAlign="start end">
             <div fxFlex>
-              <md2-datepicker formControlName="dob" [(ngModel)]="date" class="full-width">date</md2-datepicker>
+              <md2-datepicker formControlName="dob" id="dob" placeholder="Date Of Birth" [(ngModel)]="date" class="full-width">date</md2-datepicker>
             </div>
-          </div>-->
+            <div *ngIf="userForm.get('dob').hasError('required')" class="errorStyle">
+            </div>
+          </div>
 
           <!--Email-->
           <div fxLayout="row" fxLayoutAlign="start end">
-            <div fxFlex.xs="10" fxFlex.gt-xs="7">
+            <div fxFlex="35px">
               <i class="material-icons formIcons">mail</i>
             </div>
-            <div fxFlex.xs="90" fxFlex.gt-xs="93">
+            <div fxFlex>
               <md-input-container class="full-width">
                 <input mdInput formControlName="email" id="email" [readonly]="emailDisable" type="text" class="validate" placeholder="Email"
                 />
@@ -123,10 +142,10 @@
 
           <!--Adhar-->
           <div fxLayout="row" fxLayoutAlign="start end">
-            <div fxFlex.xs="10" fxFlex.gt-xs="7">
+            <div fxFlex="35px">
               <i class="material-icons formIcons">chrome_reader_mode</i>
             </div>
-            <div fxFlex.xs="90" fxFlex.gt-xs="93">
+            <div fxFlex>
               <md-input-container class="full-width">
                 <input mdInput formControlName="aadhar" id="aadhar" type="text" class="validate" placeholder="Aadhar No. (Optional)" />
                 <md-hint align="start" class="full-width">
@@ -139,10 +158,10 @@
 
           <!--passowrd-->
           <div fxLayout="row" fxLayoutAlign="start end">
-            <div fxFlex.xs="10" fxFlex.gt-xs="7">
+            <div fxFlex="35px">
               <i class="material-icons formIcons">lock</i>
             </div>
-            <div fxFlex.xs="90" fxFlex.gt-xs="93">
+            <div fxFlex>
               <md-input-container class="full-width">
                 <input mdInput formControlName="password" id="password" type="password" class="validate" #password (blur)="passwordValue(password.value)"
                   placeholder="Password" />
@@ -161,10 +180,10 @@
 
           <!--confirm password-->
           <div fxLayout="row" fxLayoutAlign="start end">
-            <div fxFlex.xs="10" fxFlex.gt-xs="7">
+            <div fxFlex="35px">
               <i class="material-icons formIcons">lock</i>
             </div>
-            <div fxFlex.xs="90" fxFlex.gt-xs="93">
+            <div fxFlex>
               <md-input-container class="full-width">
                 <input mdInput formControlName="conPassword" id="conPassword" type="password" class="validate" #conPassword (keyup)="conPasswordValue(conPassword.value)"
                   placeholder="Confirm Password" />
@@ -185,10 +204,10 @@
 
           <!--Mobile No-->
           <div fxLayout="row" fxLayoutAlign="start end">
-            <div fxFlex.xs="10" fxFlex.gt-xs="7">
+            <div fxFlex="35px">
               <i class="material-icons formIcons">call</i>
             </div>
-            <div fxFlex.xs="90" fxFlex.gt-xs="93">
+            <div fxFlex>
               <md-input-container class="full-width">
                 <input mdInput formControlName="mob" id="mob" type="text" class="validate" placeholder="Mobile No." />
                 <md-hint align="start" class="full-width">
@@ -204,10 +223,10 @@
 
           <!--Profession-->
           <div fxLayout="row" fxLayoutAlign="start end" class="dropdown">
-            <div fxFlex.xs="10" fxFlex.gt-xs="7">
+            <div fxFlex="35px">
               <i class="material-icons formIcons levelIcon">layers</i>
             </div>
-            <div fxFlex.xs="90" fxFlex.gt-xs="93">
+            <div fxFlex>
               <md-select placeholder="Profession" formControlName="profession" class="full-width">
                 <md-option *ngFor="let pro of profession" color="accent" [value]="pro.value">
                   {{ pro.name }}
@@ -218,7 +237,7 @@
 
           <!--location Pincode-->
           <div fxLayout="row" fxLayoutAlign="start end">
-            <div fxFlex.xs="10" fxFlex.gt-xs="7">
+            <div fxFlex="35px">
               <i class="material-icons formIcons">dialpad</i>
             </div>
             <div fxFlex>
@@ -238,10 +257,10 @@
 
           <!--location area-->
           <div fxLayout="row" fxLayoutAlign="start end" class="dropdown">
-            <div fxFlex.xs="10" fxFlex.gt-xs="7">
+            <div fxFlex="35px">
               <i class="material-icons formIcons levelIcon">my_location</i>
             </div>
-            <div fxFlex.xs="90" fxFlex.gt-xs="93">
+            <div fxFlex>
               <md-select formControlName="location" placeholder="Select Location" class="full-width">
                 <md-option *ngFor="let area of areaList" [value]="area">
                   {{ area }}
@@ -249,12 +268,13 @@
               </md-select>
             </div>
           </div>
+          
           <!--placementCenter-->
           <div fxLayout="row" fxLayoutAlign="start end" class="dropdown">
-            <div fxFlex.xs="10" fxFlex.gt-xs="7">
+            <div fxFlex="35px">
               <i class="material-icons formIcons levelIcon">person_pin_circle</i>
             </div>
-            <div fxFlex.xs="90" fxFlex.gt-xs="93">
+            <div fxFlex>
               <md-select placeholder="Placement Center" formControlName="placementCenter" class="full-width">
                 <md-option *ngFor="let center of placementCenter" [value]="center.value">
                   {{ center.name }}

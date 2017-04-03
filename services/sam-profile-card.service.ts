@@ -1,30 +1,38 @@
+import { getTestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
+import { Http, Headers, Response, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class SamProfileCardService {
 
-  public samCardData = {
-    profilepic: 'http://images.indianexpress.com/2016/06/viratkohlil.jpg',
-    name: 'Prakul Kumar',
-    age: 22,
-    email: 'gowthamjeeva55@gmail.com ',
-    profession: 'IT ',
-    role: 'Full Stack Developer ',
-    mobileNumber: '8220002829 ',
-    currentCompany: 'Wipro Technologies',
-    experience: '5 ',
-    skills: [{ name: 'Java' },
-    { name: 'Java Script' },
-    { name: 'HTML' },
-    { name: 'PHP' }],
-    qualifications: ['Electronics', 'Master in Electronics'],
-    location: 'Bangalore, 560021',
-    communications: ['English', 'Tamil', 'Hindi']
-  };
+  constructor(private http: Http, private router: Router) { }
 
-  getProfileCardData() {
-    return this.samCardData;
+  public getProfileCard(username: string) {
+    let profileData: any;
+    return this.http.get('/profile?username=' + username).map((response: Response) => {
+      profileData = response.json();
+      profileData = profileData['data'][0];
+      let skills: any[] = [];
+      profileData.skills.forEach((element: any) => {
+        skills.push(element.name);
+      });
+
+      let samCardData = {
+        profilepic: './../../' + profileData.profilePic,
+        name: profileData.personalInfo.name,
+        email: profileData.personalInfo.email,
+        profession: '',
+        role: profileData.profession.toUpperCase(),
+        mobileNumber: profileData.personalInfo.contact.I,
+        currentCompany: '',
+        experience: '',
+        skills: skills,
+        location: profileData.personalInfo.address.district + ', ' + profileData.personalInfo.address.pincode,
+      };
+      return samCardData;
+    });
   }
-
-  constructor() { }
 }

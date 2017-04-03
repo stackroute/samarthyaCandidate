@@ -10,8 +10,15 @@ export class ProfileService {
 
   constructor(private http: Http, private router: Router) { }
 
-  read(username: string) {
-    return this.http.get('/profile?username=' + username).map((response: Response) => response.json());
+  public getProfile(username: string) {
+    let profileData: any;
+    return this.http.get('/profile?username=' + username).map((response: Response) => {
+      profileData = response.json();
+      let modifiedData = profileData['data'][0];
+      modifiedData['personalInfo']['dob'] = modifiedData['personalInfo']['dob'].substr(0, 10) //modified DATE of BIRTH
+      return modifiedData;
+    });
+
   }
 
   // this will get profile data of user

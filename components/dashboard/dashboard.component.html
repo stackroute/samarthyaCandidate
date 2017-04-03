@@ -1,4 +1,4 @@
-<div *ngIf="profileConfig">
+<div *ngIf="profileConfig && profileData && profileCardData">
   <div fxLayout="row" fxLayout.xs="column" class="profilePage">
     <!--profile Card section-->
     <div fxFlex.gt-xs="14%"></div>
@@ -8,7 +8,6 @@
 
     <!--spacing between components-->
     <div fxFlex="30px"></div>
-
     <!--view profile sections dynamic-->
     <div fxFlex class="profileSection">
       <div fxLayout="row" fxLayoutWrap>
@@ -16,7 +15,7 @@
           <sam-profile-section [sectionFieldConfig]="getSectionConfig(section.name)" [sectionData]="getSectiondata(section.name)" [sectionTitle]="section.title"
             [alignElement]="section.align">
             <div editBtn>
-              <button md-raised-button (click)="onEdit(sectionFormDialog,section.name)">EDIT</button>
+              <button md-raised-button (click)="onEdit(section.name)" >EDIT</button>
             </div>
             </sam-profile-section>
         </div>
@@ -40,7 +39,7 @@
     </div>
   </md2-dialog>
 
-  
+
   <!--footer-->
   <div class="footer">
 
