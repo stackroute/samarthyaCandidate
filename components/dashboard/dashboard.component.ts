@@ -1,19 +1,18 @@
 import { QualificationForm } from './../profileSectionForm/qualificationForm/qualificationForm.component';
 import { UserService } from './../../services/user.service';
 import { AuthenticationService } from './../../services/authentication.service';
-import { SamProfileCardService } from './../../services/sam-profile-card.service';
 import { Component, OnInit } from '@angular/core';
-import { ProfileService } from './../../services/profile.service';
-import { SamProfileSectionConfigService } from './../../services/sam-profile-section-config.service';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { PersonalInfoForm } from './../profileSectionForm/personalInfoForm/personalInfoForm.component';
-// import { AppComponent } from 'app/app.component';
+import { SamProfileCardService } from 'samarthyaWebcomponent/sam-profile/sam-profile-card/sam-profile-card.service';
+import { SamProfileSectionConfigService } from 'samarthyaWebcomponent/sam-profile/sam-profile-section/sam-profile-section-config.service';
+import { ProfileService } from 'samarthyaWebcomponent/sam-profile/sam-profile-section/sam-profile-section-data.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
-  providers: [ProfileService, SamProfileSectionConfigService]
+  providers: [ProfileService, SamProfileSectionConfigService, SamProfileCardService]
 })
 
 export class DashboardComponent implements OnInit {
