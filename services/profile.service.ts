@@ -97,7 +97,7 @@ export class ProfileService {
           subject: 'Electronics',
           academictype: 'Master',
           batch: '2016',
-          result: { score: '80', unit: '%' },
+          result: '80%',
           institute: 'IIT Delhi',
           affiliation: 'IIT Delhi',
           location: 'Delhi'
