@@ -76,8 +76,12 @@ export class DashboardComponent implements OnInit {
     this.SamProfileSectionConfigService.getProfileSectionFormConfig()
       .subscribe((resEmployeeData: any) => this.profileFormConfig = resEmployeeData);
 
-    this.SamProfileService.getProfile(JSON.parse(localStorage.getItem('currentUser'))['username'])
-      .subscribe((resEmployeeData: any) => { this.profileData = resEmployeeData, this.personalInfoData = resEmployeeData.personalInfo });
+    // this.SamProfileService.getProfile(JSON.parse(localStorage.getItem('currentUser'))['username'])
+    //   .subscribe((resEmployeeData: any) => { this.profileData = resEmployeeData, this.personalInfoData = resEmployeeData.personalInfo });
+
+    this.profileData = this.SamProfileService.getProfileData(JSON.parse(localStorage.getItem('currentUser'))['username']);
+    this.personalInfoData = this.profileData['personalInfo']
+
 
     this.SamProfileCardService.getProfileCard(JSON.parse(localStorage.getItem('currentUser'))['username'])
       .subscribe((resEmployeeData: any) => { this.profileCardData = resEmployeeData });
