@@ -1,13 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { ProfileService } from './../../../services/profile.service';
 
 @Component({
   selector: 'qualification-form',
   templateUrl: './qualificationForm.component.html',
   styleUrls: ['./qualificationForm.component.css'],
-  providers: [ProfileService]
 })
 
 export class QualificationForm implements OnInit {
@@ -17,9 +15,8 @@ export class QualificationForm implements OnInit {
   public timer: any;
   public emailId = '';
   public loading = false;
-  public data: {};
 
-  constructor(private profileService: ProfileService,
+  constructor(
     @Inject(FormBuilder) fb: FormBuilder,
     public dialogRef: MdDialogRef<QualificationForm>
   ) {
@@ -36,9 +33,7 @@ export class QualificationForm implements OnInit {
   }
 
   ngOnInit() {
-    this.data = this.profileService.getProfileData('');
-    this.dialogRef.config.data = this.data.qualifications[0];
-    console.log('---->>>>>', this.dialogRef.config.data.batch);
+    console.log(this.dialogRef.config.data);
 
   }
 
