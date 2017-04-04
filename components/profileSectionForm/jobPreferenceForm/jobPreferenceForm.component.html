@@ -1,0 +1,107 @@
+<h2 md-dialog-title>
+
+  <div fxLayout="row">
+    <div>Edit Job Preference Information</div>
+    <div fxFlex></div>
+    <div>
+      <button md-icon-button class="closeBtn" md-dialog-close>
+          <i class="material-icons">close</i>
+        </button>
+
+    </div>
+  </div>
+
+</h2>
+<md-dialog-content>
+  <br>
+  <form [formGroup]="userForm">
+    <span>Looking for a job?</span>
+     <md-radio-group formControlName="lookingFor" (click)='showDivandHide(userForm.value)'>
+                <md-radio-button value="YES">YES</md-radio-button>
+                <md-radio-button value="NO">NO</md-radio-button>
+              </md-radio-group>
+<br>
+<br>
+    <div *ngIf="showDiv">
+    <span>I am looking for a</span>
+    <md-input-container class="full-width">
+      <input mdInput formControlName="jobRole" id="jobRole" type="text" class="validate" placeholder="Role" />
+      <md-hint align="start" class="full-width">
+        <div *ngIf="userForm.get('jobRole').hasError('required') && userForm.get('jobRole').touched" class="errorStyle">
+          Role is Required
+        </div>
+        <div *ngIf="userForm.get('jobRole').hasError('pattern') && userForm.get('jobRole').touched" class="errorStyle">
+          Invalid Role
+        </div>
+      </md-hint>
+    </md-input-container>
+
+     <span>opportunity as a </span>
+    <md-select placeholder="Engagement" formControlName="engagement" class="validate">
+                <md-option *ngFor="let engagement of engagementData" color="accent" [value]="pro">
+                  {{ engagement}}
+                </md-option>
+              </md-select>
+
+    <span>,Starting from</span>
+    <!--Date of Birth-->
+    <md2-datepicker formControlName="availableFrom" id="availableFrom" placeholder="Select joining date" class="full-width">date</md2-datepicker>
+    <div *ngIf="userForm.get('availableFrom').hasError('required')" class="errorStyle">
+    </div>
+
+
+    <span>and expecting anual remuneration of </span>
+
+    <md-input-container class="full-width">
+      <input mdInput formControlName="expectedSalMin" id="expectedSalMin" type="text" class="validate" placeholder="Salary min" />
+      <md-hint align="start" class="full-width">
+        <div *ngIf="userForm.get('expectedSalMin').hasError('required') && userForm.get('expectedSalMin').touched" class="errorStyle">
+          Salary is required
+        </div>
+        <div *ngIf="userForm.get('expectedSalMin').hasError('pattern') && userForm.get('expectedSalMin')" class="errorStyle">
+          Invalid Salary
+        </div>
+      </md-hint>
+    </md-input-container>
+    <span> - </span>
+
+        <md-input-container>
+      <input mdInput formControlName="expectedSalMax" id="expectedSalMax" type="text" class="validate" placeholder="Salary max" />
+      <md-hint align="start" class="full-width">
+        <div *ngIf="userForm.get('expectedSalMax').hasError('required') && userForm.get('expectedSalMax').touched" class="errorStyle">
+          Salary is required
+        </div>
+        <div *ngIf="userForm.get('expectedSalMax').hasError('pattern') && userForm.get('expectedSalMax')" class="errorStyle">
+          Invalid Salary
+        </div>
+      </md-hint>
+    </md-input-container>
+
+    <span>,prefer to work at locations</span>
+
+         <md2-select  formControlName="locations" class="validate widthSmall" placeholder="locations*" [multiple]="true" #selectMultipleControl>
+                  <md2-option *ngFor="let location of locationData" value="{{location}}">{{location}}</md2-option>
+                </md2-select>
+        <div *ngIf="userForm.get('locations').hasError('pattern') && userForm.get('locations')" class="errorStyle">
+          Invalid locations
+        </div>
+
+    <span> Interested to work on </span>
+
+
+    <md-input-container class="full-width">
+      <input mdInput formControlName="skills" id="skills" type="text" class="validate" placeholder="Skills" />
+      <md-hint align="start" class="full-width">
+        <div *ngIf="userForm.get('skills').hasError('required') && userForm.get('skills').touched" class="errorStyle">
+          Skills is required
+        </div>
+      </md-hint>
+    </md-input-container>
+
+    </div>
+  </form>
+  <div fxLayout="row">
+    <div fxFlex></div>
+    <button md-raised-button type="submit" color="primary" md-dialog-close (click)="onSave()">Save</button>
+  </div>
+</md-dialog-content>

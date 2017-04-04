@@ -5,6 +5,8 @@ import { JsonDataService } from './services/json-data.service';
 import { EmailService } from './services/email.service';
 import { Data } from './services/data.service';
 import { AuthenticationService } from './services/authentication.service';
+import { ProfileSectionFormService } from './services/profileSectionForm.service';
+
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { ModuleWithProviders } from '@angular/core';
 import { VerifyEmailComponent } from './components/loginComponent/verify-email/verify-email.component';
@@ -23,6 +25,7 @@ import { CandidateSearchComponent } from './components/candidate-search/candidat
 import { AboutUsComponent } from './components/about-us/about-us.component';
 
 import { PersonalInfoForm } from './components/profileSectionForm/personalInfoForm/personalInfoForm.component';
+import { JobPreferenceInfoForm } from './components/profileSectionForm/jobPreferenceForm/jobPreferenceForm.component';
 
 import { NgModule } from '@angular/core';
 import { MaterialModule } from '@angular/material';
@@ -68,10 +71,11 @@ import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-p
 		VerifyEmailComponent,
 		MainComponent,
 		routingComponents,
-		PersonalInfoForm
+		PersonalInfoForm,
+		JobPreferenceInfoForm
 
 	],
-	bootstrap: [MainComponent, PersonalInfoForm],
+	bootstrap: [MainComponent, PersonalInfoForm, JobPreferenceInfoForm],
 	exports: [
 		AboutUsComponent,
 		CandidateSearchComponent,
@@ -93,7 +97,8 @@ import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-p
 		SamProfileCardComponent,
 		SamProfileSectionComponent,
 		SamProfileSectionFormComponent,
-		PersonalInfoForm
+		PersonalInfoForm,
+		JobPreferenceInfoForm
 	]
 })
 
@@ -110,6 +115,7 @@ export class CandidateModule {
 				UserService,
 				SamProfileCardService,
 				SamProfileSectionConfigService,
+				ProfileSectionFormService
 			]
 		}
 	}

@@ -6,6 +6,8 @@ import { ProfileService } from './../../services/profile.service';
 import { SamProfileSectionConfigService } from './../../services/sam-profile-section-config.service';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { PersonalInfoForm } from './../profileSectionForm/personalInfoForm/personalInfoForm.component';
+import { JobPreferenceInfoForm } from './../profileSectionForm/jobPreferenceForm/jobPreferenceForm.component';
+
 // import { AppComponent } from 'app/app.component';
 
 @Component({
@@ -50,11 +52,14 @@ export class DashboardComponent implements OnInit {
   public currentSectionAlign: string;
   public currentSectionName: string;
   public personalInfoData: {} = {};
+    public jobpreferenceInfoData: {} = {};
 
   // this function will work when clicked on edit btn
   onEdit(sectionName: string) {
+    console.log(sectionName)
     switch (sectionName) {
       case 'personalInfo': this.openPersonalInfoDialog();
+      case 'projects':this.openJobPrefereneceInfoDialog();
     }
   }
 
@@ -63,6 +68,15 @@ export class DashboardComponent implements OnInit {
       height: '80%',
       // width:'100%',
       data: this.personalInfoData
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    })
+  }
+  openJobPrefereneceInfoDialog() {
+    let dialogRef = this.dialog.open(JobPreferenceInfoForm, {
+      height: '80%',
+      width:'80%',
+      data: this.jobpreferenceInfoData
     });
     dialogRef.afterClosed().subscribe(result => {
     })
@@ -78,7 +92,7 @@ export class DashboardComponent implements OnInit {
       .subscribe((resEmployeeData: any) => this.profileFormConfig = resEmployeeData);
 
     this.SamProfileService.getProfile(JSON.parse(localStorage.getItem('currentUser'))['username'])
-      .subscribe((resEmployeeData: any) => { this.profileData = resEmployeeData, this.personalInfoData = resEmployeeData.personalInfo });
+      .subscribe((resEmployeeData: any) => {this.profileData = resEmployeeData,this.jobpreferenceInfoData=resEmployeeData.jobPreferences, this.personalInfoData = resEmployeeData.personalInfo });
 
     this.SamProfileCardService.getProfileCard(JSON.parse(localStorage.getItem('currentUser'))['username'])
       .subscribe((resEmployeeData: any) => { this.profileCardData = resEmployeeData });
