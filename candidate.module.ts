@@ -1,4 +1,6 @@
 import { WorkExperienceForm } from './components/profileSectionForm/workExperienceForm/workExperienceForm.component';
+import { SummaryForm } from './components/profileSectionForm/summaryForm/summaryForm.component';
+
 import { MainComponent } from './mainComponent';
 import { ModuleWithProviders } from '@angular/core';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
@@ -75,9 +77,10 @@ import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-p
     routingComponents,
     PersonalInfoForm,
     QualificationForm,
-    WorkExperienceForm
+    WorkExperienceForm,
+    SummaryForm
   ],
-  bootstrap: [MainComponent, PersonalInfoForm, QualificationForm,WorkExperienceForm],
+  bootstrap: [MainComponent, PersonalInfoForm, QualificationForm, WorkExperienceForm, SummaryForm],
   exports: [
     AboutUsComponent,
     CandidateSearchComponent,
@@ -101,7 +104,8 @@ import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-p
     SamProfileSectionFormComponent,
     PersonalInfoForm,
     QualificationForm,
-    WorkExperienceForm
+    WorkExperienceForm,
+    SummaryForm
   ]
 })
 
