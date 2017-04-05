@@ -60,6 +60,7 @@ import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-p
   ],
   declarations: [
     SkillsFormRender,
+    SkillsForm,
     AboutUsComponent,
     CandidateSearchComponent,
     CandidateRegisterComponent,
