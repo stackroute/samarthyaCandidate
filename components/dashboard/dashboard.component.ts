@@ -1,3 +1,4 @@
+import { WorkExperienceForm } from './../profileSectionForm/workExperienceForm/workExperienceForm.component';
 import { QualificationForm } from './../profileSectionForm/qualificationForm/qualificationForm.component';
 import { UserService } from './../../services/user.service';
 import { AuthenticationService } from './../../services/authentication.service';
@@ -52,6 +53,7 @@ export class DashboardComponent implements OnInit {
   public currentSectionName: string;
   public personalInfoData: {} = {};
   public qualificationsData: any[] = [];
+  public workExperienceData: any[] = [];
 
   // this function will work when clicked on edit btn
   onEdit(sectionName: string) {
@@ -59,6 +61,8 @@ export class DashboardComponent implements OnInit {
     switch (sectionName) {
       case 'personalInfo': this.openPersonalInfoDialog(); break;
       case 'qualifications': this.openQualificationsDialog(); break;
+      case 'experiences': this.openWorkExperienceDialog(); break;
+
     }
   }
 
@@ -75,8 +79,17 @@ export class DashboardComponent implements OnInit {
   openPersonalInfoDialog() {
     let dialogRef = this.dialog.open(PersonalInfoForm, {
       height: '90%',
-      width:'80%',
+      width: '80%',
       data: this.personalInfoData
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    })
+  }
+   openWorkExperienceDialog() {
+    let dialogRef = this.dialog.open(WorkExperienceForm, {
+      height: '90%',
+      width: '80%',
+      data: this.workExperienceData
     });
     dialogRef.afterClosed().subscribe(result => {
     })
@@ -101,7 +114,9 @@ export class DashboardComponent implements OnInit {
       .subscribe((resEmployeeData: any) => {
         this.profileData = resEmployeeData,
           this.personalInfoData = resEmployeeData.personalInfo,
-          this.qualificationsData = resEmployeeData.qualifications
+          this.qualificationsData = resEmployeeData.qualifications,
+          this.workExperienceData = resEmployeeData.experiences
+          
       });
 
     // this.profileData = this.SamProfileService.getProfileData(JSON.parse(localStorage.getItem('currentUser'))['username'])
