@@ -2,13 +2,10 @@ import { EmailService } from './../../../services/email.service';
 import { JsonDataService } from './../../../services/json-data.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-//import { JsonDataService } from 'app/services/json-data.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Data } from './../../../services/data.service';
 import { AuthenticationService } from './../../../services/authentication.service';
 
-//import { EmailService } from 'app/services/email.service';
-// declare var $: any;
 
 @Component({
   selector: 'app-password-reset',

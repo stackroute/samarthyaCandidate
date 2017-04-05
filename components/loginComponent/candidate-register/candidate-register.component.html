@@ -49,10 +49,6 @@
                   <div *ngIf="userForm.get('fname').hasError('required') && userForm.get('fname').touched" class="errorStyle">
                     First Name is required
                   </div>
-                  <div *ngIf="userForm.get('fname').hasError('pattern')" class="errorStyle">
-                    First Name is too small
-                  </div>
-                  <!--<app-control-messages [control]="userForm.controls.fname" class="errorStyle"></app-control-messages>-->
                 </md-hint>
               </md-input-container>
             </div>
@@ -70,10 +66,6 @@
                   <div *ngIf="userForm.get('lname').hasError('required') && userForm.get('lname').touched" class="errorStyle">
                     Last Name is required
                   </div>
-                  <!--<div *ngIf="userForm.get('lname').hasError('pattern')" class="errorStyle">
-                    Last Name is too small
-                  </div>-->
-                  <!--<app-control-messages [control]="userForm.controls.lname" class="errorStyle"></app-control-messages>-->
                 </md-hint>
               </md-input-container>
             </div>
@@ -85,7 +77,7 @@
               <i class="material-icons formIcons levelIcon">wc</i>
             </div>
             <div fxFlex class="full-width">
-              <md-radio-group formControlName="gender">
+              <md-radio-group formControlName="gender" color="primary">
                 <md-radio-button value="male">Male</md-radio-button>
                 <md-radio-button value="female">Female</md-radio-button>
               </md-radio-group>
@@ -108,7 +100,6 @@
                   <div *ngIf="userForm.get('regId').hasError('required') && userForm.get('regId').touched" class="errorStyle">
                     Registration ID is required
                   </div>
-                  <!--<app-control-messages [control]="userForm.controls.regId" class="errorStyle"></app-control-messages>-->
                 </md-hint>
               </md-input-container>
             </div>
@@ -133,8 +124,6 @@
                 <input mdInput formControlName="email" id="email" [readonly]="emailDisable" type="text" class="validate" placeholder="Email"
                 />
                 <md-hint align="start" class="full-width">
-                  <!--<div *ngIf="userForm.get('aadhar').hasError('pattern')" class="errorStyle">Invaild Email</div>-->
-                  <!--<app-control-messages [control]="userForm.controls.email" class="errorStyle"></app-control-messages>-->
                 </md-hint>
               </md-input-container>
             </div>
@@ -150,7 +139,6 @@
                 <input mdInput formControlName="aadhar" id="aadhar" type="text" class="validate" placeholder="Aadhar No. (Optional)" />
                 <md-hint align="start" class="full-width">
                   <div *ngIf="userForm.get('aadhar').hasError('pattern')" class="errorStyle">Invaild Aadhar</div>
-                  <!--<app-control-messages [control]="userForm.controls.aadhar" class="errorStyle"></app-control-messages>-->
                 </md-hint>
               </md-input-container>
             </div>
@@ -172,7 +160,6 @@
                   <div *ngIf="userForm.get('password').hasError('pattern')" class="errorStyle">
                     Invalid password. Password must be at least 6 characters long, and contain a number
                   </div>
-                  <!--<app-control-messages [control]="userForm.controls.password" class="errorStyle"></app-control-messages>-->
                 </md-hint>
               </md-input-container>
             </div>
@@ -215,7 +202,6 @@
                   <div *ngIf="userForm.get('mob').hasError('required') && userForm.get('mob').touched" class="errorStyle">
                     Mobile No. is required
                   </div>
-                  <!--<app-control-messages [control]="userForm.controls.mob" class="errorStyle"></app-control-messages>-->
                 </md-hint>
               </md-input-container>
             </div>
@@ -249,7 +235,6 @@
                   <div *ngIf="userForm.get('pincode').hasError('required') && userForm.get('pincode').touched" class="errorStyle">
                     Pincode is required
                   </div>
-                  <!--<app-control-messages [control]="userForm.controls.pincode" class="errorStyle"></app-control-messages>-->
                 </md-hint>
               </md-input-container>
             </div>
