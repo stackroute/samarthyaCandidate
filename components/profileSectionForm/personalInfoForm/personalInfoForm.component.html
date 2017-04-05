@@ -152,7 +152,7 @@
         <div fxLayout="row" fxLayout.xs="column">
           <span class="lineHeight"> and i can read</span>
           <div fxFlex>
-            <md2-select placeholder="Select Read Languages" formControlName="readLang" multiple=true class="dropdown">
+            <md2-select placeholder="Select Read Languages" [(ngModel)]="read" formControlName="readLang" multiple=true class="dropdown">
               <md2-option *ngFor="let lang of langList" selected="asas" [value]="lang">
                 {{ lang }}
               </md2-option>
@@ -163,7 +163,7 @@
         <div fxLayout="row" fxLayout.xs="column">
           <span class="lineHeight">  , i can write</span>
           <div fxFlex>
-            <md2-select placeholder="Select Write Languages" formControlName="writeLang" multiple=true class="dropdown">
+            <md2-select placeholder="Select Write Languages" [(ngModel)]="write" formControlName="writeLang" multiple=true class="dropdown">
               <md2-option *ngFor="let lang of langList" [value]="lang">
                 {{ lang }}
               </md2-option>
@@ -174,7 +174,7 @@
         <div fxLayout="row" fxLayout.xs="column">
           <span class="lineHeight"> and i can speak</span>
           <div fxFlex>
-            <md2-select placeholder="Select Speak Languages" formControlName="speakLang" multiple=true class="dropdown">
+            <md2-select placeholder="Select Speak Languages" [(ngModel)]="speak" formControlName="speakLang" multiple=true class="dropdown">
               <md2-option *ngFor="let lang of langList" [value]="lang">
                 {{ lang }}
               </md2-option>
