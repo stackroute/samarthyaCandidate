@@ -1,3 +1,6 @@
+import { Data } from './../../../services/data.service';
+import { Router } from '@angular/router';
+import { Http, Response } from '@angular/http';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
@@ -16,7 +19,7 @@ export class QualificationForm implements OnInit {
   public emailId = '';
   public loading = false;
 
-  constructor(
+  constructor(private http: Http, private router: Router, private data: Data,
     @Inject(FormBuilder) fb: FormBuilder,
     public dialogRef: MdDialogRef<QualificationForm>
   ) {
@@ -34,11 +37,9 @@ export class QualificationForm implements OnInit {
 
   ngOnInit() {
     console.log(this.dialogRef.config.data);
-
   }
 
   onSave() {
-
     let qualificationData = this.dialogRef.config.data;
     qualificationData.name = this.userForm.value.name;
     qualificationData.subject = this.userForm.value.subject;
@@ -49,8 +50,20 @@ export class QualificationForm implements OnInit {
     qualificationData.affiliation = this.userForm.value.affiliation;
     qualificationData.location = this.userForm.value.location;
 
-    console.log(qualificationData)
-    // console.log(this.userForm.value);
+    let username = JSON.parse(localStorage.getItem('currentUser'))['username'];
+    console.log(qualificationData.name)
+    let q: any[] = [];
+    q.push(qualificationData);
+    console.log(q[0]);
+    this.http.patch('/profile', { data: qualificationData, username: username, sectionName: 'qualifications' })
+      .subscribe((response: Response) => {
+        console.log('-->', response['_body']);
+        if (response['_body']) {
+          console.log('yes');
+          this.router.navigate(['/login']);
+          this.data.openSnackBar('Successfully Updated', '');
+        }
+      });
   }
 }
 

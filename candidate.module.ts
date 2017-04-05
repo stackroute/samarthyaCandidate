@@ -73,10 +73,9 @@ import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-p
     MainComponent,
     routingComponents,
     PersonalInfoForm,
-		QualificationForm
-
+    QualificationForm
   ],
-  bootstrap: [MainComponent, PersonalInfoForm],
+  bootstrap: [MainComponent, PersonalInfoForm, QualificationForm],
   exports: [
     AboutUsComponent,
     CandidateSearchComponent,
