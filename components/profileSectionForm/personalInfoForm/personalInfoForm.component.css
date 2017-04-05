@@ -34,7 +34,7 @@ input{
 .dropdown{
     /*height: 62px;*/
     margin-top: 16px;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
     width: 220px;
 }
 .lineHeight{
@@ -49,4 +49,34 @@ input{
 }
 .pincode{
     width: 80px;
+}
+
+
+@media (min-width: 10px) {
+  
+.location{
+    max-width: 250px
+}
+
+}
+
+
+/*for Medium screens*/
+
+@media (min-width: 480px) {
+  
+.location{
+    width: 250px
+}
+
+
+
+/*for large screens*/
+
+@media (min-width: 768px) {
+   
+.location{
+    min-width: 300px
+}
+}
 }

@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit {
     this.profileSections = [
       { 'name': 'personalInfo', 'title': 'Personal Informations', 'align': 'row' },
       { 'name': 'qualifications', 'title': 'Educational Qualification', 'align': 'column' },
-      // { 'name': 'jobPreferences', 'title': 'Job Preferences', 'align': 'column' },
+      { 'name': 'jobPreferences', 'title': 'Job Preferences', 'align': 'column' },
       { 'name': 'experiences', 'title': 'Experiences', 'align': 'column' },
       { 'name': 'skills', 'title': 'Skills', 'align': 'row' },
       { 'name': 'projects', 'title': 'Projects', 'align': 'column' },
@@ -57,8 +57,8 @@ export class DashboardComponent implements OnInit {
   onEdit(sectionName: string) {
     console.log(sectionName);
     switch (sectionName) {
-      case 'personalInfo': this.openPersonalInfoDialog();break;
-      case 'qualifications': this.openQualificationsDialog();break;
+      case 'personalInfo': this.openPersonalInfoDialog(); break;
+      case 'qualifications': this.openQualificationsDialog(); break;
     }
   }
 
@@ -74,8 +74,8 @@ export class DashboardComponent implements OnInit {
 
   openPersonalInfoDialog() {
     let dialogRef = this.dialog.open(PersonalInfoForm, {
-      height: '80%',
-      // width:'100%',
+      height: '90%',
+      width:'80%',
       data: this.personalInfoData
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -91,12 +91,25 @@ export class DashboardComponent implements OnInit {
     this.SamProfileSectionConfigService.getProfileSectionFormConfig()
       .subscribe((resEmployeeData: any) => this.profileFormConfig = resEmployeeData);
 
+    // this.SamProfileService.getProfile(JSON.parse(localStorage.getItem('currentUser'))['username'])
+    //   .subscribe((resEmployeeData: any) => { this.profileData = resEmployeeData, this.personalInfoData = resEmployeeData.personalInfo });
+
+    // this.profileData = this.SamProfileService.getProfileData(JSON.parse(localStorage.getItem('currentUser'))['username']);
+    // this.personalInfoData = this.profileData['personalInfo']
+
     this.SamProfileService.getProfile(JSON.parse(localStorage.getItem('currentUser'))['username'])
       .subscribe((resEmployeeData: any) => {
         this.profileData = resEmployeeData,
-          this.personalInfoData = resEmployeeData.personalInfo
-        this.qualificationsData = resEmployeeData.qualifications
+          this.personalInfoData = resEmployeeData.personalInfo,
+          this.qualificationsData = resEmployeeData.qualifications
       });
+
+    // this.profileData = this.SamProfileService.getProfileData(JSON.parse(localStorage.getItem('currentUser'))['username'])
+
+    // this.profileData = resEmployeeData,
+    // this.personalInfoData = this.profileData['personalInfo'],
+    //   this.qualificationsData = this.profileData['qualifications']
+    // });
 
     this.SamProfileCardService.getProfileCard(JSON.parse(localStorage.getItem('currentUser'))['username'])
       .subscribe((resEmployeeData: any) => { this.profileCardData = resEmployeeData });

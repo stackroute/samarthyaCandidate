@@ -3,6 +3,8 @@ import { MdDialog, MdDialogRef } from '@angular/material';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { JsonDataService } from './../../../services/json-data.service';
 import { Data } from './../../../services/data.service';
+import { Http, Headers, Response, RequestOptions } from '@angular/http';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 
 @Component({
@@ -18,10 +20,12 @@ export class PersonalInfoForm implements OnInit {
   public emailId = '';
   public pincode = this.dialogRef.config.data.address['pincode'];
   public pincodeLocation: any;
-  public areaList: any = [];
   public location = this.dialogRef.config.data.address.landmark + ','
   + this.dialogRef.config.data.address.district + ','
   + this.dialogRef.config.data.address.state;
+  public emailDisable = false;
+  public loc = 'asaasas';
+  public areaList: any = [];
 
   public langList = [
     'English',
@@ -38,17 +42,23 @@ export class PersonalInfoForm implements OnInit {
     'Sanskrit',
     'Telugu',
   ]
+  // selectedValue: string = this.langList[0];
+  public nativeLang: string = this.dialogRef.config.data.nativeLang;
+  public prefLang: string = this.dialogRef.config.data.prefLang;
+  // public address: string = this.dialogRef.config.data.address;
 
   constructor(
     @Inject(FormBuilder) fb: FormBuilder,
     private JsonDataService: JsonDataService,
     private data: Data,
-    public dialogRef: MdDialogRef<PersonalInfoForm>
+    public dialogRef: MdDialogRef<PersonalInfoForm>,
+    private http: Http,
+    private router: Router
   ) {
     this.userForm = fb.group({
       name: [this.dialogRef.config.data.name, [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
       email: [this.dialogRef.config.data.email, [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
-      altemail: [this.dialogRef.config.data.altemail, [ Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
+      altemail: [this.dialogRef.config.data.altemail, [Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
       mob: [this.dialogRef.config.data.contact['I'], [Validators.required, Validators.pattern('[0-9]{10}')]],
       phone: [this.dialogRef.config.data.contact['II'], [Validators.required, Validators.pattern('[0-9]{10}')]],
       dob: [this.dialogRef.config.data.dob, Validators.required],
@@ -65,6 +75,9 @@ export class PersonalInfoForm implements OnInit {
 
   ngOnInit() {
     // console.log(this.dialogRef.config.data);
+    console.log('-->>>', this.location);
+    this.areaList[0] = this.location;
+    // console.log()
   }
 
   // check Pincode
@@ -97,6 +110,7 @@ export class PersonalInfoForm implements OnInit {
     } else {
       this.data.openSnackBar(this.pincodeLocation.count + ' Locations Found', 'Please Select');
       // this.loading = false;
+      console.log(this.areaList.indexOf(this.location));
     }
   }
 
@@ -119,7 +133,19 @@ export class PersonalInfoForm implements OnInit {
     personalInfoData.nativeLang = this.userForm.value.nativeLang;
 
     personalInfoData.lang = this.langModify(this.userForm.value.readLang, this.userForm.value.writeLang, this.userForm.value.speakLang);
-    console.log(personalInfoData)
+    let username = JSON.parse(localStorage.getItem('currentUser'))['username'];
+
+    this.http.patch('/profile', { data: personalInfoData, username: username, sectionName: 'personalInfo' })
+      .subscribe((response: Response) => {
+        console.log("-->", response['_body']);
+        if (response['_body']) {
+          console.log('yes');
+
+          this.router.navigate(['/login']);
+          this.data.openSnackBar('Successfully Updated', '');
+        }
+      });
+
   }
 
 

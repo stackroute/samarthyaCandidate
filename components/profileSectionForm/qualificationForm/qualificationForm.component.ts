@@ -36,7 +36,7 @@ export class QualificationForm implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.dialogRef.config.data[0].batch.substring(0, 10) + " sjndjsdnjsnds");
+    console.log(this.dialogRef.config.data);
   }
 
   onSave() {
