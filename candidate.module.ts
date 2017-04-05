@@ -1,3 +1,6 @@
+import { SkillsFormRender } from './components/profileSectionForm/skillsDialogForm/skillFormRender/skillsFormRender.component';
+import { WorkExperienceForm } from './components/profileSectionForm/workExperienceForm/workExperienceForm.component';
+import { SkillsForm } from './components/profileSectionForm/skillsDialogForm/skillsForm.component';
 import { MainComponent } from './mainComponent';
 import { UserService } from './services/user.service';
 import { ProfileService } from './services/profile.service';
@@ -68,10 +71,13 @@ import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-p
 		VerifyEmailComponent,
 		MainComponent,
 		routingComponents,
-		PersonalInfoForm
+		PersonalInfoForm,
+		SkillsForm,
+		WorkExperienceForm,
+		SkillsFormRender
 
 	],
-	bootstrap: [MainComponent, PersonalInfoForm],
+	bootstrap: [MainComponent, PersonalInfoForm,SkillsForm,WorkExperienceForm],
 	exports: [
 		AboutUsComponent,
 		CandidateSearchComponent,
@@ -93,7 +99,10 @@ import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-p
 		SamProfileCardComponent,
 		SamProfileSectionComponent,
 		SamProfileSectionFormComponent,
-		PersonalInfoForm
+		PersonalInfoForm,
+		SkillsForm,
+		WorkExperienceForm,
+		SkillsFormRender
 	]
 })
 

@@ -1,0 +1,113 @@
+<h2 md-dialog-title>
+
+    <div fxLayout="row">
+        <div>Edit Work Experience</div>
+        <div fxFlex></div>
+        <div>
+            <button md-icon-button class="closeBtn" md-dialog-close>
+          <i class="material-icons">close</i>
+        </button>
+
+        </div>
+    </div>
+
+</h2>
+<md-dialog-content>
+    <form [formGroup]="userForm">
+        <span>My workplace is</span>
+        <md-input-container class="full-width">
+            <input mdInput formControlName="workplace" id="workplace" type="text" class="validate" placeholder="WorkPlace Name" />
+            <md-hint align="start" class="full-width">
+                <div *ngIf="userForm.get('workplace').hasError('required') && userForm.get('workplace').touched" class="errorStyle">
+                    workplace is Required
+                </div>
+                <div *ngIf="userForm.get('workplace').hasError('pattern') && userForm.get('workplace')" class="errorStyle">
+                    Invalid Name
+                </div>
+            </md-hint>
+        </md-input-container>
+
+        <span>My Designation is</span>
+        <md-input-container class="full-width">
+            <input mdInput formControlName="designation" id="designation" type="text" class="validate" placeholder="Designation Name" />
+            <md-hint align="start" class="full-width">
+                <div *ngIf="userForm.get('designation').hasError('required') && userForm.get('designation').touched" class="errorStyle">
+                    Designation is Required
+                </div>
+                <div *ngIf="userForm.get('designation').hasError('pattern') && userForm.get('designation')" class="errorStyle">
+                    Invalid Designation
+                </div>
+            </md-hint>
+        </md-input-container>
+
+        <span> and my Job Role is </span>
+
+
+        <md-input-container class="full-width">
+            <input mdInput formControlName="jobrole" id="jobrole" type="text" class="validate" placeholder="Job Role" />
+            <md-hint align="start" class="full-width">
+                <div *ngIf="userForm.get('jobrole').hasError('required') && userForm.get('jobrole').touched" class="errorStyle">
+                    Job Role is required
+                </div>
+                <div *ngIf="userForm.get('jobrole').hasError('pattern') && userForm.get('jobrole')" class="errorStyle">
+                    Invalid Designation
+                </div>
+            </md-hint>
+        </md-input-container>
+
+        <span>My Work Location is </span>
+
+        <md-input-container class="full-width">
+            <input mdInput formControlName="location" id="location" type="text" class="validate" placeholder="worklocation" />
+            <md-hint align="start" class="full-width">
+
+                <div *ngIf="userForm.get('location').hasError('required') && userForm.get('location').touched" class="errorStyle">
+                    Work Location is required
+                </div>
+                <div *ngIf="userForm.get('location').hasError('pattern') && userForm.get('location')" class="errorStyle">
+                    Invalid Work Location
+                </div>
+            </md-hint>
+        </md-input-container>
+
+        <span>from</span>
+
+        <md-input-container class="full-width">
+            <input mdInput formControlName="from" id="from" type="text" class="validate" placeholder="start year" />
+            <md-hint align="start" class="full-width">
+                <div *ngIf="userForm.get('from').hasError('required') && userForm.get('from').touched" class="errorStyle">
+                    start year is required
+                </div>
+                <div *ngIf="userForm.get('from').hasError('pattern') && userForm.get('from')" class="errorStyle">
+                    Invalid start year
+                </div>
+            </md-hint>
+        </md-input-container>
+
+        <span> till </span>
+
+        <md-input-container class="full-width">
+            <input mdInput  formControlName="tillr" id="till" type="text" class="validate" placeholder="end year" />
+            <md-hint align="start" class="full-width">
+                <div *ngIf="userForm.get('till').hasError('required') && userForm.get('till').touched" class="errorStyle">
+                    end year is required
+                </div>
+                <div *ngIf="userForm.get('till').hasError('pattern') && userForm.get('till')" class="errorStyle">
+                    Invalid end year
+                </div>
+            </md-hint>
+        </md-input-container>
+
+        <span>currently working here</span>
+
+        <md-input-container class="full-width">
+            <md-slide-toggle class="toggleSwitch" (click)="workingStatus()">
+            </md-slide-toggle>
+        </md-input-container>
+
+    </form>
+    <div fxLayout="row">
+        <div fxFlex></div>
+        <button md-raised-button type="submit" color="primary" md-dialog-close (click)="onSave()">Save</button>
+    </div>
+</md-dialog-content>

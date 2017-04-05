@@ -1,3 +1,5 @@
+import { SkillsForm } from './../profileSectionForm/skillsDialogForm/skillsForm.component';
+import { WorkExperienceForm } from './../profileSectionForm/workExperienceForm/workExperienceForm.component';
 import { UserService } from './../../services/user.service';
 import { AuthenticationService } from './../../services/authentication.service';
 import { SamProfileCardService } from './../../services/sam-profile-card.service';
@@ -50,11 +52,17 @@ export class DashboardComponent implements OnInit {
   public currentSectionAlign: string;
   public currentSectionName: string;
   public personalInfoData: {} = {};
-
+  public skillsData: any[] = [];
+  public workExperienceData: any[] = [];
   // this function will work when clicked on edit btn
   onEdit(sectionName: string) {
     switch (sectionName) {
       case 'personalInfo': this.openPersonalInfoDialog();
+      break ;
+      case 'skills':this.openSkillsDialog();
+      break;
+       case 'experiences':this.openWorkExperienceDialog();
+      break;
     }
   }
 
@@ -68,6 +76,24 @@ export class DashboardComponent implements OnInit {
     })
   }
 
+  openSkillsDialog() {
+    let dialogRef = this.dialog.open(SkillsForm, {
+      height: '80%',
+      // width:'100%',
+      data: this.skillsData
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    })
+  }
+ openWorkExperienceDialog() {
+    let dialogRef = this.dialog.open(WorkExperienceForm, {
+      height: '80%',
+     
+      data: this.workExperienceData
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    })
+  }
   ngOnInit() {
     // this will get the data for profile config
     this.SamProfileSectionConfigService.getProfileSectionConfig()
@@ -78,7 +104,12 @@ export class DashboardComponent implements OnInit {
       .subscribe((resEmployeeData: any) => this.profileFormConfig = resEmployeeData);
 
     this.SamProfileService.getProfile(JSON.parse(localStorage.getItem('currentUser'))['username'])
-      .subscribe((resEmployeeData: any) => { this.profileData = resEmployeeData, this.personalInfoData = resEmployeeData.personalInfo });
+      .subscribe((resEmployeeData: any) => {
+        this.profileData = resEmployeeData,
+          this.personalInfoData = resEmployeeData.personalInfo,
+          this.skillsData = resEmployeeData.skills,
+          this.workExperienceData = resEmployeeData.experiences
+      });
 
     this.SamProfileCardService.getProfileCard(JSON.parse(localStorage.getItem('currentUser'))['username'])
       .subscribe((resEmployeeData: any) => { this.profileCardData = resEmployeeData });
