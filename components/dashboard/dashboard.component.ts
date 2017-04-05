@@ -1,3 +1,4 @@
+import { QualificationForm } from './../profileSectionForm/qualificationForm/qualificationForm.component';
 import { UserService } from './../../services/user.service';
 import { AuthenticationService } from './../../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
@@ -22,6 +23,7 @@ export class DashboardComponent implements OnInit {
   profileFormConfig: any;
   profileFormSections: any[];
 
+
   constructor(
     public dialog: MdDialog,
 
@@ -38,7 +40,7 @@ export class DashboardComponent implements OnInit {
     this.profileSections = [
       { 'name': 'personalInfo', 'title': 'Personal Informations', 'align': 'row' },
       { 'name': 'qualifications', 'title': 'Educational Qualification', 'align': 'column' },
-      // { 'name': 'jobPreferences', 'title': 'Job Preferences', 'align': 'column' },
+      { 'name': 'jobPreferences', 'title': 'Job Preferences', 'align': 'column' },
       { 'name': 'experiences', 'title': 'Experiences', 'align': 'column' },
       { 'name': 'skills', 'title': 'Skills', 'align': 'row' },
       { 'name': 'projects', 'title': 'Projects', 'align': 'column' },
@@ -49,18 +51,31 @@ export class DashboardComponent implements OnInit {
   public currentSectionAlign: string;
   public currentSectionName: string;
   public personalInfoData: {} = {};
+  public qualificationsData: any[] = [];
 
   // this function will work when clicked on edit btn
   onEdit(sectionName: string) {
+    console.log(sectionName);
     switch (sectionName) {
-      case 'personalInfo': this.openPersonalInfoDialog();
+      case 'personalInfo': this.openPersonalInfoDialog(); break;
+      case 'qualifications': this.openQualificationsDialog(); break;
     }
+  }
+
+  openQualificationsDialog() {
+    let dialogRef = this.dialog.open(QualificationForm, {
+      height: '80%',
+      // width:'100%',
+      data: this.qualificationsData
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    })
   }
 
   openPersonalInfoDialog() {
     let dialogRef = this.dialog.open(PersonalInfoForm, {
-      height: '80%',
-      // width:'100%',
+      height: '90%',
+      width:'80%',
       data: this.personalInfoData
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -79,9 +94,22 @@ export class DashboardComponent implements OnInit {
     // this.SamProfileService.getProfile(JSON.parse(localStorage.getItem('currentUser'))['username'])
     //   .subscribe((resEmployeeData: any) => { this.profileData = resEmployeeData, this.personalInfoData = resEmployeeData.personalInfo });
 
-    this.profileData = this.SamProfileService.getProfileData(JSON.parse(localStorage.getItem('currentUser'))['username']);
-    this.personalInfoData = this.profileData['personalInfo']
+    // this.profileData = this.SamProfileService.getProfileData(JSON.parse(localStorage.getItem('currentUser'))['username']);
+    // this.personalInfoData = this.profileData['personalInfo']
 
+    this.SamProfileService.getProfile(JSON.parse(localStorage.getItem('currentUser'))['username'])
+      .subscribe((resEmployeeData: any) => {
+        this.profileData = resEmployeeData,
+          this.personalInfoData = resEmployeeData.personalInfo,
+          this.qualificationsData = resEmployeeData.qualifications
+      });
+
+    // this.profileData = this.SamProfileService.getProfileData(JSON.parse(localStorage.getItem('currentUser'))['username'])
+
+    // this.profileData = resEmployeeData,
+    // this.personalInfoData = this.profileData['personalInfo'],
+    //   this.qualificationsData = this.profileData['qualifications']
+    // });
 
     this.SamProfileCardService.getProfileCard(JSON.parse(localStorage.getItem('currentUser'))['username'])
       .subscribe((resEmployeeData: any) => { this.profileCardData = resEmployeeData });

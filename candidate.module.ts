@@ -25,6 +25,7 @@ import { CandidateRegisterComponent } from './components/loginComponent/candidat
 import { CandidateSearchComponent } from './components/candidate-search/candidate-search.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { PersonalInfoForm } from './components/profileSectionForm/personalInfoForm/personalInfoForm.component';
+import { QualificationForm } from './components/profileSectionForm/qualificationForm/qualificationForm.component';
 import { NgModule } from '@angular/core';
 import { MaterialModule } from '@angular/material';
 import { HttpModule } from '@angular/http';
@@ -41,6 +42,7 @@ import { SamProfileSectionComponent } from 'samarthyaWebcomponent/sam-profile/sa
 import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-profile-card/sam-profile-card.component';
 
 @NgModule({
+
   imports: [
     BrowserModule,
     FormsModule,
@@ -70,7 +72,8 @@ import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-p
     VerifyEmailComponent,
     MainComponent,
     routingComponents,
-    PersonalInfoForm
+    PersonalInfoForm,
+		QualificationForm
 
   ],
   bootstrap: [MainComponent, PersonalInfoForm],
@@ -95,7 +98,8 @@ import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-p
     SamProfileCardComponent,
     SamProfileSectionComponent,
     SamProfileSectionFormComponent,
-    PersonalInfoForm
+    PersonalInfoForm,
+    QualificationForm
   ]
 })
 
