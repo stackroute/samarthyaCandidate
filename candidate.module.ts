@@ -1,6 +1,8 @@
+import { SkillsFormRender } from './components/profileSectionForm/skillsDialogForm/skillFormRender/skillsFormRender.component';
 import { WorkExperienceForm } from './components/profileSectionForm/workExperienceForm/workExperienceForm.component';
 import { SummaryForm } from './components/profileSectionForm/summaryForm/summaryForm.component';
 
+import { SkillsForm } from './components/profileSectionForm/skillsDialogForm/skillsForm.component';
 import { MainComponent } from './mainComponent';
 import { ModuleWithProviders } from '@angular/core';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
@@ -45,7 +47,6 @@ import { SamProfileSectionComponent } from 'samarthyaWebcomponent/sam-profile/sa
 import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-profile-card/sam-profile-card.component';
 
 @NgModule({
-
   imports: [
     BrowserModule,
     FormsModule,
@@ -58,6 +59,7 @@ import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-p
     SamarthyaWebComponentsModule,
   ],
   declarations: [
+    SkillsFormRender,
     AboutUsComponent,
     CandidateSearchComponent,
     CandidateRegisterComponent,
@@ -80,11 +82,12 @@ import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-p
     WorkExperienceForm,
     SummaryForm
   ],
-  bootstrap: [MainComponent, PersonalInfoForm, QualificationForm, WorkExperienceForm, SummaryForm],
+  bootstrap: [MainComponent, PersonalInfoForm, SkillsForm, WorkExperienceForm, SummaryForm],
   exports: [
+    SkillsForm,
+    SkillsFormRender,
     AboutUsComponent,
     CandidateSearchComponent,
-    CandidateRegisterComponent,
     DashboardComponent,
     EmployersComponent,
     EventPostComponent,

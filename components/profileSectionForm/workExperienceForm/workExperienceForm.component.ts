@@ -12,6 +12,7 @@ import { Data } from './../../../services/data.service';
   styleUrls: ['./workExperienceForm.component.css']
 })
 export class WorkExperienceForm implements OnInit {
+
     public userForm: FormGroup;
   public infoobj: any;
   public timer: any;

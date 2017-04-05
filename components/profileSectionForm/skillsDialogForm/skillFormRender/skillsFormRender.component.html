@@ -1,0 +1,48 @@
+<form [formGroup]="userForm">
+  <div formArrayName="AllSkills">
+    <div *ngFor="let address of userForm.controls.AllSkills.controls; let i=index" class="panel panel-default">
+      <button class="pull-right" *ngIf="userForm.controls.AllSkills.controls.length > 1" (click)="removeSkills(i)"> <i class="material-icons">close</i></button>
+
+      <div class="panel-body" [formGroupName]="i">
+
+        <span>I know</span>
+
+        <md-input-container class="full-width">
+          <input mdInput formControlName="name" id="name" type="text" class="validate" placeholder="Skill Name" />
+          <md-hint align="start" class="full-width">
+            <div *ngIf="!userForm.controls.AllSkills.controls[i].controls.name.valid" class="errorStyle">
+              Skill Name is Required
+            </div>
+          </md-hint>
+        </md-input-container>
+
+        <span>of</span>
+        <md-select placeholder="Expertise Level" formControlName="expertise" id="expertise">
+          <md-option *ngFor="let level of levels" [value]="level.value">
+            {{ level.name }}
+          </md-option>
+        </md-select>
+        <span>level and has experience of</span>
+        <md-input-container class="full-width">
+          <input mdInput formControlName="experience" id="experience" type="text" class="validate" placeholder="Experience in Months"
+          />
+          <md-hint align="start" class="full-width">
+            <div *ngIf="!userForm.controls.AllSkills.controls[i].controls.experience.valid" class="errorStyle">
+              Experience is required
+            </div>
+          </md-hint>
+        </md-input-container>
+
+        <span> months </span>
+        <div fxLayout="row">
+          <div fxFlex></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <button md-raised-button type="submit" color="primary" (click)="addSkills()">ADD</button>
+  <button md-raised-button type="submit" color="primary" (click)="onSave()"  md-dialog-close>Save skill</button>
+
+
+</form>
