@@ -1,20 +1,21 @@
+import { QualificationForm } from './../profileSectionForm/qualificationForm/qualificationForm.component';
 import { UserService } from './../../services/user.service';
+
 import { AuthenticationService } from './../../services/authentication.service';
-import { SamProfileCardService } from './../../services/sam-profile-card.service';
 import { Component, OnInit } from '@angular/core';
-import { ProfileService } from './../../services/profile.service';
-import { SamProfileSectionConfigService } from './../../services/sam-profile-section-config.service';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { PersonalInfoForm } from './../profileSectionForm/personalInfoForm/personalInfoForm.component';
 import { JobPreferenceInfoForm } from './../profileSectionForm/jobPreferenceForm/jobPreferenceForm.component';
-
-// import { AppComponent } from 'app/app.component';
+import { ProjectsForm } from './../profileSectionForm/projectsForm/projectsForm.component';
+import { SamProfileCardService } from 'samarthyaWebcomponent/sam-profile/sam-profile-card/sam-profile-card.service';
+import { SamProfileSectionConfigService } from 'samarthyaWebcomponent/sam-profile/sam-profile-section/sam-profile-section-config.service';
+import { ProfileService } from 'samarthyaWebcomponent/sam-profile/sam-profile-section/sam-profile-section-data.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
-  providers: [ProfileService, SamProfileSectionConfigService]
+  providers: [ProfileService, SamProfileSectionConfigService, SamProfileCardService]
 })
 
 export class DashboardComponent implements OnInit {
@@ -24,6 +25,7 @@ export class DashboardComponent implements OnInit {
   profileConfig: any;
   profileFormConfig: any;
   profileFormSections: any[];
+
 
   constructor(
     public dialog: MdDialog,
@@ -35,7 +37,7 @@ export class DashboardComponent implements OnInit {
     private SamProfileSectionConfigService: SamProfileSectionConfigService,
 
     // service for providing sam profile card
-    private SamProfileCardService: SamProfileCardService
+    private SamProfileCardService: SamProfileCardService,
   ) {
     // this will provide all section related info
     this.profileSections = [
@@ -52,15 +54,28 @@ export class DashboardComponent implements OnInit {
   public currentSectionAlign: string;
   public currentSectionName: string;
   public personalInfoData: {} = {};
-    public jobpreferenceInfoData: {} = {};
-
+  public jobpreferenceInfoData: {} = {};
+  public qualificationsData: any[] = [];
+  public projectsData: {} = {};
   // this function will work when clicked on edit btn
   onEdit(sectionName: string) {
-    console.log(sectionName)
     switch (sectionName) {
-      case 'personalInfo': this.openPersonalInfoDialog();
-      case 'projects':this.openJobPrefereneceInfoDialog();
+      case 'personalInfo': this.openPersonalInfoDialog(); break;
+      case 'qualifications': this.openQualificationsDialog(); break;
+      case 'projects': this.openJobPrefereneceInfoDialog(); break;
+      case 'experiences': this.openProjectsDialog(); break;
+
     }
+  }
+
+  openQualificationsDialog() {
+    let dialogRef = this.dialog.open(QualificationForm, {
+      height: '80%',
+      // width:'100%',
+      data: this.qualificationsData
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    })
   }
 
   openPersonalInfoDialog() {
@@ -75,8 +90,17 @@ export class DashboardComponent implements OnInit {
   openJobPrefereneceInfoDialog() {
     let dialogRef = this.dialog.open(JobPreferenceInfoForm, {
       height: '80%',
-      width:'80%',
+      width: '80%',
       data: this.jobpreferenceInfoData
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    })
+  }
+  openProjectsDialog() {
+    let dialogRef = this.dialog.open(ProjectsForm, {
+      height: '80%',
+      width: '80%',
+      data: this.projectsData
     });
     dialogRef.afterClosed().subscribe(result => {
     })
@@ -92,7 +116,14 @@ export class DashboardComponent implements OnInit {
       .subscribe((resEmployeeData: any) => this.profileFormConfig = resEmployeeData);
 
     this.SamProfileService.getProfile(JSON.parse(localStorage.getItem('currentUser'))['username'])
-      .subscribe((resEmployeeData: any) => {this.profileData = resEmployeeData,this.jobpreferenceInfoData=resEmployeeData.jobPreferences, this.personalInfoData = resEmployeeData.personalInfo });
+      .subscribe((resEmployeeData: any) => {
+        console.log(resEmployeeData)
+        this.profileData = resEmployeeData,
+          this.jobpreferenceInfoData = resEmployeeData.jobPreferences,
+          this.personalInfoData = resEmployeeData.personalInfo,
+          this.qualificationsData = resEmployeeData.qualifications,
+          this.projectsData = resEmployeeData.projects
+      });
 
     this.SamProfileCardService.getProfileCard(JSON.parse(localStorage.getItem('currentUser'))['username'])
       .subscribe((resEmployeeData: any) => { this.profileCardData = resEmployeeData });

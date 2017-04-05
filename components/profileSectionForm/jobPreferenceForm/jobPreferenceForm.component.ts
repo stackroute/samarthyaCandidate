@@ -1,8 +1,12 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { ProfileSectionFormService } from './../../../services/profileSectionForm.service';
+import { Injectable } from '@angular/core';
+import { Http, Response, Headers } from '@angular/http';
+import { Router } from '@angular/router';
+import { Data } from './../../../services/data.service';
 
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'jobPreference-form',
@@ -17,7 +21,7 @@ export class JobPreferenceInfoForm implements OnInit {
   public emailId = '';
   public loading = false;
   public engagementData = ['Full Time', 'Part Time', 'Flexible'];
-  public locationData=['Bangalore','Pune','Delhi','Gurgaon','Chennai'];
+  public locationData = ['Bangalore', 'Pune', 'Delhi', 'Gurgaon', 'Chennai'];
   public lookingFor: any = false;
   public jobRole: any = '';
   public engagement: any = '';
@@ -27,19 +31,19 @@ export class JobPreferenceInfoForm implements OnInit {
   public availableFrom: any = '';
   public locations: any = '';
   public showDiv: any = false;
-  public jobPrefObj={};
+  public jobPrefObj = {};
 
   constructor(
-    @Inject(FormBuilder) fb: FormBuilder,private ProfileSectionFormService:ProfileSectionFormService,
+    @Inject(FormBuilder) fb: FormBuilder, private router: Router, private data: Data, private http: Http,
     public dialogRef: MdDialogRef<JobPreferenceInfoForm>
   ) {
     if (this.dialogRef.config.data.jobRoles.length > 0) {
-      this.jobRole = this.dialogRef.config.data.jobRoles['name'] || '';
-      this.engagement = this.dialogRef.config.data.jobRoles['engagement'] || '';
-      this.expectedSalMin = this.dialogRef.config.data.jobRoles['expectedSal'].min || '';
-      this.expectedSalMax = this.dialogRef.config.data.jobRoles['expectedSal'].max || '';
-      this.skills = this.dialogRef.config.data.jobRoles['skills'] || '';
-      this.locations = this.dialogRef.config.data.jobRoles['locations'] || '';
+      this.jobRole = this.dialogRef.config.data.jobRoles[0]['name'] || '';
+      this.engagement = this.dialogRef.config.data.jobRoles[0]['engagement'] || '';
+      this.expectedSalMin = this.dialogRef.config.data.jobRoles[0]['expectedSal'].min || '';
+      this.expectedSalMax = this.dialogRef.config.data.jobRoles[0]['expectedSal'].max || '';
+      this.skills = this.dialogRef.config.data.jobRoles[0]['skills'] || '';
+      this.locations = this.dialogRef.config.data.jobRoles[0]['locations'] || '';
     }
     if (this.dialogRef.config.data.looking) {
       this.lookingFor = 'YES';
@@ -50,7 +54,6 @@ export class JobPreferenceInfoForm implements OnInit {
       this.showDiv = false;
 
     }
-
     this.userForm = fb.group({
       lookingFor: [this.lookingFor, [Validators.required]],
       jobRole: [this.jobRole, [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
@@ -65,6 +68,7 @@ export class JobPreferenceInfoForm implements OnInit {
 
 
   ngOnInit() {
+
   }
   showDivandHide(userdata: any) {
     if (this.showDiv) {
@@ -77,21 +81,37 @@ export class JobPreferenceInfoForm implements OnInit {
 
   onSave() {
     let jobPreferenceInfoData = this.dialogRef.config.data;
-     this.jobPrefObj={
-          "looking":this.userForm.value.lookingFor,
-          jobRoles:{
-            "name":this.userForm.value.jobRole || '',
-            "engagement":this.userForm.value.engagement || '',
-            "expectedSal":{
-              "min":this.userForm.value.expectedSalMin || '',
-              "max":this.userForm.value.expectedSalMax || ''
-            },
-            "skills":this.userForm.value.skills || '',
-            "availablefrom":this.userForm.value.availablefrom || '',
-            "locations":this.userForm.value.locations || ''
-          }
+    this.jobPrefObj = {
+      "looking": this.userForm.value.lookingFor,
+      jobRoles: [{
+        "name": this.userForm.value.jobRole || '',
+        "engagement": this.userForm.value.engagement || '',
+        "expectedSal": {
+          "min": this.userForm.value.expectedSalMin || '',
+          "max": this.userForm.value.expectedSalMax || ''
+        },
+        "skills": this.userForm.value.skills || '',
+        "availablefrom": this.userForm.value.availablefrom || '',
+        "locations": this.userForm.value.locations || ''
+      }]
+    }
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+    this.http.patch('/profile', { sectionName: "jobPreferences", username: currentUser.username, data: this.jobPrefObj })
+      .subscribe((response: Response) => {
+        let res = response.json();
+        if (res.success == true) {
+          this.data.openSnackBar("Successfully updated", "OK");
+          this.router.navigate(['/home']);
         }
-        this.ProfileSectionFormService.editJobPreference("jobPreferences",this.jobPrefObj)
+        else {
+          this.data.openSnackBar("Techical Error", "Try later");
+        }
+      },
+      err => {
+        this.data.openSnackBar("Techical Error", "Try later");
+
+      });
   }
 }
 

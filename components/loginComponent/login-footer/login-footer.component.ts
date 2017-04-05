@@ -1,6 +1,5 @@
 import { JsonDataService } from './../../../services/json-data.service';
 import { Component, OnInit } from '@angular/core';
-//import { JsonDataService } from 'app/services/json-data.service';
 
 @Component({
   selector: 'app-login-footer',

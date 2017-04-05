@@ -1,0 +1,45 @@
+
+  <form [formGroup]="userForm">
+    <div *ngFor ="let sk of skillsData">
+    <span>I know</span>
+    <md-input-container class="full-width">
+      <input mdInput formControlName="name" [value]="sk.name" id="name" type="text" class="validate" placeholder="Skill Name" />
+      <md-hint align="start" class="full-width"> 
+        <div *ngIf="userForm.get('name').hasError('required') && userForm.get('name').touched" class="errorStyle">
+          Skill Name is Required
+        </div>
+      </md-hint>
+    </md-input-container>
+    <span>of</span>
+
+        <md-select  placeholder="Expertise Level" formControlName="expertise"  id="expertise" >
+          <md-option *ngFor="let level of levels" [value]="level.value">
+            {{ level.name }}
+          </md-option>
+        </md-select>
+
+    <span>level and has experience of</span>
+    <md-input-container class="full-width">
+      <input mdInput formControlName="experience" [value]="sk.experience" id="experience" type="text" class="validate" placeholder="Experience in Months"
+      />
+      <md-hint align="start" class="full-width">
+        <div *ngIf="userForm.get('experience').hasError('required') && userForm.get('experience').touched" class="errorStyle">
+          Experience is required
+        </div>
+        <div *ngIf="userForm.get('experience').hasError('pattern') && userForm.get('experience')" class="errorStyle">
+          Invalid Experience
+        </div>
+      </md-hint>
+    </md-input-container>
+    
+    <span> months </span>
+     <div fxLayout="row">
+    <div fxFlex></div>
+    <!--<button md-raised-button type="submit" color="primary" md-dialog-close (click)="onSave()">Save</button>-->
+     <!--<button md-raised-button type="submit" color="primary" (click)="onAdd()">ADD</button>-->
+     <button md-raised-button type="submit" color="primary" (click)="onSave()">Save skill</button>
+  </div>
+    </div>
+  </form>
+
+ 

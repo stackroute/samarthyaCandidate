@@ -2,12 +2,10 @@ import { Data } from './../../../services/data.service';
 import { EmailService } from './../../../services/email.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-//import { EmailService } from 'app/services/email.service';
 import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
 import { ViewContainerRef } from '@angular/core';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { Router } from '@angular/router';
-//import { Data } from 'app/services/data.service'
 
 @Component({
   selector: 'app-verify-email',
@@ -18,8 +16,8 @@ import { Router } from '@angular/router';
 export class VerifyEmailComponent implements OnInit {
 
   public userForm: FormGroup;
-  public infoobj : any;
-  public timer : any;
+  public infoobj: any;
+  public timer: any;
   public loading = false;
 
   constructor( @Inject(FormBuilder) fb: FormBuilder, private data: Data, private emailservice: EmailService,
@@ -41,7 +39,7 @@ export class VerifyEmailComponent implements OnInit {
       'username': this.userForm.value.email,
       'subject': 'Email verification'
     };
-    this.emailservice.sendEmail(this.infoobj).subscribe((resJsonData : any) => {
+    this.emailservice.sendEmail(this.infoobj).subscribe((resJsonData: any) => {
       if (resJsonData['msg'] === 'user already exist') {
         this.loading = false;
         this.data.openSnackBar('Already Registered', 'Please Login');
