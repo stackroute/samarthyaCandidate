@@ -75,7 +75,7 @@ export class DashboardComponent implements OnInit {
   openPersonalInfoDialog() {
     let dialogRef = this.dialog.open(PersonalInfoForm, {
       height: '90%',
-      width:'80%',
+      width: '80%',
       data: this.personalInfoData
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -85,11 +85,13 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     // this will get the data for profile config
     this.SamProfileSectionConfigService.getProfileSectionConfig()
-      .subscribe((resEmployeeData: any) => this.profileConfig = resEmployeeData);
+      .subscribe((resEmployeeData: any) => {
+        this.profileConfig = resEmployeeData[0],
+      console.log(this.profileConfig)});
 
     // this will get the data for profile form config
-    this.SamProfileSectionConfigService.getProfileSectionFormConfig()
-      .subscribe((resEmployeeData: any) => this.profileFormConfig = resEmployeeData);
+    // this.SamProfileSectionConfigService.getProfileSectionFormConfig()
+    //   .subscribe((resEmployeeData: any) => this.profileFormConfig = resEmployeeData);
 
     // this.SamProfileService.getProfile(JSON.parse(localStorage.getItem('currentUser'))['username'])
     //   .subscribe((resEmployeeData: any) => { this.profileData = resEmployeeData, this.personalInfoData = resEmployeeData.personalInfo });

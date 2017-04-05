@@ -59,11 +59,13 @@ export class PersonalInfoForm implements OnInit {
       email: [this.dialogRef.config.data.email, [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
       altemail: [this.dialogRef.config.data.altemail, [Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
       mob: [this.dialogRef.config.data.contact['I'], [Validators.required, Validators.pattern('[0-9]{10}')]],
-      phone: [this.dialogRef.config.data.contact['II'], [Validators.required, Validators.pattern('[0-9]{10}')]],
+      phone: [this.dialogRef.config.data.contact['II'], [Validators.pattern('[0-9]{10}')]],
       dob: [this.dialogRef.config.data.dob, Validators.required],
       aadhar: [this.dialogRef.config.data.identity[0]['value'], [Validators.required, Validators.pattern('[0-9]{12}')]],
       pincode: ['', [Validators.required, Validators.pattern('[0-9]{6}')]],
       location: ['', Validators.required],
+      address1: [this.dialogRef.config.data.address.address1],
+      address2: [this.dialogRef.config.data.address.address2],
       prefLang: ['', Validators.required],
       nativeLang: ['', Validators.required],
       readLang: ['', Validators.required],
@@ -77,25 +79,18 @@ export class PersonalInfoForm implements OnInit {
   public speak: any[] = [];
 
   ngOnInit() {
-    console.log(this.dialogRef.config.data);
-
     this.dialogRef.config.data.lang.forEach(lang => {
-      console.log(lang);
       if (lang.r === 'Read') {
         this.read.push(lang.name);
-      } if (lang.r === 'Write') {
+      } if (lang.w === 'Write') {
         this.write.push(lang.name);
-      } if (lang.r === 'Speak') {
+      } if (lang.s === 'Speak') {
         this.speak.push(lang.name);
       }
     });
 
     this.areaList[0] = this.location;
     // this.read.push(this.langList[0]);
-
-    console.log('--->>>', this.read);
-    console.log(this.write);
-    console.log(this.speak);
     // console.log()
   }
 
@@ -143,6 +138,9 @@ export class PersonalInfoForm implements OnInit {
     personalInfoData.altemail = this.userForm.value.altemail;
     personalInfoData.contact.I = this.userForm.value.mob;
     personalInfoData.contact.II = this.userForm.value.phone;
+    personalInfoData.address.address1 = this.userForm.value.address1;
+    personalInfoData.address.address2 = this.userForm.value.address2;
+
     personalInfoData.address.landmark = this.userForm.value.location.split(',')[0];
     personalInfoData.address.district = this.userForm.value.location.split(',')[1];
     personalInfoData.address.state = this.userForm.value.location.split(',')[2];

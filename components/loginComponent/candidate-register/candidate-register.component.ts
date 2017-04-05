@@ -45,7 +45,7 @@ export class CandidateRegisterComponent implements OnInit {
     // register candidate form
     this.userForm = fb.group({
       name: ['', [Validators.required]],
-      fname: ['', [Validators.required, Validators.pattern('[A-Za-z]{2,}')]],
+      fname: ['', [Validators.required]],
       lname: ['', [Validators.required]],
       gender: ['male', Validators.required],
       email: ['', Validators.required],
@@ -176,10 +176,12 @@ export class CandidateRegisterComponent implements OnInit {
   // on form submit
   onRegister(userdata: any) {
 
-    // check who is creating user 
+    // check who is creating user
     let createdUser = this.authenticationService.getCreatedBy();
     if (createdUser == null) {
       this.createdBy = this.userForm.value.email;
+    } else {
+      this.createdBy = createdUser;
     }
 
     this.landmark = userdata.get('location').value.split(',')[0];
@@ -206,6 +208,8 @@ export class CandidateRegisterComponent implements OnInit {
         mobileNumber: userdata.get('mob').value,
         role: userdata.get('role').value,
         profession: userdata.get('profession').value,
+        address1: '',
+        address2: '',
         district: this.district,
         landmark: this.landmark,
         state: this.state,

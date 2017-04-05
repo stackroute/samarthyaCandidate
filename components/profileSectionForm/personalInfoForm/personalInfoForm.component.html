@@ -52,7 +52,7 @@
       <span>and my alternate email is</span>
 
       <md-input-container class="full-width">
-        <input mdInput formControlName="altemail" id="altemail" type="text" class="validate" placeholder="Alternate Email" />
+        <input mdInput formControlName="altemail" id="altemail" type="text" class="validate" placeholder="Alternate Email (Optional)" />
         <md-hint align="start" class="full-width">
           <div *ngIf="userForm.get('altemail').hasError('pattern') && userForm.get('altemail')" class="errorStyle">
             Invalid email
@@ -63,7 +63,7 @@
 
       <span> you can call me on </span>
 
-      <md-input-container class="phone">
+      <md-input-container class="">
         <input mdInput formControlName="mob" id="mob" type="text" class="validate" placeholder="Mobile No." />
         <md-hint align="start" class="full-width">
           <div *ngIf="userForm.get('mob').hasError('required') && userForm.get('mob').touched" class="errorStyle">
@@ -77,10 +77,9 @@
 
       <span> or </span>
 
-      <md-input-container class="phone">
-        <input mdInput formControlName="phone" id="phone" type="text" class="validate" placeholder="Alternate Contact No." />
+      <md-input-container class="">
+        <input mdInput formControlName="phone" id="phone" type="text" class="validate" placeholder="Alternate Contact No.(Optional)" />
         <md-hint align="start" class="full-width">
-
           <div *ngIf="userForm.get('phone').hasError('pattern') && userForm.get('phone')" class="errorStyle">
             Invalid Phone No.
           </div>
@@ -88,7 +87,7 @@
       </md-input-container>
       <br>
 
-      <div fxLayout="row" fxLayout.xs="column">
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap>
         <span> my pincode is </span>
 
         <md-input-container class="pincode">
@@ -102,7 +101,14 @@
           </md-hint>
         </md-input-container>
 
-        <span> and i live in </span>
+        <span> and i live at </span>
+        <md-input-container>
+          <input mdInput formControlName="address1" type="text" class="validate" placeholder="Address Line 1" />
+        </md-input-container>
+
+        <md-input-container>
+          <input mdInput formControlName="address2" type="text" class="validate" placeholder="Address Line 2" />
+        </md-input-container>
         <!--location area-->
         <md-select formControlName="location" [(ngModel)]="location" placeholder="Select Location" class="dropdown location">
           <md-option *ngFor="let area of areaList" [value]="area">
