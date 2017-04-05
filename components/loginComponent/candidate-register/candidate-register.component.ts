@@ -212,8 +212,8 @@ export class CandidateRegisterComponent implements OnInit {
         pincode: userdata.get('pincode').value,
         location: userdata.get('location').value,
         placementCenter: userdata.get('placementCenter').value,
-        aadharNumber: userdata.get('aadhar').value,
-        registerID: userdata.get('regId').value,
+        identity: [{ idType: "Aadhaar", value: userdata.get('aadhar').value },
+        { idType: "RegNumber", value: userdata.get('regId').value }],
         createdBy: this.createdBy,
         updatedBy: this.createdBy,
         profilePic: profilePic

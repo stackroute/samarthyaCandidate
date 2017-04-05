@@ -87,6 +87,40 @@
                     }
                 },
                 {
+                    "elemType": "icon-div",
+                    "elemOrder": 3,
+                    "block": 2,
+                    "dataDescriptor": {
+                        "dataFieldName": {
+                            "type": "nestedArrey",
+                            "fields": [
+                                "identity",
+                                0,
+                                "value"
+                            ]
+                        },
+                        "icon": "chrome_reader_mode",
+                        "info": "Aadhaar No."
+                    }
+                },
+                {
+                    "elemType": "icon-div",
+                    "elemOrder": 3,
+                    "block": 2,
+                    "dataDescriptor": {
+                        "dataFieldName": {
+                            "type": "nestedArrey",
+                            "fields": [
+                                "identity",
+                                1,
+                                "value"
+                            ]
+                        },
+                        "icon": "assignment_ind",
+                        "info": "Registration ID"
+                    }
+                },
+                {
                     "elemType": "title-div",
                     "elemOrder": 1,
                     "dataDescriptor": {
