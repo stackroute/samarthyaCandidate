@@ -87,6 +87,58 @@
                     }
                 },
                 {
+                    "elemType": "icon-div",
+                    "elemOrder": 3,
+                    "block": 2,
+                    "dataDescriptor": {
+                        "dataFieldName": {
+                            "type": "nestedArrey",
+                            "fields": [
+                                "identity",
+                                0,
+                                "value"
+                            ]
+                        },
+                        "icon": "chrome_reader_mode",
+                        "info": "Aadhaar No."
+                    }
+                },
+                {
+                    "elemType": "icon-div",
+                    "elemOrder": 3,
+                    "block": 2,
+                    "dataDescriptor": {
+                        "dataFieldName": {
+                            "type": "nestedArrey",
+                            "fields": [
+                                "identity",
+                                1,
+                                "value"
+                            ]
+                        },
+                        "icon": "assignment_ind",
+                        "info": "Registration ID"
+                    }
+                },
+                {
+                    "elemType": "title-div",
+                    "elemOrder": 1,
+                    "dataDescriptor": {
+                        "dataFieldName": "prefLang",
+                        "title": "Preferred Language",
+                        "info": "Your Preferred Language"
+                    }
+                },
+                {
+                    "elemType": "title-div",
+                    "elemOrder": 1,
+                    "dataDescriptor": {
+                        "dataFieldName": "nativeLang",
+                        "title": "Native Language",
+                        "info": "Your Nativ Language"
+                    }
+                },
+                {
                     "elemType": "listColl",
                     "elemName": "address",
                     "elemLabel": "Address",
@@ -106,22 +158,35 @@
                             ]
                         }
                     }
+                }
+            ]
+        },
+        "jobPreferences": {
+            "fields": [
+                {
+                    "elemType": "chips",
+                    "elemName": "name",
+                    "elemLabel": "Name",
+                    "elemOrder": 1,
+                    "dataDescriptor": {
+                        "dataFieldName": "looking",
+                        "info": "Job Looking Status"
+                    }
                 },
                 {
                     "elemType": "listColl",
-                    "elemName": "address",
-                    "elemLabel": "Address",
+                    "elemName": "lang",
+                    "elemLabel": "Lang",
                     "elemOrder": 1,
                     "dataDescriptor": {
                         "dataFieldName": {
                             "type": "nestedCollArray",
-                            "location": "lang",
-                            "title": "Languages Known",
+                            "location": "jobRoles",
+                            "title": "JobRoles",
                             "fields": [
                                 "name",
-                                "r",
-                                "w",
-                                "s"
+                                "engagement",
+                                "availablefrom"
                             ]
                         }
                     }
@@ -188,92 +253,6 @@
                                 "location"
                             ]
                         }
-                    }
-                }
-            ]
-        },
-        "jobPreferences": {
-            "fields": [
-                {
-                    "elemType": "text-div",
-                    "elemName": "Batch",
-                    "elemLabel": "Batch",
-                    "elemOrder": 1,
-                    "dataDescriptor": {
-                        "dataFieldName": "",
-                        "label": "Roles"
-                    }
-                },
-                {
-                    "elemType": "title-div",
-                    "elemName": "Batch",
-                    "elemLabel": "Batch",
-                    "elemOrder": 1,
-                    "dataDescriptor": {
-                        "dataFieldName": {
-                            "type": "nestedArrey",
-                            "fields": [
-                                "roles",
-                                0,
-                                "name"
-                            ]
-                        },
-                        "title": "Name",
-                        "info": "Role Name"
-                    }
-                },
-                {
-                    "elemType": "title-div",
-                    "elemName": "Batch",
-                    "elemLabel": "Batch",
-                    "elemOrder": 1,
-                    "dataDescriptor": {
-                        "dataFieldName": {
-                            "type": "nestedArrey",
-                            "fields": [
-                                "roles",
-                                0,
-                                "engagement"
-                            ]
-                        },
-                        "title": "Engagement",
-                        "info": "Engagement"
-                    }
-                },
-                {
-                    "elemType": "chips",
-                    "elemName": "Batch",
-                    "elemLabel": "Batch",
-                    "elemOrder": 1,
-                    "dataDescriptor": {
-                        "dataFieldName": {
-                            "type": "nestedArrey",
-                            "fields": [
-                                "roles",
-                                0,
-                                "skills",
-                                0
-                            ]
-                        },
-                        "info": "Skill"
-                    }
-                },
-                {
-                    "elemType": "chips",
-                    "elemName": "Batch",
-                    "elemLabel": "Batch",
-                    "elemOrder": 1,
-                    "dataDescriptor": {
-                        "dataFieldName": {
-                            "type": "nestedArrey",
-                            "fields": [
-                                "roles",
-                                0,
-                                "skills",
-                                1
-                            ]
-                        },
-                        "info": "Skill"
                     }
                 }
             ]

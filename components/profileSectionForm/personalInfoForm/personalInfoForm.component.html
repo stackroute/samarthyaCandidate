@@ -12,180 +12,190 @@
   </div>
 
 </h2>
-<md-dialog-content>
-  <form [formGroup]="userForm">
-    <span>Myself</span>
-    <md-input-container class="full-width">
-      <input mdInput formControlName="name" id="name" type="text" class="validate" placeholder="Display Name" />
-      <md-hint align="start" class="full-width">
-        <div *ngIf="userForm.get('name').hasError('required') && userForm.get('name').touched" class="errorStyle">
-          Name is Required
-        </div>
-        <div *ngIf="userForm.get('name').hasError('pattern') && userForm.get('name')" class="errorStyle">
-          Invalid Name
-        </div>
-      </md-hint>
-    </md-input-container>
-
-    <span>i was born on </span>
-    <!--Date of Birth-->
-    <md2-datepicker formControlName="dob" id="dob" placeholder="Date Of Birth" class="full-width">date</md2-datepicker>
-    <div *ngIf="userForm.get('dob').hasError('required')" class="errorStyle">
-    </div>
-    <br>
-
-    <span>my email is</span>
-
-    <md-input-container class="full-width">
-      <input mdInput formControlName="email" id="email" type="text" class="validate" placeholder="Email" />
-      <md-hint align="start" class="full-width">
-        <div *ngIf="userForm.get('email').hasError('required') && userForm.get('email').touched" class="errorStyle">
-          Email is required
-        </div>
-        <div *ngIf="userForm.get('email').hasError('pattern') && userForm.get('email')" class="errorStyle">
-          Invalid email
-        </div>
-      </md-hint>
-    </md-input-container>
-
-    <span>and my alternate email is</span>
-
-    <md-input-container class="full-width">
-      <input mdInput formControlName="altemail" id="altemail" type="text" class="validate" placeholder="Alternate Email" />
-      <md-hint align="start" class="full-width">
-        <div *ngIf="userForm.get('altemail').hasError('pattern') && userForm.get('altemail')" class="errorStyle">
-          Invalid email
-        </div>
-      </md-hint>
-    </md-input-container>
-    <br>
-
-    <span> you can call me on </span>
-
-    <md-input-container class="phone">
-      <input mdInput formControlName="mob" id="mob" type="text" class="validate" placeholder="Mobile No." />
-      <md-hint align="start" class="full-width">
-        <div *ngIf="userForm.get('mob').hasError('required') && userForm.get('mob').touched" class="errorStyle">
-          Mobile No. is required
-        </div>
-        <div *ngIf="userForm.get('mob').hasError('pattern') && userForm.get('mob')" class="errorStyle">
-          Invalid Mobile No.
-        </div>
-      </md-hint>
-    </md-input-container>
-
-    <span> or </span>
-
-    <md-input-container class="phone">
-      <input mdInput formControlName="phone" id="phone" type="text" class="validate" placeholder="Alternate Contact No." />
-      <md-hint align="start" class="full-width">
-
-        <div *ngIf="userForm.get('phone').hasError('pattern') && userForm.get('phone')" class="errorStyle">
-          Invalid Phone No.
-        </div>
-      </md-hint>
-    </md-input-container>
-    <br>
-
-    <span> my pincode is </span>
-
-    <md-input-container class="pincode">
-      <input mdInput formControlName="pincode" id="pincode" type="text" class="validate" placeholder="Pincode" (keyup)="getPincode()"
-        [(ngModel)]="pincode" />
-      <md-hint align="start" class="full-width">
-        <div *ngIf="userForm.get('pincode').hasError('pattern')" class="errorStyle">Invaild Pincode</div>
-        <div *ngIf="userForm.get('pincode').hasError('required') && userForm.get('pincode').touched" class="errorStyle">
-          Pincode is required
-        </div>
-      </md-hint>
-    </md-input-container>
-
-    <span> and i live in </span>
-    <!--location area-->
-    <md-select formControlName="location" [(ngModel)]="location" placeholder="Select Location" class="full-width">
-      <md-option *ngFor="let area of areaList" selected="areaList[0]" [value]="area">
-        {{ area }}
-      </md-option>
-    </md-select>
-
-    <br>
-    <div fxLayout="row" fxLayoutWrap>
-      <!--<span class="lineHeight"> I am married</span>
-      <md-slide-toggle class="toggleSwitch" (click)="married()">
-      </md-slide-toggle>-->
-
-      <span class="lineHeight"> and my Aadhar No. is </span>
-
+<div fxLayout.xs="column">
+  <md-dialog-content>
+    <form [formGroup]="userForm">
+      <span>Myself</span>
       <md-input-container class="full-width">
-        <input mdInput formControlName="aadhar" id="aadhar" type="text" class="validate" placeholder="Aadhar No." />
+        <input mdInput formControlName="name" id="name" type="text" class="validate" placeholder="Display Name" />
         <md-hint align="start" class="full-width">
-          <div *ngIf="userForm.get('aadhar').hasError('required') && userForm.get('aadhar').touched" class="errorStyle">
-            Aadhar is required
+          <div *ngIf="userForm.get('name').hasError('required') && userForm.get('name').touched" class="errorStyle">
+            Name is Required
           </div>
-          <div *ngIf="userForm.get('aadhar').hasError('pattern') && userForm.get('aadhar')" class="errorStyle">
-            Invalid Aadhar
+          <div *ngIf="userForm.get('name').hasError('pattern') && userForm.get('name')" class="errorStyle">
+            Invalid Name
           </div>
         </md-hint>
       </md-input-container>
+
+      <span>i was born on </span>
+      <!--Date of Birth-->
+      <md2-datepicker formControlName="dob" id="dob" placeholder="Date Of Birth" class="full-width">date</md2-datepicker>
+      <div *ngIf="userForm.get('dob').hasError('required')" class="errorStyle">
+      </div>
+      <br>
+
+      <span>my email is</span>
+
+      <md-input-container class="full-width">
+        <input mdInput formControlName="email" [readonly]=true id="email" type="text" class="validate" placeholder="Email" />
+        <md-hint align="start" class="full-width">
+          <div *ngIf="userForm.get('email').hasError('required') && userForm.get('email').touched" class="errorStyle">
+            Email is required
+          </div>
+          <div *ngIf="userForm.get('email').hasError('pattern') && userForm.get('email')" class="errorStyle">
+            Invalid email
+          </div>
+        </md-hint>
+      </md-input-container>
+
+      <span>and my alternate email is</span>
+
+      <md-input-container class="full-width">
+        <input mdInput formControlName="altemail" id="altemail" type="text" class="validate" placeholder="Alternate Email (Optional)" />
+        <md-hint align="start" class="full-width">
+          <div *ngIf="userForm.get('altemail').hasError('pattern') && userForm.get('altemail')" class="errorStyle">
+            Invalid email
+          </div>
+        </md-hint>
+      </md-input-container>
+      <br>
+
+      <span> you can call me on </span>
+
+      <md-input-container class="">
+        <input mdInput formControlName="mob" id="mob" type="text" class="validate" placeholder="Mobile No." />
+        <md-hint align="start" class="full-width">
+          <div *ngIf="userForm.get('mob').hasError('required') && userForm.get('mob').touched" class="errorStyle">
+            Mobile No. is required
+          </div>
+          <div *ngIf="userForm.get('mob').hasError('pattern') && userForm.get('mob')" class="errorStyle">
+            Invalid Mobile No.
+          </div>
+        </md-hint>
+      </md-input-container>
+
+      <span> or </span>
+
+      <md-input-container class="">
+        <input mdInput formControlName="phone" id="phone" type="text" class="validate" placeholder="Alternate Contact No.(Optional)" />
+        <md-hint align="start" class="full-width">
+          <div *ngIf="userForm.get('phone').hasError('pattern') && userForm.get('phone')" class="errorStyle">
+            Invalid Phone No.
+          </div>
+        </md-hint>
+      </md-input-container>
+      <br>
+
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap>
+        <span> my pincode is </span>
+
+        <md-input-container class="pincode">
+          <input mdInput formControlName="pincode" id="pincode" type="text" class="validate" placeholder="Pincode" (keyup)="getPincode()"
+            [(ngModel)]="pincode" />
+          <md-hint align="start" class="full-width">
+            <div *ngIf="userForm.get('pincode').hasError('pattern')" class="errorStyle">Invaild Pincode</div>
+            <div *ngIf="userForm.get('pincode').hasError('required') && userForm.get('pincode').touched" class="errorStyle">
+              Pincode is required
+            </div>
+          </md-hint>
+        </md-input-container>
+
+        <span> and i live at </span>
+        <md-input-container>
+          <input mdInput formControlName="address1" type="text" class="validate" placeholder="Address Line 1" />
+        </md-input-container>
+
+        <md-input-container>
+          <input mdInput formControlName="address2" type="text" class="validate" placeholder="Address Line 2" />
+        </md-input-container>
+        <!--location area-->
+        <md-select formControlName="location" [(ngModel)]="location" placeholder="Select Location" class="dropdown location">
+          <md-option *ngFor="let area of areaList" [value]="area">
+            {{ area }}
+          </md-option>
+        </md-select>
+      </div>
+      <br>
+      <div fxLayout="row" fxLayoutWrap>
+        <!--<span class="lineHeight"> I am married</span>
+      <md-slide-toggle class="toggleSwitch" (click)="married()">
+      </md-slide-toggle>-->
+
+        <span class="lineHeight"> and my Aadhar No. is </span>
+
+        <md-input-container class="full-width">
+          <input mdInput formControlName="aadhar" id="aadhar" type="text" class="validate" placeholder="Aadhar No." />
+          <md-hint align="start" class="full-width">
+            <div *ngIf="userForm.get('aadhar').hasError('required') && userForm.get('aadhar').touched" class="errorStyle">
+              Aadhar is required
+            </div>
+            <div *ngIf="userForm.get('aadhar').hasError('pattern') && userForm.get('aadhar')" class="errorStyle">
+              Invalid Aadhar
+            </div>
+          </md-hint>
+        </md-input-container>
+      </div>
+
+      <br>
+      <span> my native Language is</span>
+
+      <md-select formControlName="nativeLang" [(ngModel)]="nativeLang" placeholder="Select Native Language" class="dropdown">
+        <md-option *ngFor="let lang of langList" [value]="lang">
+          {{ lang }}
+        </md-option>
+      </md-select>
+
+      <span> but prefer to speak in</span>
+      <md-select formControlName="prefLang" [(ngModel)]="prefLang" placeholder="Select Prefered Language" class="dropdown">
+        <md-option *ngFor="let lang of langList" [value]="lang">
+          {{ lang }}
+        </md-option>
+      </md-select>
+      <br>
+
+      <div fxLayout="row" fxLayoutWrap>
+        <div fxLayout="row" fxLayout.xs="column">
+          <span class="lineHeight"> and i can read</span>
+          <div fxFlex>
+            <md2-select placeholder="Select Read Languages" [(ngModel)]="read" formControlName="readLang" multiple=true class="dropdown">
+              <md2-option *ngFor="let lang of langList" selected="asas" [value]="lang">
+                {{ lang }}
+              </md2-option>
+            </md2-select>
+          </div>
+          <div fxFlex></div>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column">
+          <span class="lineHeight">  , i can write</span>
+          <div fxFlex>
+            <md2-select placeholder="Select Write Languages" [(ngModel)]="write" formControlName="writeLang" multiple=true class="dropdown">
+              <md2-option *ngFor="let lang of langList" [value]="lang">
+                {{ lang }}
+              </md2-option>
+            </md2-select>
+          </div>
+          <div fxFlex></div>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column">
+          <span class="lineHeight"> and i can speak</span>
+          <div fxFlex>
+            <md2-select placeholder="Select Speak Languages" [(ngModel)]="speak" formControlName="speakLang" multiple=true class="dropdown">
+              <md2-option *ngFor="let lang of langList" [value]="lang">
+                {{ lang }}
+              </md2-option>
+            </md2-select>
+          </div>
+          <div fxFlex></div>
+        </div>
+      </div>
+      <br>
+
+
+    </form>
+    <div fxLayout="row">
+      <div fxFlex></div>
+      <button md-raised-button [disabled]="!userForm.valid" type="submit" color="primary" md-dialog-close (click)="onSave()">Save</button>
     </div>
-
-    <br>
-    <span> my native Language is</span>
-    <md-select formControlName="nativeLang" placeholder="Select Native Language" class="dropdown">
-      <md-option *ngFor="let lang of langList" [value]="lang">
-        {{ lang }}
-      </md-option>
-    </md-select>
-
-    <span> but prefer to speak in</span>
-    <md-select formControlName="prefLang" placeholder="Select Prefered Language" class="dropdown">
-      <md-option *ngFor="let lang of langList" [value]="lang">
-        {{ lang }}
-      </md-option>
-    </md-select>
-    <br>
-
-    <div fxLayout="row" fxLayoutWrap>
-      <div fxLayout="row" fxLayout.xs="column">
-        <span class="lineHeight"> and i can read</span>
-        <div fxFlex>
-          <md2-select placeholder="Select Read Languages" formControlName="readLang" multiple=true class="dropdown">
-            <md2-option *ngFor="let lang of langList" [value]="lang">
-              {{ lang }}
-            </md2-option>
-          </md2-select>
-        </div>
-        <div fxFlex></div>
-      </div>
-      <div fxLayout="row" fxLayout.xs="column">
-        <span class="lineHeight">  , i can write</span>
-        <div fxFlex>
-          <md2-select placeholder="Select Write Languages" formControlName="writeLang" multiple=true class="dropdown">
-            <md2-option *ngFor="let lang of langList" [value]="lang">
-              {{ lang }}
-            </md2-option>
-          </md2-select>
-        </div>
-        <div fxFlex></div>
-      </div>
-      <div fxLayout="row" fxLayout.xs="column">
-        <span class="lineHeight"> and i can speak</span>
-        <div fxFlex>
-          <md2-select placeholder="Select Speak Languages" formControlName="speakLang" multiple=true class="dropdown">
-            <md2-option *ngFor="let lang of langList" [value]="lang">
-              {{ lang }}
-            </md2-option>
-          </md2-select>
-        </div>
-        <div fxFlex></div>
-      </div>
-    </div>
-    <br>
-
-
-  </form>
-  <div fxLayout="row">
-    <div fxFlex></div>
-    <button md-raised-button [disabled]="!userForm.valid" type="submit" color="primary" md-dialog-close (click)="onSave()">Save</button>
-  </div>
-</md-dialog-content>
+  </md-dialog-content>
+</div>

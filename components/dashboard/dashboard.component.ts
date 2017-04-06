@@ -1,3 +1,5 @@
+import { SkillsForm } from './../profileSectionForm/skillsDialogForm/skillsForm.component';
+import { WorkExperienceForm } from './../profileSectionForm/workExperienceForm/workExperienceForm.component';
 import { QualificationForm } from './../profileSectionForm/qualificationForm/qualificationForm.component';
 import { UserService } from './../../services/user.service';
 
@@ -5,7 +7,7 @@ import { AuthenticationService } from './../../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { PersonalInfoForm } from './../profileSectionForm/personalInfoForm/personalInfoForm.component';
-import { JobPreferenceInfoForm } from './../profileSectionForm/jobPreferenceForm/jobPreferenceForm.component';
+import { JobPreferenceForm } from './../profileSectionForm/jobPreferenceForm/jobPreferenceForm.component';
 import { ProjectsForm } from './../profileSectionForm/projectsForm/projectsForm.component';
 import { SamProfileCardService } from 'samarthyaWebcomponent/sam-profile/sam-profile-card/sam-profile-card.service';
 import { SamProfileSectionConfigService } from 'samarthyaWebcomponent/sam-profile/sam-profile-section/sam-profile-section-config.service';
@@ -43,7 +45,7 @@ export class DashboardComponent implements OnInit {
     this.profileSections = [
       { 'name': 'personalInfo', 'title': 'Personal Informations', 'align': 'row' },
       { 'name': 'qualifications', 'title': 'Educational Qualification', 'align': 'column' },
-      // { 'name': 'jobPreferences', 'title': 'Job Preferences', 'align': 'column' },
+      { 'name': 'jobPreferences', 'title': 'Job Preferences', 'align': 'column' },
       { 'name': 'experiences', 'title': 'Experiences', 'align': 'column' },
       { 'name': 'skills', 'title': 'Skills', 'align': 'row' },
       { 'name': 'projects', 'title': 'Projects', 'align': 'column' },
@@ -55,16 +57,18 @@ export class DashboardComponent implements OnInit {
   public currentSectionName: string;
   public personalInfoData: {} = {};
   public jobpreferenceInfoData: {} = {};
-  public qualificationsData: any[] = [];
   public projectsData: {} = {};
+  public skillsData: any[] = [];
+  public qualificationsData: any[] = [];
+  public workExperienceData: any[] = [];
+
   // this function will work when clicked on edit btn
   onEdit(sectionName: string) {
     switch (sectionName) {
       case 'personalInfo': this.openPersonalInfoDialog(); break;
       case 'qualifications': this.openQualificationsDialog(); break;
       case 'projects': this.openJobPrefereneceInfoDialog(); break;
-      case 'experiences': this.openProjectsDialog(); break;
-
+      case 'experiences': this.openWorkExperienceDialog(); break;
     }
   }
 
@@ -80,15 +84,34 @@ export class DashboardComponent implements OnInit {
 
   openPersonalInfoDialog() {
     let dialogRef = this.dialog.open(PersonalInfoForm, {
-      height: '80%',
-      // width:'100%',
+      height: '90%',
+      width: '80%',
       data: this.personalInfoData
     });
     dialogRef.afterClosed().subscribe(result => {
     })
   }
+   openWorkExperienceDialog() {
+    let dialogRef = this.dialog.open(WorkExperienceForm, {
+      height: '90%',
+      width: '80%',
+      data: this.workExperienceData
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    })
+  }
+
+  openSkillsDialog() {
+    let dialogRef = this.dialog.open(SkillsForm, {
+      height: '80%',
+      // width:'100%',
+      data: this.skillsData
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    })
+  }
   openJobPrefereneceInfoDialog() {
-    let dialogRef = this.dialog.open(JobPreferenceInfoForm, {
+    let dialogRef = this.dialog.open(JobPreferenceForm, {
       height: '80%',
       width: '80%',
       data: this.jobpreferenceInfoData
@@ -109,11 +132,19 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     // this will get the data for profile config
     this.SamProfileSectionConfigService.getProfileSectionConfig()
-      .subscribe((resEmployeeData: any) => this.profileConfig = resEmployeeData);
+      .subscribe((resEmployeeData: any) => {
+        this.profileConfig = resEmployeeData[0],
+      console.log(this.profileConfig)});
 
     // this will get the data for profile form config
-    this.SamProfileSectionConfigService.getProfileSectionFormConfig()
-      .subscribe((resEmployeeData: any) => this.profileFormConfig = resEmployeeData);
+    // this.SamProfileSectionConfigService.getProfileSectionFormConfig()
+    //   .subscribe((resEmployeeData: any) => this.profileFormConfig = resEmployeeData);
+
+    // this.SamProfileService.getProfile(JSON.parse(localStorage.getItem('currentUser'))['username'])
+    //   .subscribe((resEmployeeData: any) => { this.profileData = resEmployeeData, this.personalInfoData = resEmployeeData.personalInfo });
+
+    // this.profileData = this.SamProfileService.getProfileData(JSON.parse(localStorage.getItem('currentUser'))['username']);
+    // this.personalInfoData = this.profileData['personalInfo']
 
     this.SamProfileService.getProfile(JSON.parse(localStorage.getItem('currentUser'))['username'])
       .subscribe((resEmployeeData: any) => {
@@ -123,8 +154,17 @@ export class DashboardComponent implements OnInit {
           this.personalInfoData = resEmployeeData.personalInfo,
           this.qualificationsData = resEmployeeData.qualifications,
           this.projectsData = resEmployeeData.projects
+          this.skillsData = resEmployeeData.skills,
+          this.workExperienceData = resEmployeeData.experiences
+          
       });
 
+    // this.profileData = this.SamProfileService.getProfileData(JSON.parse(localStorage.getItem('currentUser'))['username'])
+
+    // this.profileData = resEmployeeData,
+    // this.personalInfoData = this.profileData['personalInfo'],
+    //   this.qualificationsData = this.profileData['qualifications']
+    // });
     this.SamProfileCardService.getProfileCard(JSON.parse(localStorage.getItem('currentUser'))['username'])
       .subscribe((resEmployeeData: any) => { this.profileCardData = resEmployeeData });
   }

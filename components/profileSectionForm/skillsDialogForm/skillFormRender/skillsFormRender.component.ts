@@ -1,0 +1,100 @@
+import { Component, OnInit, Inject, Input } from '@angular/core';
+import { MdDialog, MdDialogRef } from '@angular/material';
+import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Http, Headers, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import { Router } from '@angular/router';
+import { Data } from './../../../../services/data.service';
+import { Location } from '@angular/common';
+
+@Component({
+  selector: 'skills-form-render',
+  templateUrl: './skillsFormRender.component.html',
+  styleUrls: ['./skillsFormRender.component.css']
+})
+export class SkillsFormRender implements OnInit {
+
+  public userForm: FormGroup;
+
+  @Input()
+  public skillsData: any[];
+
+  levels = [
+    { name: 'BEGINNER', value: 'Beginner' },
+    { name: 'MODERATE', value: 'Moderate' },
+    { name: 'EXPERT', value: 'Expert' },
+  ];
+
+  constructor(private fb: FormBuilder, private location: Location, private http: Http, private router: Router, private data: Data) {
+  }
+
+  ngOnInit() {
+    if (this.skillsData.length > 0) {
+      this.userForm = this.fb.group({
+        AllSkills: this.fb.array(this.initSkillsFormWithData())
+      });
+    } else {
+      this.userForm = this.fb.group({
+        AllSkills: this.fb.array([this.initSkillsForm()])
+      });
+    }
+  }
+
+  initSkillsFormWithData() {
+    let skillEntries = this.skillsData.map((skill) => {
+      return this.fb.group({
+        name: [skill.name, [Validators.required]],
+        experience: [skill.experience, [Validators.required, Validators.pattern('[0-9]{0,3}')]],
+        expertise: [skill.expertise, [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
+      });
+    });
+
+    return skillEntries;
+  }
+
+  //to get the form 
+  initSkillsForm() {
+    return this.fb.group({
+      name: ['', [Validators.required]],
+      experience: ['', [Validators.required, Validators.pattern('[0-9]{0,3}')]],
+      expertise: ['', [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
+    });
+  }
+
+  addSkills() {
+    const control = <FormArray>this.userForm.controls['AllSkills'];
+    control.push(this.initSkillsForm());
+  }
+
+  removeSkills(i: number) {
+    const control = <FormArray>this.userForm.controls['AllSkills'];
+    control.removeAt(i);
+  }
+  onSave() {
+    let sectionName = "skills";
+    let currentuser = JSON.parse(localStorage.getItem('currentUser'));
+    this.http.patch('/profile', { sectionName: sectionName, username: currentuser.username, data: this.userForm.value.AllSkills })
+      .subscribe((response) => {
+        let res = response.json();
+        if (res.success) {
+          this.data.openSnackBar("Successfully updated", "OK");
+          location.reload();
+        }
+        else {
+          this.data.openSnackBar("Not updated", "Try later");
+
+        }
+
+      }, (err) => {
+        this.data.openSnackBar("Technical Error", "Try again");
+
+      });
+
+  }
+
+
+
+
+}
+

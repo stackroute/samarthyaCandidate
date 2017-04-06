@@ -1,3 +1,8 @@
+import { SkillsFormRender } from './components/profileSectionForm/skillsDialogForm/skillFormRender/skillsFormRender.component';
+import { WorkExperienceForm } from './components/profileSectionForm/workExperienceForm/workExperienceForm.component';
+import { JobPreferenceFormRender } from './components/profileSectionForm/jobPreferenceForm/jobPreferenceFormRender/jobPreferenceFormRender.component';
+import { JobPreferenceForm } from './components/profileSectionForm/jobPreferenceForm/jobPreferenceForm.component';
+import { SkillsForm } from './components/profileSectionForm/skillsDialogForm/skillsForm.component';
 import { MainComponent } from './mainComponent';
 import { ModuleWithProviders } from '@angular/core';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
@@ -25,7 +30,6 @@ import { CandidateRegisterComponent } from './components/loginComponent/candidat
 import { CandidateSearchComponent } from './components/candidate-search/candidate-search.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { PersonalInfoForm } from './components/profileSectionForm/personalInfoForm/personalInfoForm.component';
-import { JobPreferenceInfoForm } from './components/profileSectionForm/jobPreferenceForm/jobPreferenceForm.component';
 import { ProjectsForm } from './components/profileSectionForm/projectsForm/projectsForm.component';
 import { QualificationForm } from './components/profileSectionForm/qualificationForm/qualificationForm.component';
 import { NgModule } from '@angular/core';
@@ -44,68 +48,72 @@ import { SamProfileSectionComponent } from 'samarthyaWebcomponent/sam-profile/sa
 import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-profile-card/sam-profile-card.component';
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule,
-    MaterialModule.forRoot(),
-    Md2Module.forRoot(),
-    ReactiveFormsModule,
-    FlexLayoutModule,
-    AppRoutingModule,
-    SamarthyaWebComponentsModule,
-  ],
-  declarations: [
-    AboutUsComponent,
-    CandidateSearchComponent,
-    CandidateRegisterComponent,
-    DashboardComponent,
-    EmployersComponent,
-    EventPostComponent,
-    JobPostComponent,
-    LayoutComponent,
-    LoginComponent,
-    CandidateRegisterComponent,
-    ForgotPasswordComponent,
-    LoginFooterComponent,
-    LoginHeaderComponent,
-    PasswordResetComponent,
-    VerifyEmailComponent,
-    MainComponent,
-    routingComponents,
-    PersonalInfoForm,
-    QualificationForm,
-    JobPreferenceInfoForm,
-    ProjectsForm
+	imports: [
+		BrowserModule,
+		FormsModule,
+		HttpModule,
+		MaterialModule.forRoot(),
+		Md2Module.forRoot(),
+		ReactiveFormsModule,
+		FlexLayoutModule,
+		AppRoutingModule,
+		SamarthyaWebComponentsModule,
+	],
+	declarations: [
+		AboutUsComponent,
+		CandidateSearchComponent,
+		CandidateRegisterComponent,
+		DashboardComponent,
+		EmployersComponent,
+		EventPostComponent,
+		JobPostComponent,
+		LayoutComponent,
+		LoginComponent,
+		CandidateRegisterComponent,
+		ForgotPasswordComponent,
+		LoginFooterComponent,
+		LoginHeaderComponent,
+		PasswordResetComponent,
+		VerifyEmailComponent,
+		MainComponent,
+		routingComponents,
+		PersonalInfoForm,
+		SkillsForm,
+		WorkExperienceForm,
+		SkillsFormRender,
+    JobPreferenceForm,
+    JobPreferenceFormRender
 
-  ],
-  bootstrap: [MainComponent, PersonalInfoForm,JobPreferenceInfoForm, ProjectsForm],
-  exports: [
-    AboutUsComponent,
-    CandidateSearchComponent,
-    CandidateRegisterComponent,
-    DashboardComponent,
-    EmployersComponent,
-    EventPostComponent,
-    JobPostComponent,
-    LayoutComponent,
-    LoginComponent,
-    CandidateRegisterComponent,
-    ForgotPasswordComponent,
-    LoginFooterComponent,
-    LoginHeaderComponent,
-    PasswordResetComponent,
-    VerifyEmailComponent,
-    MainComponent,
-    routingComponents,
-    SamProfileCardComponent,
-    SamProfileSectionComponent,
-    SamProfileSectionFormComponent,
-    PersonalInfoForm,
-    QualificationForm,
-    JobPreferenceInfoForm,
-    ProjectsForm
-  ]
+	],
+	bootstrap: [MainComponent, PersonalInfoForm,SkillsForm,WorkExperienceForm,JobPreferenceForm],
+	exports: [
+		AboutUsComponent,
+		CandidateSearchComponent,
+		CandidateRegisterComponent,
+		DashboardComponent,
+		EmployersComponent,
+		EventPostComponent,
+		JobPostComponent,
+		LayoutComponent,
+		LoginComponent,
+		CandidateRegisterComponent,
+		ForgotPasswordComponent,
+		LoginFooterComponent,
+		LoginHeaderComponent,
+		PasswordResetComponent,
+		VerifyEmailComponent,
+		MainComponent,
+		routingComponents,
+		SamProfileCardComponent,
+		SamProfileSectionComponent,
+		SamProfileSectionFormComponent,
+		PersonalInfoForm,
+		SkillsForm,
+		WorkExperienceForm,
+		SkillsFormRender,
+    JobPreferenceForm,
+    JobPreferenceFormRender
+	]
 })
 
 export class CandidateModule {
