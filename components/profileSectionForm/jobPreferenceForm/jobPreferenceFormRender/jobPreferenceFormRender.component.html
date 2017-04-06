@@ -1,0 +1,81 @@
+<form [formGroup]="userForm">
+    <div formArrayName="AllJobPreference">
+    <div *ngFor="let address of userForm.controls.AllJobPreference.controls; let i=index" class="panel panel-default">
+      <button class="pull-right" *ngIf="userForm.controls.AllJobPreference.controls.length > 0" (click)="removeJobPreference(i)"> <i class="material-icons">close</i></button>
+<br>
+      <div class="panel-body" [formGroupName]="i">
+
+    <span>I am looking for a</span>
+    <md-input-container class="full-width">
+      <input mdInput formControlName="name" id="name" type="text" class="validate" placeholder="Role" />
+      <md-hint align="start" class="full-width">
+        <div *ngIf="!userForm.controls.AllJobPreference.controls[i].controls.name.valid && userForm.controls.AllJobPreference.controls[i].controls.name.touched" class="errorStyle">
+          Role is Required
+        </div>
+      </md-hint>
+    </md-input-container>
+
+     <span>opportunity as a </span>
+    <md-select placeholder="Engagement" formControlName="engagement" class="validate">
+                <md-option *ngFor="let engagement of engagementData" color="accent" [value]="engagement">
+                  {{ engagement}}
+                </md-option>
+    </md-select>
+
+    <span>,Starting from</span>
+    <!--Date of Birth-->
+    <md2-datepicker formControlName="availableFrom" id="availableFrom" placeholder="Select joining date" class="full-width">date</md2-datepicker>
+    <div *ngIf="!userForm.controls.AllJobPreference.controls[i].controls.availableFrom.valid && userForm.controls.AllJobPreference.controls[i].controls.availableFrom.touched" class="errorStyle">
+    </div>
+
+
+    <span>and expecting anual remuneration of </span>
+
+    <md-input-container class="full-width">
+      <input mdInput formControlName="expectedSalMin" id="min" type="text" class="validate" placeholder="Salary min" />
+      <md-hint align="start" class="full-width">
+        <div *ngIf="!userForm.controls.AllJobPreference.controls[i].controls.expectedSalMin.valid && userForm.controls.AllJobPreference.controls[i].controls.expectedSalMin.touched" class="errorStyle">
+          Salary is required
+        </div>
+      </md-hint>
+    </md-input-container>
+    <span> - </span>
+
+        <md-input-container>
+      <input mdInput formControlName="expectedSalMax" id="max" type="text" class="validate" placeholder="Salary max" />
+      <md-hint align="start" class="full-width">
+        <div *ngIf="!userForm.controls.AllJobPreference.controls[i].controls.expectedSalMax.valid && userForm.controls.AllJobPreference.controls[i].controls.expectedSalMax.touched" class="errorStyle">
+          Salary is required
+        </div>
+      </md-hint>
+    </md-input-container>
+
+    <span>,prefer to work at locations</span>
+
+         <md2-select  formControlName="locations" class="validate widthSmall" placeholder="locations*" [multiple]="true" #selectMultipleControl>
+                  <md2-option *ngFor="let location of locationData" value="{{location}}">{{location}}</md2-option>
+                </md2-select>
+        <div *ngIf="!userForm.controls.AllJobPreference.controls[i].controls.locations.valid && userForm.controls.AllJobPreference.controls[i].controls.locations.touched" class="errorStyle">
+          Invalid locations
+        </div>
+
+    <span> Interested to work on </span>
+
+
+    <md-input-container class="full-width">
+      <input mdInput formControlName="skills" id="skills" type="text" class="validate" placeholder="Skills" />
+      <md-hint align="start" class="full-width">
+        <div *ngIf="!userForm.controls.AllJobPreference.controls[i].controls.skills.valid && userForm.controls.AllJobPreference.controls[i].controls.skills.touched" class="errorStyle">
+          Skills is required
+        </div>
+      </md-hint>
+    </md-input-container>
+      </div>
+      <br><hr>
+    </div>
+    </div>
+    <!--</div>-->
+    <button md-raised-button type="submit" color="primary" (click)="addJobPreference()">ADD</button>
+  <button md-raised-button type="submit" color="primary" (click)="onSave()"  md-dialog-close>SAVE</button>
+
+  </form>

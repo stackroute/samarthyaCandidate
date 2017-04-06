@@ -3,10 +3,13 @@ import { WorkExperienceForm } from './../profileSectionForm/workExperienceForm/w
 import { QualificationForm } from './../profileSectionForm/qualificationForm/qualificationForm.component';
 import { SummaryForm } from './../profileSectionForm/summaryForm/summaryForm.component';
 import { UserService } from './../../services/user.service';
+
 import { AuthenticationService } from './../../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { PersonalInfoForm } from './../profileSectionForm/personalInfoForm/personalInfoForm.component';
+import { JobPreferenceForm } from './../profileSectionForm/jobPreferenceForm/jobPreferenceForm.component';
+import { ProjectsForm } from './../profileSectionForm/projectsForm/projectsForm.component';
 import { SamProfileCardService } from 'samarthyaWebcomponent/sam-profile/sam-profile-card/sam-profile-card.service';
 import { SamProfileSectionConfigService } from 'samarthyaWebcomponent/sam-profile/sam-profile-section/sam-profile-section-config.service';
 import { ProfileService } from 'samarthyaWebcomponent/sam-profile/sam-profile-section/sam-profile-section-data.service';
@@ -37,7 +40,7 @@ export class DashboardComponent implements OnInit {
     private SamProfileSectionConfigService: SamProfileSectionConfigService,
 
     // service for providing sam profile card
-    private SamProfileCardService: SamProfileCardService
+    private SamProfileCardService: SamProfileCardService,
   ) {
     // this will provide all section related info
     this.profileSections = [
@@ -55,6 +58,8 @@ export class DashboardComponent implements OnInit {
   public currentSectionAlign: string;
   public currentSectionName: string;
   public personalInfoData: {} = {};
+  public jobpreferenceInfoData: {} = {};
+  public projectsData: {} = {};
   public skillsData: any[] = [];
   public qualificationsData: any[] = [];
   public workExperienceData: any[] = [];
@@ -62,12 +67,13 @@ export class DashboardComponent implements OnInit {
 
   // this function will work when clicked on edit btn
   onEdit(sectionName: string) {
-    console.log(sectionName);
     switch (sectionName) {
       case 'personalInfo': this.openPersonalInfoDialog(); break;
       case 'qualifications': this.openQualificationsDialog(); break;
+      case 'jobPreferences': this.openJobPrefereneceInfoDialog(); break;
       case 'experiences': this.openWorkExperienceDialog(); break;
       case 'summary': this.openSummaryDialog(); break;
+      case 'projects': this.openProjectsDialog(); break;
       case 'skills':this.openSkillsDialog();break;
     }
   }
@@ -120,6 +126,24 @@ export class DashboardComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
     })
   }
+  openJobPrefereneceInfoDialog() {
+    let dialogRef = this.dialog.open(JobPreferenceForm, {
+      height: '80%',
+      width: '80%',
+      data: this.jobpreferenceInfoData
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    })
+  }
+  openProjectsDialog() {
+    let dialogRef = this.dialog.open(ProjectsForm, {
+      height: '80%',
+      width: '80%',
+      data: this.projectsData
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    })
+  }
 
   ngOnInit() {
     // this will get the data for profile config
@@ -141,11 +165,14 @@ export class DashboardComponent implements OnInit {
 
     this.SamProfileService.getProfile(JSON.parse(localStorage.getItem('currentUser'))['username'])
       .subscribe((resEmployeeData: any) => {
+        console.log(resEmployeeData)
         this.profileData = resEmployeeData,
+          this.jobpreferenceInfoData = resEmployeeData.jobPreferences,
           this.personalInfoData = resEmployeeData.personalInfo,
-          this.skillsData = resEmployeeData.skills,
           this.qualificationsData = resEmployeeData.qualifications,
-          this.workExperienceData = resEmployeeData.experiences,
+          this.projectsData = resEmployeeData.projects
+          this.skillsData = resEmployeeData.skills,
+          this.workExperienceData = resEmployeeData.experiences
           this.summaryData = resEmployeeData.summary
       });
 

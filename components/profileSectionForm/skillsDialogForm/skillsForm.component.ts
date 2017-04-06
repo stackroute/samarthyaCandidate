@@ -8,9 +8,10 @@ import { MdDialog, MdDialogRef } from '@angular/material';
   styleUrls: ['./skillsForm.component.css']
 })
 export class SkillsForm implements OnInit {
-  public skillsValue: any;
+  public skillsValue:any;
+  
+  constructor(public dialogRef: MdDialogRef<SkillsForm>) {}
 
-  constructor(public dialogRef: MdDialogRef<SkillsForm>) { }
   ngOnInit() {
     this.skillsValue = this.dialogRef.config.data;
   }

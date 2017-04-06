@@ -4,6 +4,8 @@ import { Http, Response } from '@angular/http';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { ProfileService } from 'samarthyaWebcomponent/sam-profile/sam-profile-section/sam-profile-section-data.service';
+
 
 @Component({
   selector: 'qualification-form',
@@ -36,7 +38,7 @@ export class QualificationForm implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.dialogRef.config.data);
+
   }
 
   onSave() {

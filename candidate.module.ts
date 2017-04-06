@@ -1,7 +1,9 @@
 import { SkillsFormRender } from './components/profileSectionForm/skillsDialogForm/skillFormRender/skillsFormRender.component';
 import { WorkExperienceForm } from './components/profileSectionForm/workExperienceForm/workExperienceForm.component';
+import { JobPreferenceFormRender } from './components/profileSectionForm/jobPreferenceForm/jobPreferenceFormRender/jobPreferenceFormRender.component';
+import { JobPreferenceForm } from './components/profileSectionForm/jobPreferenceForm/jobPreferenceForm.component';
 import { SummaryForm } from './components/profileSectionForm/summaryForm/summaryForm.component';
-
+import { ProjectsFormRender } from './components/profileSectionForm/projectsForm/projectsFormRender/projectsFormRender.component';
 import { SkillsForm } from './components/profileSectionForm/skillsDialogForm/skillsForm.component';
 import { MainComponent } from './mainComponent';
 import { ModuleWithProviders } from '@angular/core';
@@ -30,6 +32,7 @@ import { CandidateRegisterComponent } from './components/loginComponent/candidat
 import { CandidateSearchComponent } from './components/candidate-search/candidate-search.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { PersonalInfoForm } from './components/profileSectionForm/personalInfoForm/personalInfoForm.component';
+import { ProjectsForm } from './components/profileSectionForm/projectsForm/projectsForm.component';
 import { QualificationForm } from './components/profileSectionForm/qualificationForm/qualificationForm.component';
 import { NgModule } from '@angular/core';
 import { MaterialModule } from '@angular/material';
@@ -81,9 +84,13 @@ import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-p
     PersonalInfoForm,
     QualificationForm,
     WorkExperienceForm,
-    SummaryForm
+    SummaryForm,
+     JobPreferenceForm,
+    JobPreferenceFormRender,
+    ProjectsFormRender,
+    ProjectsForm
   ],
-  bootstrap: [MainComponent, PersonalInfoForm, SkillsForm, WorkExperienceForm, SummaryForm],
+  bootstrap: [MainComponent, PersonalInfoForm, SkillsForm, WorkExperienceForm, SummaryForm,JobPreferenceForm,ProjectsForm],
   exports: [
     SkillsForm,
     SkillsFormRender,
@@ -109,7 +116,11 @@ import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-p
     PersonalInfoForm,
     QualificationForm,
     WorkExperienceForm,
-    SummaryForm
+    SummaryForm,
+     JobPreferenceForm,
+     ProjectsForm,
+    JobPreferenceFormRender,
+    ProjectsFormRender
   ]
 })
 

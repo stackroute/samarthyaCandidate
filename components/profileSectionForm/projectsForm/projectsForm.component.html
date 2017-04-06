@@ -1,0 +1,17 @@
+<h2 md-dialog-title>
+  <div fxLayout="row">
+    <div>Edit Project Information</div>
+    <div fxFlex></div>
+    <div>
+      <button md-icon-button class="closeBtn" md-dialog-close>
+          <i class="material-icons">close</i>
+        </button>
+    </div>
+  </div>
+</h2>
+
+<md-dialog-content>
+  <projects-form-render [projectsData]="projectsValue"></projects-form-render>
+  <div fxLayout="row">
+    <div fxFlex></div>
+  </div>

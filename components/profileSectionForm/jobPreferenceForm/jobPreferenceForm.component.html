@@ -1,0 +1,21 @@
+<h2 md-dialog-title>
+
+  <div fxLayout="row">
+    <div>Edit Job Preference Information</div>
+    <div fxFlex></div>
+    <div>
+      <button md-icon-button class="closeBtn" md-dialog-close>
+          <i class="material-icons">close</i>
+        </button>
+
+    </div>
+  </div>
+
+</h2>
+<md-dialog-content>
+  <jobPreference-form-render [jobPreferenceData]="jobPreferenceValue"></jobPreference-form-render>
+  <div fxLayout="row">
+    <div fxFlex></div>
+  </div>
+
+</md-dialog-content>
