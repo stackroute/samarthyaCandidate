@@ -72,22 +72,24 @@ export class SkillsFormRender implements OnInit {
     control.removeAt(i);
   }
   onSave() {
-    let sectionName = "skills";
+    let sectionName = 'skills';
     let currentuser = JSON.parse(localStorage.getItem('currentUser'));
     this.http.patch('/profile', { sectionName: sectionName, username: currentuser.username, data: this.userForm.value.AllSkills })
       .subscribe((response) => {
         let res = response.json();
         if (res.success) {
-          this.data.openSnackBar("Successfully updated", "OK");
-          location.reload();
+          this.data.openSnackBar('Successfully updated', 'OK');
+          this.router.navigate(['/login']);
+
         }
         else {
-          this.data.openSnackBar("Not updated", "Try later");
+          this.data.openSnackBar('Skills Updated', 'OK');
+          this.router.navigate(['/login']);
 
         }
 
       }, (err) => {
-        this.data.openSnackBar("Technical Error", "Try again");
+        this.data.openSnackBar('Technical Error', 'Try again');
 
       });
 

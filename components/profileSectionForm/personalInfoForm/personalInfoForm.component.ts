@@ -126,10 +126,9 @@ export class PersonalInfoForm implements OnInit {
 
   onSave() {
     // console.log(this.userForm.value);
-
     let obj = {
-      identity: [{ idType: "Aadhaar", value: this.userForm.value.aadhar },
-      { idType: "RegNumber", value: '' }]
+      identity: [{ idType: 'Aadhaar', value: this.userForm.value.aadhar },
+      { idType: 'RegNumber', value: this.dialogRef.config.data.identity[1]['value'] }]
     }
 
     let personalInfoData = this.dialogRef.config.data;
