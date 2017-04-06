@@ -2,7 +2,7 @@
   <form [formGroup]="userForm">
     <div formArrayName="AllQualifications">
       <div *ngFor="let address of userForm.controls.AllQualifications.controls; let i=index" class="panel panel-default">
-      <button class="pull-right" *ngIf="userForm.controls.AllQualifications.controls.length >= 1" (click)="removeQualifications(i)"> <i class="material-icons">close</i></button>
+      <button class="pull-right"  md-icon-button  *ngIf="userForm.controls.AllQualifications.controls.length >= 1" (click)="removeQualifications(i)"> <i class="material-icons">close</i></button>
  <br>
       <div class="panel-body" [formGroupName]="i">
     <span>I am </span>
@@ -43,7 +43,7 @@
 
     <span>in the year</span>
     Batch
-    <md2-datepicker formControlName="batch" id="batch" placeholder="Batch" class="full-width">Batch</md2-datepicker>
+    <md2-datepicker formControlName="batch" id="batch" [min]="minDate" [max]="maxDate" placeholder="Batch" class="full-width">Batch</md2-datepicker>
     <div *ngIf="!userForm.controls.AllQualifications.controls[i].controls.batch.valid && userForm.controls.AllQualifications.controls[i].controls.batch.touched" class="errorStyle">
     </div>
 
