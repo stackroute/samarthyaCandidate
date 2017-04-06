@@ -83,7 +83,7 @@ export class WorkExperienceFormRender implements OnInit {
       experience.push(obj);
     })
     let currentuser = JSON.parse(localStorage.getItem('currentUser'));
-    this.http.patch('/profile', { sectionName: sectionName, username: currentuser.username, data: this.userForm.value.AllWorkExperience })
+    this.http.patch('/profile', { sectionName: sectionName, username: currentuser.username, data: experience })
       .subscribe((response) => {
         let res = response.json();
         if (res.success) {
