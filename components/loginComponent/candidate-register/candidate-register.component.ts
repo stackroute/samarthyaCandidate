@@ -220,7 +220,8 @@ export class CandidateRegisterComponent implements OnInit {
         { idType: "RegNumber", value: userdata.get('regId').value }],
         createdBy: this.createdBy,
         updatedBy: this.createdBy,
-        profilePic: profilePic
+        profilePic: profilePic,
+        summaryText: '',
       },
       userCredentialsData: {
         username: userdata.get('email').value, password: userdata.get('password').value,

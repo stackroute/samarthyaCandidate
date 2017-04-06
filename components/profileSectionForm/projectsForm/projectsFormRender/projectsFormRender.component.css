@@ -1,0 +1,45 @@
+body{
+    margin: 0px;
+    padding: 0px;
+}
+span{
+    /*margin-left: 10px;*/
+    margin-right: 10px;
+    color: dimgray;
+    font-size: 20px;
+}
+.toolbar{
+    margin: 0px;
+    padding: 0px;
+}
+
+.header{
+   margin: 0px;
+    padding: 40px;
+}
+.closeBtn{
+ top:-10px;
+  }
+  input{
+      font-size: 20px;
+  }
+
+
+.errorStyle {
+    color: #F44336;
+}
+input{
+    min-width: 80px;
+}
+
+.pull-right{
+    float: right;
+}
+
+.panel-body{
+    padding: 5px;
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+ -moz-box-shadow:    3px 3px 5px 6px #ccc;
+ box-shadow:         3px 3px 5px 6px #ccc;
+    
+}

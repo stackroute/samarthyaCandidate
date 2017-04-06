@@ -1,0 +1,85 @@
+body{
+    margin: 0px;
+    padding: 0px;
+}
+span{
+    /*margin-left: 10px;*/
+    margin-right: 10px;
+    color: dimgray;
+    font-size: 20px;
+      margin-top: 16px;
+    margin-bottom: 16px;
+}
+.toolbar{
+    margin: 0px;
+    padding: 0px;
+}
+
+.header{
+   margin: 0px;
+    padding: 40px;
+}
+.closeBtn{
+ top:-10px;
+  }
+  input{
+      font-size: 20px;
+  }
+.errorStyle {
+    color: #F44336;
+}
+input{
+    min-width: 80px;
+}
+.dropdown{
+    /*height: 62px;*/
+    margin-top: 16px;
+    margin-bottom: 20px;
+    width: 220px;
+}
+.lineHeight{
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+.toggleSwitch{
+    max-width: 50px;
+}
+.phone{
+    width:120px;
+}
+.pincode{
+    width: 80px;
+}
+.textarea{
+    width:100%;
+}
+
+
+@media (min-width: 10px) {
+  
+.location{
+    max-width: 250px
+}
+
+}
+
+
+/*for Medium screens*/
+
+@media (min-width: 480px) {
+  
+.location{
+    width: 250px
+}
+
+
+
+/*for large screens*/
+
+@media (min-width: 768px) {
+   
+.location{
+    min-width: 300px
+}
+}
+}

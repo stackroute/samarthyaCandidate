@@ -1,6 +1,7 @@
 import { SkillsForm } from './../profileSectionForm/skillsDialogForm/skillsForm.component';
 import { WorkExperienceForm } from './../profileSectionForm/workExperienceForm/workExperienceForm.component';
 import { QualificationForm } from './../profileSectionForm/qualificationForm/qualificationForm.component';
+import { SummaryForm } from './../profileSectionForm/summaryForm/summaryForm.component';
 import { UserService } from './../../services/user.service';
 
 import { AuthenticationService } from './../../services/authentication.service';
@@ -43,6 +44,7 @@ export class DashboardComponent implements OnInit {
   ) {
     // this will provide all section related info
     this.profileSections = [
+      { 'name': 'summary', 'title': 'Summary', 'align': 'row' },
       { 'name': 'personalInfo', 'title': 'Personal Informations', 'align': 'row' },
       { 'name': 'qualifications', 'title': 'Educational Qualification', 'align': 'column' },
       { 'name': 'jobPreferences', 'title': 'Job Preferences', 'align': 'column' },
@@ -61,14 +63,17 @@ export class DashboardComponent implements OnInit {
   public skillsData: any[] = [];
   public qualificationsData: any[] = [];
   public workExperienceData: any[] = [];
+  public summaryData: {} = {};
 
   // this function will work when clicked on edit btn
   onEdit(sectionName: string) {
     switch (sectionName) {
       case 'personalInfo': this.openPersonalInfoDialog(); break;
       case 'qualifications': this.openQualificationsDialog(); break;
-      case 'projects': this.openJobPrefereneceInfoDialog(); break;
+      case 'jobPreferences': this.openJobPrefereneceInfoDialog(); break;
       case 'experiences': this.openWorkExperienceDialog(); break;
+      case 'summary': this.openSummaryDialog(); break;
+      case 'projects': this.openProjectsDialog(); break;
     }
   }
 
@@ -82,16 +87,26 @@ export class DashboardComponent implements OnInit {
     })
   }
 
+  openSummaryDialog() {
+    let dialogRef = this.dialog.open(SummaryForm, {
+      // height: '80%',
+      width: '80%',
+      data: this.summaryData
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    })
+  }
+
   openPersonalInfoDialog() {
     let dialogRef = this.dialog.open(PersonalInfoForm, {
-      height: '90%',
+      // height: '90%',
       width: '80%',
       data: this.personalInfoData
     });
     dialogRef.afterClosed().subscribe(result => {
     })
   }
-   openWorkExperienceDialog() {
+  openWorkExperienceDialog() {
     let dialogRef = this.dialog.open(WorkExperienceForm, {
       height: '90%',
       width: '80%',
@@ -134,7 +149,8 @@ export class DashboardComponent implements OnInit {
     this.SamProfileSectionConfigService.getProfileSectionConfig()
       .subscribe((resEmployeeData: any) => {
         this.profileConfig = resEmployeeData[0],
-      console.log(this.profileConfig)});
+          console.log(this.profileConfig)
+      });
 
     // this will get the data for profile form config
     // this.SamProfileSectionConfigService.getProfileSectionFormConfig()
@@ -156,7 +172,7 @@ export class DashboardComponent implements OnInit {
           this.projectsData = resEmployeeData.projects
           this.skillsData = resEmployeeData.skills,
           this.workExperienceData = resEmployeeData.experiences
-          
+          this.summaryData = resEmployeeData.summary
       });
 
     // this.profileData = this.SamProfileService.getProfileData(JSON.parse(localStorage.getItem('currentUser'))['username'])

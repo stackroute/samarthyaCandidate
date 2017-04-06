@@ -1,0 +1,29 @@
+<h2 md-dialog-title>
+
+  <div fxLayout="row">
+    <div>Edit Summary</div>
+    <div fxFlex></div>
+    <div>
+      <button md-icon-button class="closeBtn" md-dialog-close>
+          <i class="material-icons">close</i>
+        </button>
+
+    </div>
+  </div>
+
+</h2>
+<div>
+  <md-dialog-content>
+    <form [formGroup]="userForm">
+  
+      <md-input-container class="textarea">
+        <textarea mdInput formControlName="summaryText" placeholder="Summary"></textarea>
+      </md-input-container>
+
+    </form>
+    <div fxLayout="row">
+      <div fxFlex></div>
+      <button md-raised-button [disabled]="!userForm.valid" type="submit" color="primary" md-dialog-close (click)="onSave()">Save</button>
+    </div>
+  </md-dialog-content>
+</div>

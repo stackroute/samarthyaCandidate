@@ -11,65 +11,7 @@
 </h2>
 
 <md-dialog-content>
-  <form [formGroup]="userForm">
-    <span>I have done</span>
-    <md-input-container class="full-width">
-      <input mdInput formControlName="name" id="name" type="text" class="validate" placeholder="Project Name" />
-      <md-hint align="start" class="full-width">
-        <div *ngIf="userForm.get('name').hasError('required') && userForm.get('name').touched" class="errorStyle">
-          Project Name is required
-        </div>
-      </md-hint>
-    </md-input-container>
-
-    <span>project with duration from  </span>
-        <md2-datepicker formControlName="durFrom" id="durFrom" placeholder="Start Date" class="full-width">date</md2-datepicker>
-    <div *ngIf="userForm.get('durFrom').hasError('required') && userForm.get('durFrom').touched" class="errorStyle">
-      Start date is required
-    </div>
-
-    <span>to </span>
-        <md2-datepicker formControlName="durTo" id="durTo" placeholder="End Date" class="full-width">date</md2-datepicker>
-    <div *ngIf="userForm.get('durTo').hasError('required') && userForm.get('durTo').touched"  class="errorStyle">
-      End date is required
-    </div>
-
-
-    <span> in </span>
-    <md-input-container class="full-width">
-      <input mdInput formControlName="location" id="location" type="text" class="validate" placeholder="Location" />
-      <md-hint align="start" class="full-width">
-        <div *ngIf="userForm.get('location').hasError('required') && userForm.get('location').touched" class="errorStyle">
-          Location is required
-        </div>
-      </md-hint>
-    </md-input-container>
-
-    <span>with the skills of </span>
-    <md-input-container class="full-width">
-      <input mdInput formControlName="skills" id="skills" type="text" class="validate" placeholder="Skills (seperate the skills with , )"
-      />
-      <md-hint align="start" class="full-width">
-        <div *ngIf="userForm.get('skills').hasError('required') && userForm.get('skills').touched" class="errorStyle">
-          Skill is required
-        </div>
-      </md-hint>
-    </md-input-container>
-
-
-    <span>as a role of </span>
-    <md-input-container class="full-width">
-      <input mdInput formControlName="role" id="role" type="text" class="validate" placeholder="Role"
-      />
-      <md-hint align="start" class="full-width">
-        <div *ngIf="userForm.get('role').hasError('required') && userForm.get('role').touched" class="errorStyle">
-          Role is required
-        </div>
-      </md-hint>
-    </md-input-container>
-  </form>
+  <projects-form-render [projectsData]="projectsValue"></projects-form-render>
   <div fxLayout="row">
     <div fxFlex></div>
-    <button md-raised-button type="submit" color="primary" md-dialog-close (click)="onSave()">Save</button>
   </div>
-</md-dialog-content>

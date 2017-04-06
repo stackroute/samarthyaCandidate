@@ -13,8 +13,8 @@ export class SkillsForm implements OnInit {
   constructor(public dialogRef: MdDialogRef<SkillsForm>) {}
 
   ngOnInit() {
-    this.skillsValue=this.dialogRef.config.data;
+    this.skillsValue = this.dialogRef.config.data;
   }
-  
+
 }
 

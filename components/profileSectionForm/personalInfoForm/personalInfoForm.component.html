@@ -52,7 +52,8 @@
       <span>and my alternate email is</span>
 
       <md-input-container class="full-width">
-        <input mdInput formControlName="altemail" id="altemail" type="text" class="validate" placeholder="Alternate Email (Optional)" />
+        <input mdInput formControlName="altemail" id="altemail" type="text" class="validate" placeholder="Alternate Email (Optional)"
+        />
         <md-hint align="start" class="full-width">
           <div *ngIf="userForm.get('altemail').hasError('pattern') && userForm.get('altemail')" class="errorStyle">
             Invalid email
@@ -78,7 +79,8 @@
       <span> or </span>
 
       <md-input-container class="">
-        <input mdInput formControlName="phone" id="phone" type="text" class="validate" placeholder="Alternate Contact No.(Optional)" />
+        <input mdInput formControlName="phone" id="phone" type="text" class="validate" placeholder="Alternate Contact No.(Optional)"
+        />
         <md-hint align="start" class="full-width">
           <div *ngIf="userForm.get('phone').hasError('pattern') && userForm.get('phone')" class="errorStyle">
             Invalid Phone No.
@@ -103,11 +105,11 @@
 
         <span> and i live at </span>
         <md-input-container>
-          <input mdInput formControlName="address1" type="text" class="validate" placeholder="Address Line 1" />
+          <input mdInput formControlName="address1" type="text" class="validate" placeholder="Address Line 1 (Optional)" />
         </md-input-container>
 
         <md-input-container>
-          <input mdInput formControlName="address2" type="text" class="validate" placeholder="Address Line 2" />
+          <input mdInput formControlName="address2" type="text" class="validate" placeholder="Address Line 2 (Optional)" />
         </md-input-container>
         <!--location area-->
         <md-select formControlName="location" [(ngModel)]="location" placeholder="Select Location" class="dropdown location">

@@ -6,7 +6,6 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
 import { Data } from './../../../../services/data.service';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'jobPreference-form-render',
@@ -20,8 +19,10 @@ export class JobPreferenceFormRender implements OnInit {
   @Input()
   public jobPreferenceData: any[];
 
+  public engagementData = ['Full Time', 'Part Time', 'Flexible'];
+  public locationData = ['Bangalore', 'Pune', 'Delhi', 'Gurgaon', 'Chennai'];
 
-  constructor(private fb: FormBuilder, private location: Location, private http: Http, private router: Router, private data: Data) {
+  constructor(private fb: FormBuilder, private http: Http, private router: Router, private data: Data) {
   }
 
   ngOnInit() {
@@ -39,13 +40,13 @@ export class JobPreferenceFormRender implements OnInit {
   initJobsPreferenceFormWithData() {
     let jobPreferenceEntries = this.jobPreferenceData.map((jobPreference) => {
       return this.fb.group({
-          jobRole: [jobPreference.jobRole, [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
-      engagement: [jobPreference.engagement, [Validators.required, Validators.pattern(/[a-z]/)]],
-      expectedSalMin: [jobPreference.expectedSalMin, [Validators.required, Validators.pattern(/[0-9]/)]],
-      expectedSalMax: [jobPreference.expectedSalMax, [Validators.required, Validators.pattern(/[0-9]/)]],
-      skills: [jobPreference.skills, [Validators.required, Validators.pattern('[a-zA-Z]')]],
-      availableFrom: [jobPreference.availableFrom, [Validators.required]],
-      locations: [jobPreference.locations, [Validators.required]]
+        name: [jobPreference.name, [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
+        engagement: [jobPreference.engagement, [Validators.required, Validators.pattern(/[a-z]/)]],
+        expectedSalMin: [jobPreference.expectedSal.min, [Validators.required, Validators.pattern(/[0-9]/)]],
+        expectedSalMax: [jobPreference.expectedSal.max, [Validators.required, Validators.pattern(/[0-9]/)]],
+        skills: [jobPreference.skills, [Validators.required, Validators.pattern('[a-zA-Z]')]],
+        availableFrom: [jobPreference.availablefrom, [Validators.required]],
+        locations: [jobPreference.locations, [Validators.required]]
       });
     });
 
@@ -55,7 +56,7 @@ export class JobPreferenceFormRender implements OnInit {
   //to get the form 
   initJobPreferenceForm() {
     return this.fb.group({
-     jobRole: ['', [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
+      name: ['', [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
       engagement: ['', [Validators.required, Validators.pattern(/[a-z]/)]],
       expectedSalMin: ['', [Validators.required, Validators.pattern(/[0-9]/)]],
       expectedSalMax: ['', [Validators.required, Validators.pattern(/[0-9]/)]],
@@ -76,13 +77,27 @@ export class JobPreferenceFormRender implements OnInit {
   }
   onSave() {
     let sectionName = "jobPreferences";
+     let jobs:any=[];
+    this.userForm.value.AllJobPreference.forEach(function(d:any){
+      let skill;
+      if(d.skills.includes(',')){
+        skill=d.skills.split(',');
+      }
+      else{
+        skill=d.skills;
+      }
+  
+      let obj={'name':d.name,'expectedSal':{'min':d.expectedSalMin,'max':d.expectedSalMax},'engagement':d.engagement,'skills':skill,'availablefrom':d.availableFrom,'locations':d.locations}
+      jobs.push(obj);
+    })
+    let jobPref = { looking: true, jobRoles: jobs }
     let currentuser = JSON.parse(localStorage.getItem('currentUser'));
-    this.http.patch('/profile', { sectionName: sectionName, username: currentuser.username, data: this.userForm.value.AllJobPreference })
+    this.http.patch('/profile', { sectionName: sectionName, username: currentuser.username, data: jobPref })
       .subscribe((response) => {
         let res = response.json();
         if (res.success) {
           this.data.openSnackBar("Successfully updated", "OK");
-          location.reload();
+           this.router.navigate(['/login']);
         }
         else {
           this.data.openSnackBar("Not updated", "Try later");
@@ -95,9 +110,6 @@ export class JobPreferenceFormRender implements OnInit {
       });
 
   }
-
-
-
 
 }
 
