@@ -74,8 +74,7 @@
       <br><hr>
     </div>
     </div>
-    <!--</div>-->
     <button md-raised-button type="submit" color="primary" (click)="addJobPreference()">ADD</button>
-  <button md-raised-button type="submit" color="primary" (click)="onSave()"  md-dialog-close>SAVE</button>
+  <button md-raised-button type="submit" color="primary" (click)="onSave()" [disabled]="!userForm.valid"  md-dialog-close>SAVE</button>
 
   </form>

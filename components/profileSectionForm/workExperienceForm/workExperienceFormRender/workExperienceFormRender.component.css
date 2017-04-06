@@ -31,3 +31,7 @@ span{
 input{
     min-width: 80px;
 }
+
+.pull-right{
+    float: right;
+}

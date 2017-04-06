@@ -7,98 +7,11 @@
       <button md-icon-button class="closeBtn" md-dialog-close>
           <i class="material-icons">close</i>
         </button>
+
     </div>
   </div>
+
 </h2>
 <md-dialog-content>
-  <form [formGroup]="userForm">
-    <span>I am </span>
-    <md-input-container class="full-width">
-      <input mdInput formControlName="name" id="name" type="text" class="validate" placeholder="Qualification" />
-      <md-hint align="start" class="full-width">
-        <div *ngIf="userForm.get('name').hasError('required') && userForm.get('name').touched" class="errorStyle">
-          Qualification Name is Required
-        </div>
-      </md-hint>
-    </md-input-container>
-
-    <span>I have done my </span>
-    <md-input-container class="full-width">
-      <input mdInput formControlName="academictype" id="academictype" type="text" class="validate" placeholder="Academictype" />
-      <md-hint align="start" class="full-width">
-        <div *ngIf="userForm.get('academictype').hasError('required') && userForm.get('academictype').touched" class="errorStyle">
-          Academictype is Required
-        </div>
-      </md-hint>
-    </md-input-container>
-
-    <span> in </span>
-    <md-input-container class="full-width">
-      <input mdInput formControlName="subject" id="subject" type="text" class="validate" placeholder="Subject" />
-      <md-hint align="start" class="full-width">
-        <div *ngIf="userForm.get('subject').hasError('required') && userForm.get('subject').touched" class="errorStyle">
-          Subject is Required
-        </div>
-      </md-hint>
-    </md-input-container>
-
-    <span>in the year</span>
-    <!--Batch-->
-    <md2-datepicker formControlName="batch" id="batch" placeholder="Batch" class="full-width">Batch</md2-datepicker>
-    <div *ngIf="userForm.get('batch').hasError('required')" class="errorStyle">
-    </div>
-
-
-    <span> with final score of </span>
-
-    <md-input-container class="full-width">
-      <input mdInput formControlName="result" id="result" type="text" class="validate" placeholder="Score" />
-      <md-hint align="start" class="full-width">
-        <div *ngIf="userForm.get('result').hasError('required') && userForm.get('result').touched" class="errorStyle">
-          score is required
-        </div>
-      </md-hint>
-    </md-input-container>
-
-    <span> I did it from </span>
-
-    <md-input-container class="full-width">
-      <input mdInput formControlName="institute" id="institute" type="text" class="validate" placeholder="Institute" />
-      <md-hint align="start" class="full-width">
-        <div *ngIf="userForm.get('institute').hasError('required') && userForm.get('institute').touched" class="errorStyle">
-          Institute Name is required
-        </div>
-      </md-hint>
-    </md-input-container>
-
-    <span> which is affiliated to </span>
-
-    <md-input-container class="full-width">
-      <input mdInput formControlName="affiliation" id="affiliation" type="text" class="validate" placeholder="Affiliation" />
-      <md-hint align="start" class="full-width">
-        <div *ngIf="userForm.get('affiliation').hasError('required') && userForm.get('affiliation').touched" class="errorStyle">
-          Affiliation is required
-        </div>
-      </md-hint>
-    </md-input-container>
-
-    <span> and is located in </span>
-
-    <md-input-container class="full-width">
-      <input mdInput formControlName="location" id="location" type="text" class="validate" placeholder="City Name" />
-      <md-hint align="start" class="full-width">
-        <div *ngIf="userForm.get('location').hasError('required') && userForm.get('location').touched" class="errorStyle">
-          Location is required
-        </div>
-        <div *ngIf="userForm.get('location').hasError('pattern') && userForm.get('location')" class="errorStyle">
-          Invalid Location
-        </div>
-      </md-hint>
-    </md-input-container>
-
-  </form>
-  <div fxLayout="row">
-    <div fxFlex></div>
-    <button md-raised-button [disabled]="!userForm.valid" type="submit" color="primary" md-dialog-close (click)="onSave()">Save</button>
-  </div>
+ <qualification-form-render [qualificationsData]="qualificationValue"></qualification-form-render>
 </md-dialog-content>
