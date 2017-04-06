@@ -13,6 +13,7 @@
   },
   "private": true,
   "dependencies": {
+    "angular2-infinite-scroll": "^0.3.4",
     "@angular/common": "^2.4.0",
     "@angular/compiler": "^2.4.0",
     "@angular/core": "^2.4.0",

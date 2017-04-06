@@ -74,7 +74,7 @@ export class DashboardComponent implements OnInit {
       case 'experiences': this.openWorkExperienceDialog(); break;
       case 'summary': this.openSummaryDialog(); break;
       case 'projects': this.openProjectsDialog(); break;
-      case 'skills':this.openSkillsDialog();break;
+      case 'skills': this.openSkillsDialog(); break;
     }
   }
 
@@ -171,9 +171,9 @@ export class DashboardComponent implements OnInit {
           this.personalInfoData = resEmployeeData.personalInfo,
           this.qualificationsData = resEmployeeData.qualifications,
           this.projectsData = resEmployeeData.projects
-          this.skillsData = resEmployeeData.skills,
+        this.skillsData = resEmployeeData.skills,
           this.workExperienceData = resEmployeeData.experiences
-          this.summaryData = resEmployeeData.summary
+        this.summaryData = resEmployeeData.summary
       });
 
     // this.profileData = this.SamProfileService.getProfileData(JSON.parse(localStorage.getItem('currentUser'))['username'])

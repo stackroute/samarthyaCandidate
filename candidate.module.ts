@@ -85,12 +85,12 @@ import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-p
     QualificationForm,
     WorkExperienceForm,
     SummaryForm,
-     JobPreferenceForm,
+    JobPreferenceForm,
     JobPreferenceFormRender,
     ProjectsFormRender,
     ProjectsForm
   ],
-  bootstrap: [MainComponent, PersonalInfoForm, SkillsForm, WorkExperienceForm, SummaryForm,JobPreferenceForm,ProjectsForm],
+  bootstrap: [MainComponent, PersonalInfoForm, SkillsForm, WorkExperienceForm, SummaryForm, JobPreferenceForm, ProjectsForm],
   exports: [
     SkillsForm,
     SkillsFormRender,
@@ -117,8 +117,8 @@ import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-p
     QualificationForm,
     WorkExperienceForm,
     SummaryForm,
-     JobPreferenceForm,
-     ProjectsForm,
+    JobPreferenceForm,
+    ProjectsForm,
     JobPreferenceFormRender,
     ProjectsFormRender
   ]
