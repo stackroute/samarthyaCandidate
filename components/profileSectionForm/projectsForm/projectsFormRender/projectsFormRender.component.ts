@@ -78,11 +78,12 @@ export class ProjectsFormRender implements OnInit {
     let currentuser = JSON.parse(localStorage.getItem('currentUser'));
     let projects:any=[];
     this.userForm.value.AllProjects.forEach(function(d:any){
-      let skill;
+      let skill=[];
       if(d.skills.includes(',')){
         skill=d.skills.split(',');
       }
       else{
+        
         skill=d.skills;
       }
   
