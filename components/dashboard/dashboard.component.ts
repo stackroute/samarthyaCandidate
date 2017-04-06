@@ -81,7 +81,7 @@ export class DashboardComponent implements OnInit {
   openQualificationsDialog() {
     let dialogRef = this.dialog.open(QualificationForm, {
       height: '80%',
-      // width:'100%',
+       width:'80%',
       data: this.qualificationsData
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -120,7 +120,7 @@ export class DashboardComponent implements OnInit {
   openSkillsDialog() {
     let dialogRef = this.dialog.open(SkillsForm, {
       height: '80%',
-      // width:'100%',
+       width:'80%',
       data: this.skillsData
     });
     dialogRef.afterClosed().subscribe(result => {

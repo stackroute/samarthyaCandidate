@@ -8,6 +8,14 @@ span{
     color: dimgray;
     font-size: 20px;
 }
+span{
+    /*margin-left: 10px;*/
+    margin-right: 10px;
+    color: dimgray;
+    font-size: 20px;
+      margin-top: 16px;
+    margin-bottom: 16px;
+}
 .toolbar{
     margin: 0px;
     padding: 0px;
@@ -30,4 +38,8 @@ span{
 }
 input{
     min-width: 80px;
+}
+
+.pull-right{
+    float: right;
 }

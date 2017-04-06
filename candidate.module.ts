@@ -1,3 +1,4 @@
+import { WorkExperienceFormRender } from './components/profileSectionForm/workExperienceForm/workExperienceFormRender/workExperienceFormRender.component';
 import { SkillsFormRender } from './components/profileSectionForm/skillsDialogForm/skillFormRender/skillsFormRender.component';
 import { WorkExperienceForm } from './components/profileSectionForm/workExperienceForm/workExperienceForm.component';
 import { JobPreferenceFormRender } from './components/profileSectionForm/jobPreferenceForm/jobPreferenceFormRender/jobPreferenceFormRender.component';
@@ -8,6 +9,8 @@ import { SkillsForm } from './components/profileSectionForm/skillsDialogForm/ski
 import { MainComponent } from './mainComponent';
 import { ModuleWithProviders } from '@angular/core';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
+import { QualificationFormRender } from './components/profileSectionForm/qualificationForm/qualificationFormRender/qualificationFormRender.component';
+
 
 // local services
 import { UserService } from './services/user.service';
@@ -88,9 +91,11 @@ import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-p
     JobPreferenceForm,
     JobPreferenceFormRender,
     ProjectsFormRender,
-    ProjectsForm
+    ProjectsForm,
+    QualificationFormRender,
+    WorkExperienceFormRender
   ],
-  bootstrap: [MainComponent, PersonalInfoForm, SkillsForm, WorkExperienceForm, SummaryForm, JobPreferenceForm, ProjectsForm],
+  bootstrap: [MainComponent, PersonalInfoForm, SkillsForm, WorkExperienceForm, SummaryForm, JobPreferenceForm, ProjectsForm, QualificationForm],
   exports: [
     SkillsForm,
     SkillsFormRender,
@@ -120,7 +125,9 @@ import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-p
     JobPreferenceForm,
     ProjectsForm,
     JobPreferenceFormRender,
-    ProjectsFormRender
+    ProjectsFormRender,
+    QualificationFormRender,
+    WorkExperienceFormRender
   ]
 })
 

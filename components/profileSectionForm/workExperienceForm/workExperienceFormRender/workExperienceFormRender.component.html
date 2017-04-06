@@ -1,0 +1,74 @@
+<form [formGroup]="userForm">
+    <div formArrayName="AllWorkExperience">
+        <div *ngFor="let address of userForm.controls.AllWorkExperience.controls; let i=index" class="panel panel-default">
+            <button class="pull-right" *ngIf="userForm.controls.AllWorkExperience.controls.length >= 1" (click)="removeWorkExperience(i)"> <i class="material-icons">close</i></button>
+
+            <div class="panel-body" [formGroupName]="i">
+                <span>I worked in</span>
+                <md-input-container class="full-width">
+                    <input mdInput formControlName="workplace" id="workplace" type="text" class="validate" placeholder="WorkPlace Name" />
+                    <md-hint align="start" class="full-width">
+                    </md-hint>
+                </md-input-container>
+
+                <span>with designation</span>
+                <md-input-container class="full-width">
+                    <input mdInput formControlName="designation" id="designation" type="text" class="validate" placeholder="Designation Name"
+                    />
+                    <md-hint align="start" class="full-width">
+                        <div *ngIf="!userForm.controls.AllWorkExperience.controls[i].controls.designation.valid && userForm.controls.AllWorkExperience.controls[i].controls.designation.touched"
+                            class="errorStyle">
+                            Designation is Required
+                        </div>
+                    </md-hint>
+                </md-input-container>
+                <br>
+                <span>and Job Role </span>
+                <md-input-container class="full-width">
+                    <input mdInput formControlName="jobRole" id="jobRole" type="text" class="validate" placeholder="Job Role" />
+                    <md-hint align="start" class="full-width">
+                        <div *ngIf="!userForm.controls.AllWorkExperience.controls[i].controls.jobRole.valid && userForm.controls.AllWorkExperience.controls[i].controls.jobRole.touched"
+                            class="errorStyle">
+                            JobRole is Required
+                        </div>
+                    </md-hint>
+                </md-input-container>
+
+                <span>My Work Location was </span>
+
+                <md-input-container class="full-width">
+                    <input mdInput formControlName="location" id="location" type="text" class="validate" placeholder="worklocation" />
+                    <md-hint align="start" class="full-width">
+
+                        <div *ngIf="!userForm.controls.AllWorkExperience.controls[i].controls.location.valid && userForm.controls.AllWorkExperience.controls[i].controls.location.touched"
+                            class="errorStyle">
+                            Worklocation is cRequired
+                        </div>
+                    </md-hint>
+                </md-input-container>
+                <div fxLayout="row">
+                    <span>from</span>
+                    <md2-datepicker formControlName="from" id="from" placeholder="start year" class="full-width">date</md2-datepicker>
+                    <div *ngIf="!userForm.controls.AllWorkExperience.controls[i].controls.from.valid && userForm.controls.AllWorkExperience.controls[i].controls.from.touched"
+                        class="errorStyle">
+
+                    </div>
+
+                    <span class="lineHeight">till</span>
+                    <md2-datepicker formControlName="till" id="till" placeholder="end year" class="full-width">date</md2-datepicker>
+                    <div *ngIf="!userForm.controls.AllWorkExperience.controls[i].controls.till.valid && userForm.controls.AllWorkExperience.controls[i].controls.till.touched"
+                        class="errorStyle">
+
+                    </div>
+
+                </div>
+            </div>
+            <br>
+            <hr>
+            <br>
+        </div>
+    </div>
+
+    <button md-raised-button type="submit" color="primary" (click)="addWorkExperience()">ADD</button>
+    <button md-raised-button type="submit" color="primary" (click)="onSave()" [disabled]="!userForm.valid" md-dialog-close>Save</button>
+</form>

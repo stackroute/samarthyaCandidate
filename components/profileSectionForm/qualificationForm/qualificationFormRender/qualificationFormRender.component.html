@@ -1,0 +1,110 @@
+
+  <form [formGroup]="userForm">
+    <div formArrayName="AllQualifications">
+      <div *ngFor="let address of userForm.controls.AllQualifications.controls; let i=index" class="panel panel-default">
+      <button class="pull-right" *ngIf="userForm.controls.AllQualifications.controls.length >= 1" (click)="removeQualifications(i)"> <i class="material-icons">close</i></button>
+ <br>
+      <div class="panel-body" [formGroupName]="i">
+    <span>I am </span>
+     <md-input-container class="full-width">
+          <input mdInput formControlName="name" id="name" type="text" class="validate" placeholder="Qualification Name" />
+          <md-hint align="start" class="full-width">
+            <div *ngIf="!userForm.controls.AllQualifications.controls[i].controls.name.valid && userForm.controls.AllQualifications.controls[i].controls.name.touched" class="errorStyle">
+             Qualification Name is Required
+            </div>
+          </md-hint>
+        </md-input-container>
+
+
+    <span>I have done my </span>
+  
+     <md-input-container class="full-width">
+          <input mdInput formControlName="academictype" id="academictype" type="text" class="validate" placeholder="Academictype" />
+          <md-hint align="start" class="full-width">
+            <div *ngIf="!userForm.controls.AllQualifications.controls[i].controls.academictype.valid && userForm.controls.AllQualifications.controls[i].controls.academictype.touched" class="errorStyle">
+            Academictype is Required
+            </div>
+          </md-hint>
+        </md-input-container>
+
+
+    <span> in </span>
+    
+    <md-input-container class="full-width">
+          <input mdInput formControlName="subject" id="subject" type="text" class="validate" placeholder="Subject" />
+          <md-hint align="start" class="full-width">
+            <div *ngIf="!userForm.controls.AllQualifications.controls[i].controls.subject.valid && userForm.controls.AllQualifications.controls[i].controls.subject.touched" class="errorStyle">
+            Subject is Required
+            </div>
+          </md-hint>
+        </md-input-container>
+
+    
+
+    <span>in the year</span>
+    Batch
+    <md2-datepicker formControlName="batch" id="batch" placeholder="Batch" class="full-width">Batch</md2-datepicker>
+    <div *ngIf="!userForm.controls.AllQualifications.controls[i].controls.batch.valid && userForm.controls.AllQualifications.controls[i].controls.batch.touched" class="errorStyle">
+    </div>
+
+
+    <span> with final score of </span>
+
+    <md-input-container class="full-width">
+          <input mdInput formControlName="result" id="result" type="text" class="validate" placeholder="Score" />
+          <md-hint align="start" class="full-width">
+            <div *ngIf="!userForm.controls.AllQualifications.controls[i].controls.result.valid && userForm.controls.AllQualifications.controls[i].controls.result.touched" class="errorStyle">
+            Result is Required
+            </div>
+          </md-hint>
+        </md-input-container>
+
+
+    <span> I did it from </span>
+
+    <md-input-container class="full-width">
+          <input mdInput formControlName="institute" id="institute" type="text" class="validate" placeholder="Institute" />
+          <md-hint align="start" class="full-width">
+            <div *ngIf="!userForm.controls.AllQualifications.controls[i].controls.institute.valid && userForm.controls.AllQualifications.controls[i].controls.institute.touched" class="errorStyle">
+            Institute is Required
+            </div>
+          </md-hint>
+        </md-input-container>
+
+    <span> which is affiliated to </span>
+
+    <md-input-container class="full-width">
+          <input mdInput formControlName="affiliation" id="affiliation" type="text" class="validate" placeholder="Affiliation" />
+          <md-hint align="start" class="full-width">
+            <div *ngIf="!userForm.controls.AllQualifications.controls[i].controls.affiliation.valid && userForm.controls.AllQualifications.controls[i].controls.affiliation.touched" class="errorStyle">
+            Affiliation is Required
+            </div>
+          </md-hint>
+        </md-input-container>
+
+    <span> and is located in </span>
+
+   <md-input-container class="full-width">
+          <input mdInput formControlName="location" id="location" type="text" class="validate" placeholder="Location" />
+          <md-hint align="start" class="full-width">
+            <div *ngIf="!userForm.controls.AllQualifications.controls[i].controls.location.valid && userForm.controls.AllQualifications.controls[i].controls.location.touched" class="errorStyle">
+            Location is Required
+            </div>
+          </md-hint>
+        </md-input-container>
+
+ <div fxLayout="row">
+          <div fxFlex></div>
+        </div>
+
+      </div>
+      <br> 
+      <hr>
+    </div>
+  </div>
+  <button md-raised-button type="submit" color="primary"  (click)="addQualifications()">ADD</button>
+  <button md-raised-button type="submit" color="primary" (click)="onSave()" [disabled]="!userForm.valid"  md-dialog-close>Save</button>
+
+
+</form>
+
