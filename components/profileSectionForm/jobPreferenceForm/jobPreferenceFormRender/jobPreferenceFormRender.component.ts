@@ -38,7 +38,7 @@ export class JobPreferenceFormRender implements OnInit {
 
     this.maxDate = new Date(today);
     this.maxDate.setFullYear(this.maxDate.getFullYear());
-    
+
     if (this.jobPreferenceData.length > 0) {
       this.userForm = this.fb.group({
         AllJobPreference: this.fb.array(this.initJobsPreferenceFormWithData())
@@ -57,7 +57,7 @@ export class JobPreferenceFormRender implements OnInit {
         engagement: [jobPreference.engagement, [Validators.required, Validators.pattern(/[a-z]/)]],
         expectedSalMin: [jobPreference.expectedSal.min, [Validators.required, Validators.pattern(/[0-9]/)]],
         expectedSalMax: [jobPreference.expectedSal.max, [Validators.required, Validators.pattern(/[0-9]/)]],
-        skills: [jobPreference.skills, [Validators.required, Validators.pattern('[a-zA-Z]')]],
+        skills: [jobPreference.skills, [Validators.required]],
         availableFrom: [jobPreference.availablefrom, [Validators.required]],
         locations: [jobPreference.locations, [Validators.required]]
       });
@@ -73,7 +73,7 @@ export class JobPreferenceFormRender implements OnInit {
       engagement: ['', [Validators.required, Validators.pattern(/[a-z]/)]],
       expectedSalMin: ['', [Validators.required, Validators.pattern(/[0-9]/)]],
       expectedSalMax: ['', [Validators.required, Validators.pattern(/[0-9]/)]],
-      skills: ['', [Validators.required, Validators.pattern('[a-zA-Z]')]],
+      skills: ['', [Validators.required]],
       availableFrom: ['', [Validators.required]],
       locations: ['', [Validators.required]]
     });

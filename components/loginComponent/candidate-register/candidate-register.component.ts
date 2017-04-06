@@ -182,7 +182,7 @@ export class CandidateRegisterComponent implements OnInit {
 
   // on form submit
   onRegister(userdata: any) {
-
+    this.loading = true;
     // check who is creating user
     let createdUser = this.authenticationService.getCreatedBy();
     if (createdUser == null) {
@@ -241,13 +241,18 @@ export class CandidateRegisterComponent implements OnInit {
       // console.log(res);
       if (res['success']) {
         this.data.openSnackBar('Successfully Register', 'Please Login');
+        this.loading = false;
         this.router.navigate(['/login']);
       } else {
         this.data.openSnackBar('Registration Failed', 'Please Try Again');
+        this.loading = false;
+
         // this.router.navigate(['/login']);
       }
     }, (error: any) => {
       this.data.openSnackBar('Registration Failed', 'Please Try Again');
+      this.loading = false;
+
     })
   }
 }
