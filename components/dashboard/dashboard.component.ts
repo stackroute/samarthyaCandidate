@@ -68,6 +68,7 @@ export class DashboardComponent implements OnInit {
       case 'qualifications': this.openQualificationsDialog(); break;
       case 'experiences': this.openWorkExperienceDialog(); break;
       case 'summary': this.openSummaryDialog(); break;
+      case 'skills':this.openSkillsDialog();break;
     }
   }
 
