@@ -1,7 +1,7 @@
 <form [formGroup]="userForm">
   <div formArrayName="AllSkills">
     <div *ngFor="let address of userForm.controls.AllSkills.controls; let i=index" class="panel panel-default">
-      <button class="pull-right" *ngIf="userForm.controls.AllSkills.controls.length >=1" (click)="removeSkills(i)"> <i class="material-icons">close</i></button>
+      <button  md-icon-button  class="pull-right" *ngIf="userForm.controls.AllSkills.controls.length >=1" (click)="removeSkills(i)"> <i class="material-icons">close</i></button>
       <br>
       <div class="panel-body" [formGroupName]="i">
 

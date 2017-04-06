@@ -1,80 +1,82 @@
 <form [formGroup]="userForm">
-    <div formArrayName="AllProjects">
+  <div formArrayName="AllProjects">
     <div *ngFor="let address of userForm.controls.AllProjects.controls; let i=index" class="panel panel-default">
-      <button class="pull-right" *ngIf="userForm.controls.AllProjects.controls.length >= 1" (click)="removeProject(i)"> <i class="material-icons">close</i></button>
-<br>
+      <button md-icon-button class="pull-right" *ngIf="userForm.controls.AllProjects.controls.length >= 1" (click)="removeProject(i)"> <i class="material-icons">close</i></button>
+      <br>
       <div class="panel-body" [formGroupName]="i">
 
-  <span>I have done</span>
-    <md-input-container class="full-width">
-      <input mdInput formControlName="name" id="name" type="text" class="validate" placeholder="Project Name" />
-      <md-hint align="start" class="full-width">
-        <div *ngIf="!userForm.controls.AllProjects.controls[i].controls.name.valid && userForm.controls.AllProjects.controls[i].controls.name.touched" class="errorStyle">
-          Project Name is required
-        </div>
+        <span>I have done</span>
+        <md-input-container class="full-width">
+          <input mdInput formControlName="name" id="name" type="text" class="validate" placeholder="Project Name" />
+          <md-hint align="start" class="full-width">
+            <div *ngIf="!userForm.controls.AllProjects.controls[i].controls.name.valid && userForm.controls.AllProjects.controls[i].controls.name.touched"
+              class="errorStyle">
+              Project Name is required
+      </div>
       </md-hint>
-    </md-input-container>
+      </md-input-container>
 
-    <span>project with duration from  </span>
-        <md2-datepicker formControlName="durFrom" id="durFrom" placeholder="Start Date" class="full-width">date</md2-datepicker>
-    <div *ngIf="!userForm.controls.AllProjects.controls[i].controls.durFrom.valid && userForm.controls.AllProjects.controls[i].controls.durFrom.touched" class="errorStyle">
-      Start date is required
+      <span>project with duration from  </span>
+      <md2-datepicker [min]="minDate" [max]="maxDate" formControlName="durFrom" id="durFrom" placeholder="Start Date" class="full-width">date</md2-datepicker>
+      <div *ngIf="!userForm.controls.AllProjects.controls[i].controls.durFrom.valid && userForm.controls.AllProjects.controls[i].controls.durFrom.touched"
+        class="errorStyle">
+        Start date is required
     </div>
 
     <span>to </span>
-        <md2-datepicker formControlName="durTo" id="durTo" placeholder="End Date" class="full-width">date</md2-datepicker>
-    <div *ngIf="!userForm.controls.AllProjects.controls[i].controls.durTo.valid && userForm.controls.AllProjects.controls[i].controls.durTo.touched"  class="errorStyle">
+    <md2-datepicker [min]="minDate" [max]="maxDate" formControlName="durTo" id="durTo" placeholder="End Date" class="full-width">date</md2-datepicker>
+    <div *ngIf="!userForm.controls.AllProjects.controls[i].controls.durTo.valid && userForm.controls.AllProjects.controls[i].controls.durTo.touched"
+      class="errorStyle">
       End date is required
-    </div>
+  </div>
 
 
-    <span> in </span>
-    <md-input-container class="full-width">
-      <input mdInput formControlName="location" id="location" type="text" class="validate" placeholder="Location" />
-      <md-hint align="start" class="full-width">
-        <div *ngIf="!userForm.controls.AllProjects.controls[i].controls.location.valid && userForm.controls.AllProjects.controls[i].controls.location.touched" class="errorStyle">
-          Location is required
+  <span> in </span>
+  <md-input-container class="full-width">
+    <input mdInput formControlName="location" id="location" type="text" class="validate" placeholder="Location" />
+    <md-hint align="start" class="full-width">
+      <div *ngIf="!userForm.controls.AllProjects.controls[i].controls.location.valid && userForm.controls.AllProjects.controls[i].controls.location.touched"
+        class="errorStyle">
+        Location is required
         </div>
-      </md-hint>
-    </md-input-container>
+    </md-hint>
+  </md-input-container>
 
-    <span>with the skills of </span>
-    <md-input-container class="full-width">
-      <input mdInput formControlName="skills" id="skills" type="text" class="validate" placeholder="Skills (seperate the skills with , )"
-      />
-      <md-hint align="start" class="full-width">
-        <div *ngIf="!userForm.controls.AllProjects.controls[i].controls.skills.valid && userForm.controls.AllProjects.controls[i].controls.skills.touched" class="errorStyle">
-          Skill is required
+  <span>with the skills of </span>
+  <md-input-container class="full-width">
+    <input mdInput formControlName="skills" id="skills" type="text" class="validate" placeholder="Skills (seperate the skills with , )"
+    />
+    <md-hint align="start" class="full-width">
+      <div *ngIf="!userForm.controls.AllProjects.controls[i].controls.skills.valid && userForm.controls.AllProjects.controls[i].controls.skills.touched"
+        class="errorStyle">
+        Skill is required
         </div>
-      </md-hint>
-    </md-input-container>
+    </md-hint>
+  </md-input-container>
 
 
-    <span>as a role of </span>
-    <md-input-container class="full-width">
-      <input mdInput formControlName="jobRole" id="role" type="text" class="validate" placeholder="Role"
-      />
-      <md-hint align="start" class="full-width">
-        <div *ngIf="!userForm.controls.AllProjects.controls[i].controls.jobRole.valid && userForm.controls.AllProjects.controls[i].controls.jobRole.touched" class="errorStyle">
-          Role is required
+  <span>as a role of </span>
+  <md-input-container class="full-width">
+    <input mdInput formControlName="jobRole" id="role" type="text" class="validate" placeholder="Role" />
+    <md-hint align="start" class="full-width">
+      <div *ngIf="!userForm.controls.AllProjects.controls[i].controls.jobRole.valid && userForm.controls.AllProjects.controls[i].controls.jobRole.touched"
+        class="errorStyle">
+        Role is required
         </div>
-      </md-hint>
-    </md-input-container>      </div>
-    <br><hr>
-    
-    </div>
-    </div>
-    <!--</div>-->
-    <button md-raised-button type="submit" color="primary" (click)="addProject()">ADD</button>
-  <button md-raised-button type="submit" color="primary" (click)="onSave()" [disabled]="!userForm.valid"  md-dialog-close>SAVE</button>
+    </md-hint>
+  </md-input-container>
+  </div>
+  <br>
+  <hr>
+
+  </div>
+  </div>
+  <!--</div>-->
+  <button md-raised-button type="submit" color="primary" (click)="addProject()">ADD</button>
+  <button md-raised-button type="submit" color="primary" (click)="onSave()" [disabled]="!userForm.valid" md-dialog-close>SAVE</button>
 
 
-  </form>
-
-
-
-
-
+</form>
 
 
 
@@ -82,6 +84,11 @@
 
 
 
- <form [formGroup]="userForm">
-    
-  </form>
+
+
+
+
+
+<form [formGroup]="userForm">
+
+</form>

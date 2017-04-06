@@ -78,7 +78,20 @@ export class PersonalInfoForm implements OnInit {
   public write: any[] = [];
   public speak: any[] = [];
 
+  minDate: Date = null;
+  maxDate: Date = null;
+
+
+
   ngOnInit() {
+
+    let today: Date = new Date();
+    // this.minDate = new Date(today);
+    // this.minDate.setMonth(this.minDate.getMonth() - 3);
+
+    this.maxDate = new Date(today);
+    this.maxDate.setFullYear(this.maxDate.getFullYear() - 15);
+
     this.dialogRef.config.data.lang.forEach(lang => {
       if (lang.r === 'Read') {
         this.read.push(lang.name);

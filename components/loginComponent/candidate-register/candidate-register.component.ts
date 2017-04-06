@@ -63,9 +63,16 @@ export class CandidateRegisterComponent implements OnInit {
     });
   }
 
-
+  minDate: Date = null;
+  maxDate: Date = null;
 
   ngOnInit() {
+
+    let today: Date = new Date();
+    // this.minDate = new Date(today);
+    // this.minDate.setMonth(this.minDate.getMonth() - 3);
+    this.maxDate = new Date(today);
+    this.maxDate.setFullYear(this.maxDate.getFullYear() - 15);
     // getting languages and form data from json file
     this.JsonDataService.getPlacementCenter().subscribe((resJsonData: any) => this.getPlacementCenter(resJsonData));
 
@@ -175,7 +182,7 @@ export class CandidateRegisterComponent implements OnInit {
 
   // on form submit
   onRegister(userdata: any) {
-
+    this.loading = true;
     // check who is creating user
     let createdUser = this.authenticationService.getCreatedBy();
     if (createdUser == null) {
@@ -188,14 +195,14 @@ export class CandidateRegisterComponent implements OnInit {
     this.district = userdata.get('location').value.split(',')[1];
     this.state = userdata.get('location').value.split(',')[2];
     let profilePic = '';
-    console.log(userdata.get('gender').value)
+    // console.log(userdata.get('gender').value)
     if (userdata.get('gender').value == 'male') {
-      console.log('male')
+      // console.log('male')
       profilePic = 'assets/img/male.jpg';
     } else if (userdata.get('gender').value == 'female') {
       profilePic = 'assets/img/female.jpg';
     }
-    console.log(profilePic)
+    // console.log(profilePic)
     let userData = {
       profileData: {
         name: userdata.get('name').value,
@@ -228,19 +235,24 @@ export class CandidateRegisterComponent implements OnInit {
         role: userdata.get('role').value,
       }
     };
-    console.log(userData)
+    // console.log(userData)
 
     this.JsonDataService.registerUser(userData).subscribe((res: any) => {
-      console.log(res);
+      // console.log(res);
       if (res['success']) {
         this.data.openSnackBar('Successfully Register', 'Please Login');
+        this.loading = false;
         this.router.navigate(['/login']);
       } else {
         this.data.openSnackBar('Registration Failed', 'Please Try Again');
+        this.loading = false;
+
         // this.router.navigate(['/login']);
       }
     }, (error: any) => {
       this.data.openSnackBar('Registration Failed', 'Please Try Again');
+      this.loading = false;
+
     })
   }
 }

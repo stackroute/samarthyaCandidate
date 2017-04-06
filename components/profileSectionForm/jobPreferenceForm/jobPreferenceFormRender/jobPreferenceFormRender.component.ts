@@ -25,7 +25,20 @@ export class JobPreferenceFormRender implements OnInit {
   constructor(private fb: FormBuilder, private http: Http, private router: Router, private data: Data) {
   }
 
+  minDate: Date = null;
+  maxDate: Date = null;
+
+
   ngOnInit() {
+
+
+    let today: Date = new Date();
+    // this.minDate = new Date(today);
+    // this.minDate.setMonth(this.minDate.getMonth() - 3);
+
+    this.maxDate = new Date(today);
+    this.maxDate.setFullYear(this.maxDate.getFullYear());
+
     if (this.jobPreferenceData.length > 0) {
       this.userForm = this.fb.group({
         AllJobPreference: this.fb.array(this.initJobsPreferenceFormWithData())
@@ -44,7 +57,7 @@ export class JobPreferenceFormRender implements OnInit {
         engagement: [jobPreference.engagement, [Validators.required, Validators.pattern(/[a-z]/)]],
         expectedSalMin: [jobPreference.expectedSal.min, [Validators.required, Validators.pattern(/[0-9]/)]],
         expectedSalMax: [jobPreference.expectedSal.max, [Validators.required, Validators.pattern(/[0-9]/)]],
-        skills: [jobPreference.skills, [Validators.required, Validators.pattern('[a-zA-Z]')]],
+        skills: [jobPreference.skills, [Validators.required]],
         availableFrom: [jobPreference.availablefrom, [Validators.required]],
         locations: [jobPreference.locations, [Validators.required]]
       });
@@ -60,7 +73,7 @@ export class JobPreferenceFormRender implements OnInit {
       engagement: ['', [Validators.required, Validators.pattern(/[a-z]/)]],
       expectedSalMin: ['', [Validators.required, Validators.pattern(/[0-9]/)]],
       expectedSalMax: ['', [Validators.required, Validators.pattern(/[0-9]/)]],
-      skills: ['', [Validators.required, Validators.pattern('[a-zA-Z]')]],
+      skills: ['', [Validators.required]],
       availableFrom: ['', [Validators.required]],
       locations: ['', [Validators.required]]
     });
@@ -77,17 +90,17 @@ export class JobPreferenceFormRender implements OnInit {
   }
   onSave() {
     let sectionName = "jobPreferences";
-     let jobs:any=[];
-    this.userForm.value.AllJobPreference.forEach(function(d:any){
+    let jobs: any = [];
+    this.userForm.value.AllJobPreference.forEach(function (d: any) {
       let skill;
-      if(d.skills.includes(',')){
-        skill=d.skills.split(',');
+      if (d.skills.includes(',')) {
+        skill = d.skills.split(',');
       }
-      else{
-        skill=d.skills;
+      else {
+        skill = d.skills;
       }
-  
-      let obj={'name':d.name,'expectedSal':{'min':d.expectedSalMin,'max':d.expectedSalMax},'engagement':d.engagement,'skills':skill,'availablefrom':d.availableFrom,'locations':d.locations}
+
+      let obj = { 'name': d.name, 'expectedSal': { 'min': d.expectedSalMin, 'max': d.expectedSalMax }, 'engagement': d.engagement, 'skills': skill, 'availablefrom': d.availableFrom, 'locations': d.locations }
       jobs.push(obj);
     })
     let jobPref = { looking: true, jobRoles: jobs }
@@ -97,7 +110,7 @@ export class JobPreferenceFormRender implements OnInit {
         let res = response.json();
         if (res.success) {
           this.data.openSnackBar("Successfully updated", "OK");
-           this.router.navigate(['/login']);
+          this.router.navigate(['/login']);
         }
         else {
           this.data.openSnackBar("Not updated", "Try later");

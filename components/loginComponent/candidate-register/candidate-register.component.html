@@ -108,7 +108,8 @@
           <!--Date of Birth-->
           <div fxLayout="row" fxLayoutAlign="start end">
             <div fxFlex>
-              <md2-datepicker formControlName="dob" id="dob" placeholder="Date Of Birth" [(ngModel)]="date" class="full-width">date</md2-datepicker>
+              <md2-datepicker formControlName="dob" [min]="minDate" [max]="maxDate" id="dob" placeholder="Date Of Birth" [(ngModel)]="date"
+                class="full-width">date</md2-datepicker>
             </div>
             <div *ngIf="userForm.get('dob').hasError('required')" class="errorStyle">
             </div>

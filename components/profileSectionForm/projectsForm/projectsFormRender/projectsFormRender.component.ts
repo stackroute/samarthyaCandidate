@@ -22,7 +22,19 @@ export class ProjectsFormRender implements OnInit {
   constructor(private fb: FormBuilder, private http: Http, private router: Router, private data: Data) {
   }
 
+
+  minDate: Date = null;
+  maxDate: Date = null;
+
   ngOnInit() {
+
+    let today: Date = new Date();
+    // this.minDate = new Date(today);
+    // this.minDate.setMonth(this.minDate.getMonth() - 3);
+
+    this.maxDate = new Date(today);
+    this.maxDate.setFullYear(this.maxDate.getFullYear());
+
     if (this.projectsData.length > 0) {
       this.userForm = this.fb.group({
         AllProjects: this.fb.array(this.initProjectsFormWithData())
@@ -37,13 +49,13 @@ export class ProjectsFormRender implements OnInit {
   initProjectsFormWithData() {
     let projectsEntries = this.projectsData.map((project) => {
       return this.fb.group({
-          name: [project.name, [Validators.required]],
-      durFrom: [project.duration.start, [Validators.required]],
-            durTo: [project.duration.end, [Validators.required]],
+        name: [project.name, [Validators.required]],
+        durFrom: [project.duration.start, [Validators.required]],
+        durTo: [project.duration.end, [Validators.required]],
 
-      location: [project.location, [Validators.required]],
-      skills: [project.skills, [Validators.required]],
-      jobRole: [project.jobRole, [Validators.required]]
+        location: [project.location, [Validators.required]],
+        skills: [project.skills, [Validators.required]],
+        jobRole: [project.jobRole, [Validators.required]]
       });
     });
 
@@ -55,13 +67,13 @@ export class ProjectsFormRender implements OnInit {
     return this.fb.group({
       name: ['', [Validators.required]],
       durFrom: ['', [Validators.required]],
-            durTo: ['', [Validators.required]],
+      durTo: ['', [Validators.required]],
 
       location: ['', [Validators.required]],
       skills: ['', [Validators.required]],
       jobRole: ['', [Validators.required]]
-      });
-  
+    });
+
   }
 
   addProject() {
@@ -76,26 +88,26 @@ export class ProjectsFormRender implements OnInit {
   onSave() {
     let sectionName = "projects";
     let currentuser = JSON.parse(localStorage.getItem('currentUser'));
-    let projects:any=[];
-    this.userForm.value.AllProjects.forEach(function(d:any){
-      let skill=[];
-      if(d.skills.includes(',')){
-        skill=d.skills.split(',');
+
+    let projects: any = [];
+    this.userForm.value.AllProjects.forEach(function (d: any) {
+      let skill;
+      if (d.skills.includes(',')) {
+        skill = d.skills.split(',');
       }
-      else{
-        
-        skill=d.skills;
+      else {
+        skill = d.skills;
       }
-  
-      let obj={'name':d.name,'duration':{'start':d.durFrom,'end':d.durTo},'location':d.location,'skills':skill,'jobRole':d.jobRole}
+
+      let obj = { 'name': d.name, 'duration': { 'start': d.durFrom, 'end': d.durTo }, 'location': d.location, 'skills': skill, 'jobRole': d.jobRole }
       projects.push(obj);
     })
-    this.http.patch('/profile', { sectionName: sectionName, username: currentuser.username, data: projects})
+    this.http.patch('/profile', { sectionName: sectionName, username: currentuser.username, data: projects })
       .subscribe((response) => {
         let res = response.json();
         if (res.success) {
           this.data.openSnackBar("Successfully updated", "OK");
-           this.router.navigate(['/login']);
+          this.router.navigate(['/login']);
         }
         else {
           this.data.openSnackBar("Not updated", "Try later");

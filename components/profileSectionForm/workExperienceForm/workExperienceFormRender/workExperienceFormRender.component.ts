@@ -20,12 +20,21 @@ export class WorkExperienceFormRender implements OnInit {
   @Input()
   public workExperienceData: any[];
 
-
-
   constructor(private fb: FormBuilder, private location: Location, private http: Http, private router: Router, private data: Data) {
   }
 
+  minDate: Date = null;
+  maxDate: Date = null;
+
   ngOnInit() {
+
+    let today: Date = new Date();
+    // this.minDate = new Date(today);
+    // this.minDate.setMonth(this.minDate.getMonth() - 3);
+
+    this.maxDate = new Date(today);
+    this.maxDate.setFullYear(this.maxDate.getFullYear());
+
     if (this.workExperienceData.length > 0) {
       this.userForm = this.fb.group({
         AllWorkExperience: this.fb.array(this.initWorkExperiencesFormWithData())

@@ -1,7 +1,7 @@
 <form [formGroup]="userForm">
     <div formArrayName="AllJobPreference">
     <div *ngFor="let address of userForm.controls.AllJobPreference.controls; let i=index" class="panel panel-default">
-      <button class="pull-right" *ngIf="userForm.controls.AllJobPreference.controls.length > 0" (click)="removeJobPreference(i)"> <i class="material-icons">close</i></button>
+      <button md-icon-button class="pull-right" *ngIf="userForm.controls.AllJobPreference.controls.length > 0" (click)="removeJobPreference(i)"> <i class="material-icons">close</i></button>
 <br>
       <div class="panel-body" [formGroupName]="i">
 
@@ -24,7 +24,7 @@
 
     <span>,Starting from</span>
     <!--Date of Birth-->
-    <md2-datepicker formControlName="availableFrom" id="availableFrom" placeholder="Select joining date" class="full-width">date</md2-datepicker>
+    <md2-datepicker formControlName="availableFrom"  [min]="minDate" [max]="maxDate" id="availableFrom" placeholder="Select joining date" class="full-width">date</md2-datepicker>
     <div *ngIf="!userForm.controls.AllJobPreference.controls[i].controls.availableFrom.valid && userForm.controls.AllJobPreference.controls[i].controls.availableFrom.touched" class="errorStyle">
     </div>
 
