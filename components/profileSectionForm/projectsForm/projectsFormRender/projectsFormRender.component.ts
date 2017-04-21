@@ -101,7 +101,6 @@ export class ProjectsFormRender implements OnInit {
         else
         skill=d.skills;
       }
-      console.log("skillsss"+typeof skill);
       let obj = { 'name': d.name, 'duration': { 'start': d.durFrom, 'end': d.durTo }, 'location': d.location, 'skills': skill, 'jobRole': d.jobRole }
       projects.push(obj);
     })
