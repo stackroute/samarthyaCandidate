@@ -50,11 +50,18 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(this.userForm.value.email, this.userForm.value.password)
       .subscribe(
       (data : any) => {
+          if (data['role'] != 'candidate') {
+          this.data.openSnackBar('Not authorised', 'Try later');
+          this.loading = false;
+          this.router.navigate(['/login']);
+        }
+        else {
         [
           this.router.navigate([this.returnUrl]),
           this.data.openSnackBar('WELCOME : ', this.userForm.value.email),
           // console.log(this.returnUrl)
         ];
+        }
       },
       (error : any) => {
         this.data.openSnackBar('Username OR Password Wrong', 'Try Again');
