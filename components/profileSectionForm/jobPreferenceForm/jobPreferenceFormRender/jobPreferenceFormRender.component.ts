@@ -92,12 +92,15 @@ export class JobPreferenceFormRender implements OnInit {
     let sectionName = "jobPreferences";
     let jobs: any = [];
     this.userForm.value.AllJobPreference.forEach(function (d: any) {
-      let skill;
+      let skill:Array=[];
       if (d.skills.includes(',')) {
         skill = d.skills.split(',');
       }
       else {
-        skill = d.skills;
+         if(typeof d.skills == typeof '')
+        skill.push(d.skills);
+        else
+        skill=d.skills;
       }
 
       let obj = { 'name': d.name, 'expectedSal': { 'min': d.expectedSalMin, 'max': d.expectedSalMax }, 'engagement': d.engagement, 'skills': skill, 'availablefrom': d.availableFrom, 'locations': d.locations }

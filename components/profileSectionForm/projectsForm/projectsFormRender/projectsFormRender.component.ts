@@ -91,14 +91,17 @@ export class ProjectsFormRender implements OnInit {
 
     let projects: any = [];
     this.userForm.value.AllProjects.forEach(function (d: any) {
-      let skill;
+      let skill:Array=[];
       if (d.skills.includes(',')) {
         skill = d.skills.split(',');
       }
       else {
-        skill = d.skills;
+        if(typeof d.skills == typeof '')
+        skill.push(d.skills);
+        else
+        skill=d.skills;
       }
-
+      console.log("skillsss"+typeof skill);
       let obj = { 'name': d.name, 'duration': { 'start': d.durFrom, 'end': d.durTo }, 'location': d.location, 'skills': skill, 'jobRole': d.jobRole }
       projects.push(obj);
     })
