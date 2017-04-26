@@ -205,30 +205,38 @@ export class CandidateRegisterComponent implements OnInit {
     // console.log(profilePic)
     let userData = {
       profileData: {
-        name: userdata.get('name').value,
+        summary: {
+          summaryText: ''
+        },
+        personalInfo: {
+          name: userdata.get('name').value,
+          fname: userdata.get('fname').value,
+          lname: userdata.get('lname').value,
+          gender: userdata.get('gender').value,
+          dob: userdata.get('dob').value,
+          email: userdata.get('email').value,
+          contact: {
+            I: userdata.get('mob').value
+          },
+          role: userdata.get('role').value,
+          address: {
+            address1: '',
+            address2: '',
+            pincode: userdata.get('pincode').value,
+            district: this.district,
+            landmark: this.landmark,
+            state: this.state
+          },
+          identity: [{ idType: "Aadhaar", value: userdata.get('aadhar').value },
+          { idType: "RegNumber", value: userdata.get('regId').value }]
+
+        },
+
         username: userdata.get('email').value,
-        fname: userdata.get('fname').value,
-        lname: userdata.get('lname').value,
-        gender: userdata.get('gender').value,
-        dob: userdata.get('dob').value,
-        email: userdata.get('email').value,
-        mobileNumber: userdata.get('mob').value,
-        role: userdata.get('role').value,
         profession: userdata.get('profession').value,
-        address1: '',
-        address2: '',
-        district: this.district,
-        landmark: this.landmark,
-        state: this.state,
-        pincode: userdata.get('pincode').value,
-        location: userdata.get('location').value,
-        placementCenter: userdata.get('placementCenter').value,
-        identity: [{ idType: "Aadhaar", value: userdata.get('aadhar').value },
-        { idType: "RegNumber", value: userdata.get('regId').value }],
+        centerCode: userdata.get('placementCenter').value,
         createdBy: this.createdBy,
-        updatedBy: this.createdBy,
         profilePic: profilePic,
-        summaryText: '',
       },
       userCredentialsData: {
         username: userdata.get('email').value, password: userdata.get('password').value,
