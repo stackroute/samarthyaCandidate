@@ -66,7 +66,7 @@ export class JobPreferenceFormRender implements OnInit {
     return jobPreferenceEntries;
   }
 
-  //to get the form 
+  //to get the form
   initJobPreferenceForm() {
     return this.fb.group({
       name: ['', [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
@@ -92,7 +92,7 @@ export class JobPreferenceFormRender implements OnInit {
     let sectionName = "jobPreferences";
     let jobs: any = [];
     this.userForm.value.AllJobPreference.forEach(function (d: any) {
-      let skill:Array=[];
+      let skill:any =[];
       if (d.skills.includes(',')) {
         skill = d.skills.split(',');
       }

@@ -62,7 +62,7 @@ export class ProjectsFormRender implements OnInit {
     return projectsEntries;
   }
 
-  //to get the form 
+  //to get the form
   initProjectsForm() {
     return this.fb.group({
       name: ['', [Validators.required]],
@@ -91,7 +91,7 @@ export class ProjectsFormRender implements OnInit {
 
     let projects: any = [];
     this.userForm.value.AllProjects.forEach(function (d: any) {
-      let skill:Array=[];
+      let skill:any= [];
       if (d.skills.includes(',')) {
         skill = d.skills.split(',');
       }
