@@ -1,21 +1,28 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Headers, Http, Response, RequestOptions } from '@angular/http';
+import {AuthenticationService} from './../services/authentication.service'
+// auhentication gaurd if without login user will try to access differnt menu links navigate it to login page
 
-// auth gaurd is used to guard the routes.
-// here we implement CanActivate for Authguard class so that we can check for the route is activated or not
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-    constructor(private router: Router) { }
-
+    constructor(private router: Router, private http: Http, private AuthenticationService:AuthenticationService) { }
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+
         if (localStorage.getItem('currentUser')) {
-            // logged in so return true
-            return true;
+            // logged in user return true
+            return this.http.post('/authenticateToken', { token: this.AuthenticationService.getToken() })
+                .map((response: Response) => {
+                    this.AuthenticationService.setToken(response.json().authToken);
+                    return true;
+                });
         }
-        // not logged in so redirect to login page with the return url
-        this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
-        // optional parameters
-        return false;
+        else {
+            // not logged in so redirect to login page with the return url
+            this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+            // this.data.openSnackBar('Please Login!!',"OK");
+            return false;
+        }
     }
 }

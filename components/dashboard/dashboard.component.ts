@@ -148,8 +148,7 @@ export class DashboardComponent implements OnInit {
     // this will get the data for profile config
     this.SamProfileSectionConfigService.getProfileSectionConfig()
       .subscribe((resEmployeeData: any) => {
-        this.profileConfig = resEmployeeData[0],
-          console.log(this.profileConfig)
+        this.profileConfig = resEmployeeData[0]
       });
 
     // this will get the data for profile form config

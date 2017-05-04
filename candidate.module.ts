@@ -27,12 +27,8 @@ import { LoginFooterComponent } from './components/loginComponent/login-footer/l
 import { ForgotPasswordComponent } from './components/loginComponent/forgot-password/forgot-password.component';
 import { LoginComponent } from './components/loginComponent/login/login.component';
 import { LayoutComponent } from './components/layout/layout.component';
-import { JobPostComponent } from './components/job-post/job-post.component';
-import { EventPostComponent } from './components/event-post/event-post.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { EmployersComponent } from './components/employers/employers.component';
 import { CandidateRegisterComponent } from './components/loginComponent/candidate-register/candidate-register.component';
-import { CandidateSearchComponent } from './components/candidate-search/candidate-search.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { PersonalInfoForm } from './components/profileSectionForm/personalInfoForm/personalInfoForm.component';
 import { ProjectsForm } from './components/profileSectionForm/projectsForm/projectsForm.component';
@@ -68,12 +64,8 @@ import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-p
     SkillsFormRender,
     SkillsForm,
     AboutUsComponent,
-    CandidateSearchComponent,
     CandidateRegisterComponent,
     DashboardComponent,
-    EmployersComponent,
-    EventPostComponent,
-    JobPostComponent,
     LayoutComponent,
     LoginComponent,
     CandidateRegisterComponent,
@@ -100,11 +92,7 @@ import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-p
     SkillsForm,
     SkillsFormRender,
     AboutUsComponent,
-    CandidateSearchComponent,
     DashboardComponent,
-    EmployersComponent,
-    EventPostComponent,
-    JobPostComponent,
     LayoutComponent,
     LoginComponent,
     CandidateRegisterComponent,

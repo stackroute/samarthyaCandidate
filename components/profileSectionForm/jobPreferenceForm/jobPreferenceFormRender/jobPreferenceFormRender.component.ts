@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
 import { Data } from './../../../../services/data.service';
+import {AuthenticationService} from './../../../../services/authentication.service'
 
 @Component({
   selector: 'jobPreference-form-render',
@@ -22,7 +23,7 @@ export class JobPreferenceFormRender implements OnInit {
   public engagementData = ['Full Time', 'Part Time', 'Flexible'];
   public locationData = ['Bangalore', 'Pune', 'Delhi', 'Gurgaon', 'Chennai'];
 
-  constructor(private fb: FormBuilder, private http: Http, private router: Router, private data: Data) {
+  constructor(private fb: FormBuilder, private http: Http, private router: Router, private data: Data, private AuthenticationService:AuthenticationService) {
   }
 
   minDate: Date = null;
@@ -108,9 +109,10 @@ export class JobPreferenceFormRender implements OnInit {
     })
     let jobPref = { looking: true, jobRoles: jobs }
     let currentuser = JSON.parse(localStorage.getItem('currentUser'));
-    this.http.patch('/profile', { sectionName: sectionName, username: currentuser.username, data: jobPref })
+    this.http.patch('/profile', { sectionName: sectionName, username: currentuser.username, data: jobPref,token:this.AuthenticationService.getToken() })
       .subscribe((response) => {
         let res = response.json();
+        this.AuthenticationService.setToken(res.authToken);
         if (res.success) {
           this.data.openSnackBar("Successfully updated", "OK");
           this.router.navigate(['/login']);

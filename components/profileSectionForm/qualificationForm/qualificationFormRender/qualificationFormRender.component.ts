@@ -4,6 +4,8 @@ import { Http, Response } from '@angular/http';
 import { Component, OnInit, Inject, Input } from '@angular/core';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
+import {AuthenticationService} from './../../../../services/authentication.service'
+
 
 @Component({
   selector: 'qualification-form-render',
@@ -17,7 +19,7 @@ export class QualificationFormRender implements OnInit {
   @Input()
   public qualificationsData: any[];
 
-  constructor(private fb: FormBuilder, private http: Http, private router: Router, private data: Data) {
+  constructor(private fb: FormBuilder, private http: Http, private router: Router, private data: Data,private authenticationService:AuthenticationService) {
   }
 
 
@@ -91,12 +93,12 @@ export class QualificationFormRender implements OnInit {
 
 
   onSave() {
-    console.log("000000000000000000");
     let sectionName = "qualifications";
     let currentuser = JSON.parse(localStorage.getItem('currentUser'));
-    this.http.patch('/profile', { sectionName: sectionName, username: currentuser.username, data: this.userForm.value.AllQualifications })
+    this.http.patch('/profile', { sectionName: sectionName, username: currentuser.username, data: this.userForm.value.AllQualifications, token:this.authenticationService.getToken() })
       .subscribe((response) => {
         let res = response.json();
+        this.authenticationService.setToken(res.authToken)
         if (res.success) {
           this.data.openSnackBar("Successfully updated", "OK");
           this.router.navigate(['/login']);

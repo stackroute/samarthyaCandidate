@@ -2,11 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { CandidateSearchComponent } from './components/candidate-search/candidate-search.component';
 import { CandidateRegisterComponent } from './components/loginComponent/candidate-register/candidate-register.component';
-import { EmployersComponent } from './components/employers/employers.component';
-import { EventPostComponent } from './components/event-post/event-post.component';
-import { JobPostComponent } from './components/job-post/job-post.component';
 import { LoginComponent } from './components/loginComponent/login/login.component';
 import { PasswordResetComponent } from './components/loginComponent/password-reset/password-reset.component';
 import { ForgotPasswordComponent } from './components/loginComponent/forgot-password/forgot-password.component';
@@ -22,9 +18,6 @@ const routes: Routes = [
     children: [
       { path: '', component: DashboardComponent, canActivate: [AuthGuard] },
       { path: 'aboutUs', component: AboutUsComponent, canActivate: [AuthGuard] },
-      { path: 'candidateSearch', component: CandidateSearchComponent, canActivate: [AuthGuard] },
-      { path: 'eventPost', component: EventPostComponent, canActivate: [AuthGuard] },
-      { path: 'jobPost', component: JobPostComponent, canActivate: [AuthGuard] },
       { path: 'passwordReset/:reset', component: PasswordResetComponent, canActivate: [AuthGuard] }
     ]
   },
@@ -50,9 +43,6 @@ export const routingComponents = [
   AboutUsComponent,
   DashboardComponent,
   CandidateRegisterComponent,
-  CandidateSearchComponent,
-  EventPostComponent,
-  JobPostComponent,
   PasswordResetComponent,
   ForgotPasswordComponent,
   VerifyEmailComponent

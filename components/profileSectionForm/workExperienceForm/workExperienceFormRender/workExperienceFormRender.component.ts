@@ -7,6 +7,8 @@ import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
 import { Data } from './../../../../services/data.service';
 import { Location } from '@angular/common';
+import {AuthenticationService} from './../../../../services/authentication.service'
+
 
 @Component({
   selector: 'workExperience-form-render',
@@ -20,7 +22,7 @@ export class WorkExperienceFormRender implements OnInit {
   @Input()
   public workExperienceData: any[];
 
-  constructor(private fb: FormBuilder, private location: Location, private http: Http, private router: Router, private data: Data) {
+  constructor(private fb: FormBuilder, private location: Location, private http: Http, private router: Router, private data: Data, private authenticationService:AuthenticationService) {
   }
 
   minDate: Date = null;
@@ -92,9 +94,10 @@ export class WorkExperienceFormRender implements OnInit {
       experience.push(obj);
     })
     let currentuser = JSON.parse(localStorage.getItem('currentUser'));
-    this.http.patch('/profile', { sectionName: sectionName, username: currentuser.username, data: experience })
+    this.http.patch('/profile', { sectionName: sectionName, username: currentuser.username, data: experience, token:this.authenticationService.getToken() })
       .subscribe((response) => {
         let res = response.json();
+        this.authenticationService.setToken(res.authToken);
         if (res.success) {
           this.data.openSnackBar('Successfully updated', 'OK');
           this.router.navigate(['/login']);

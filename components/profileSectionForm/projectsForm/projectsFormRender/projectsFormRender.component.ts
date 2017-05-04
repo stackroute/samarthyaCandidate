@@ -6,6 +6,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
 import { Data } from './../../../../services/data.service';
+import {AuthenticationService} from './../../../../services/authentication.service'
+
 
 @Component({
   selector: 'projects-form-render',
@@ -19,7 +21,7 @@ export class ProjectsFormRender implements OnInit {
   @Input()
   public projectsData: any[];
 
-  constructor(private fb: FormBuilder, private http: Http, private router: Router, private data: Data) {
+  constructor(private fb: FormBuilder, private http: Http, private router: Router, private data: Data,private authenticationService:AuthenticationService) {
   }
 
 
@@ -104,9 +106,10 @@ export class ProjectsFormRender implements OnInit {
       let obj = { 'name': d.name, 'duration': { 'start': d.durFrom, 'end': d.durTo }, 'location': d.location, 'skills': skill, 'jobRole': d.jobRole }
       projects.push(obj);
     })
-    this.http.patch('/profile', { sectionName: sectionName, username: currentuser.username, data: projects })
+    this.http.patch('/profile', { sectionName: sectionName, username: currentuser.username, data: projects,token :this.authenticationService.getToken() })
       .subscribe((response) => {
         let res = response.json();
+        this.authenticationService.setToken(res.authToken);
         if (res.success) {
           this.data.openSnackBar("Successfully updated", "OK");
           this.router.navigate(['/login']);

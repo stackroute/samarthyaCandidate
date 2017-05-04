@@ -39,6 +39,17 @@ export class AuthenticationService {
             });
     }
 
+     getToken() {
+        let token = JSON.parse(localStorage.getItem('currentUser'))['token'];
+        return token;
+    }
+
+    setToken(authToken: any) {
+        let token = authToken;
+        let username = JSON.parse(localStorage.getItem('currentUser'))['username']
+        localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token }));
+    }
+
     logout(): void {
         // clear token remove user from local storage to log user out
         this.token = null;

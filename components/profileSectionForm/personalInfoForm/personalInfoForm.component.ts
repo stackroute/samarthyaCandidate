@@ -5,6 +5,7 @@ import { JsonDataService } from './../../../services/json-data.service';
 import { Data } from './../../../services/data.service';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import {AuthenticationService} from './../../../services/authentication.service'
 
 
 @Component({
@@ -52,7 +53,8 @@ export class PersonalInfoForm implements OnInit {
     private data: Data,
     public dialogRef: MdDialogRef<PersonalInfoForm>,
     private http: Http,
-    private router: Router
+    private router: Router,
+    private authenticationService:AuthenticationService
   ) {
     this.userForm = fb.group({
       name: [this.dialogRef.config.data.name, [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
@@ -166,9 +168,9 @@ export class PersonalInfoForm implements OnInit {
     personalInfoData.lang = this.langModify(this.userForm.value.readLang, this.userForm.value.writeLang, this.userForm.value.speakLang);
     let username = JSON.parse(localStorage.getItem('currentUser'))['username'];
 
-    console.log(personalInfoData)
-    this.http.patch('/profile', { data: personalInfoData, username: username, sectionName: 'personalInfo' })
+    this.http.patch('/profile', { data: personalInfoData, username: username, sectionName: 'personalInfo',token:this.authenticationService.getToken() })
       .subscribe((response: Response) => {
+        this.authenticationService.setToken(response.json().authToken)
         if (response['_body']) {
           this.router.navigate(['/login']);
           this.data.openSnackBar('Successfully Updated', '');

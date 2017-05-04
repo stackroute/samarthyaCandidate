@@ -6,7 +6,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
 import { Data } from './../../../../services/data.service';
-import { Location } from '@angular/common';
+import {AuthenticationService} from './../../../../services/authentication.service'
+
 
 @Component({
   selector: 'skills-form-render',
@@ -26,7 +27,7 @@ export class SkillsFormRender implements OnInit {
     { name: 'EXPERT', value: 'Expert' },
   ];
 
-  constructor(private fb: FormBuilder, private location: Location, private http: Http, private router: Router, private data: Data) {
+  constructor(private fb: FormBuilder, private http: Http, private router: Router, private data: Data,private authenticationService:AuthenticationService) {
   }
 
   ngOnInit() {
@@ -74,9 +75,10 @@ export class SkillsFormRender implements OnInit {
   onSave() {
     let sectionName = 'skills';
     let currentuser = JSON.parse(localStorage.getItem('currentUser'));
-    this.http.patch('/profile', { sectionName: sectionName, username: currentuser.username, data: this.userForm.value.AllSkills })
+    this.http.patch('/profile', { sectionName: sectionName, username: currentuser.username, data: this.userForm.value.AllSkills, token:this.authenticationService.getToken() })
       .subscribe((response) => {
         let res = response.json();
+        this.authenticationService.setToken(res.authToken);
         if (res.success) {
           this.data.openSnackBar('Successfully updated', 'OK');
           this.router.navigate(['/login']);
