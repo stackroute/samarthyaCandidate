@@ -44,12 +44,12 @@ export class CandidateRegisterComponent implements OnInit {
 
     // register candidate form
     this.userForm = fb.group({
-      name: ['', [Validators.required]],
-      fname: ['', [Validators.required]],
-      lname: ['', [Validators.required]],
+      name: ['', [Validators.required,Validators.pattern('[A-Za-z0-9 ]{2,}')]],
+      fname: ['', [Validators.required,Validators.pattern('[A-Za-z ]{2,}')]],
+      lname: ['', [Validators.required,Validators.pattern('[A-Za-z ]{1,}')]],
       gender: ['male', Validators.required],
       email: ['', Validators.required],
-      regId: ['', Validators.required],
+      regId: ['', [Validators.required,Validators.pattern(/^\d{6}$/)]],
       dob: ['', Validators.required],
       aadhar: ['', [Validators.required, Validators.pattern(/^\d{12}$/)]],
       mob: ['', [Validators.required, , Validators.pattern('[0-9]{10}')]],
@@ -69,8 +69,6 @@ export class CandidateRegisterComponent implements OnInit {
   ngOnInit() {
 
     let today: Date = new Date();
-    // this.minDate = new Date(today);
-    // this.minDate.setMonth(this.minDate.getMonth() - 3);
     this.maxDate = new Date(today);
     this.maxDate.setFullYear(this.maxDate.getFullYear() - 15);
     // getting languages and form data from json file
@@ -143,7 +141,6 @@ export class CandidateRegisterComponent implements OnInit {
       (<HTMLInputElement>document.getElementById('resetBtn')).disabled = true;
     } else {
       this.passwordMatchWarning = '';
-      // (<HTMLInputElement> document.getElementById(''resetBtn'')).disabled = false;
     }
   }
 
@@ -151,7 +148,6 @@ export class CandidateRegisterComponent implements OnInit {
   getPincode() {
     if (this.pincode == undefined) {
     } else if (this.pincode.length === 6) {
-      // this.loading = true;
       this.JsonDataService.getPincode(this.pincode).subscribe(
         (resPincodeData: any) => [this.pincodeLocation = resPincodeData, this.getPincodeLocation()]);
     } else if (this.pincode.length !== 6) {
@@ -171,12 +167,9 @@ export class CandidateRegisterComponent implements OnInit {
       this.areaList.push(officeName + ', ' + element['Districtname'] + ', ' + element['statename']);
     });
     if (this.areaList.length === 0) {
-      // this.loading = false;
       this.data.openSnackBar('No Location Found', 'Please Try again');
-      // this.areaList.push('Area Not Found');
     } else {
       this.data.openSnackBar(this.pincodeLocation.count + ' Locations Found', 'Please Select');
-      // this.loading = false;
     }
   }
 
@@ -195,14 +188,11 @@ export class CandidateRegisterComponent implements OnInit {
     this.district = userdata.get('location').value.split(',')[1];
     this.state = userdata.get('location').value.split(',')[2];
     let profilePic = '';
-    // console.log(userdata.get('gender').value)
     if (userdata.get('gender').value == 'male') {
-      // console.log('male')
       profilePic = 'assets/img/male.jpg';
     } else if (userdata.get('gender').value == 'female') {
       profilePic = 'assets/img/female.jpg';
     }
-    // console.log(profilePic)
     let userData = {
       profileData: {
         summary: {
@@ -243,10 +233,8 @@ export class CandidateRegisterComponent implements OnInit {
         role: userdata.get('role').value,
       }
     };
-    // console.log(userData)
 
     this.JsonDataService.registerUser(userData).subscribe((res: any) => {
-      // console.log(res);
       if (res['success']) {
         this.data.openSnackBar('Successfully Register', 'Please Login');
         this.loading = false;
@@ -254,8 +242,6 @@ export class CandidateRegisterComponent implements OnInit {
       } else {
         this.data.openSnackBar('Registration Failed', 'Please Try Again');
         this.loading = false;
-
-        // this.router.navigate(['/login']);
       }
     }, (error: any) => {
       this.data.openSnackBar('Registration Failed', 'Please Try Again');

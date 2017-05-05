@@ -27,10 +27,13 @@
             </div>
             <div fxFlex>
               <md-input-container class="full-width">
-                <input mdInput formControlName="name" id="name" type="text" class="validate" placeholder="Display Name" />
+                <input mdInput formControlName="name" id="name" type="text" class="validate" placeholder="Choose a name to display in profile*" />
                 <md-hint align="start" class="full-width">
                   <div *ngIf="userForm.get('name').hasError('required') && userForm.get('name').touched" class="errorStyle">
-                    First Name is required
+                    Display Name is required
+                  </div>
+                  <div *ngIf="userForm.get('name').hasError('pattern')" class="errorStyle">
+                    Display Name should be more than 1 letters or digits
                   </div>
                 </md-hint>
               </md-input-container>
@@ -44,10 +47,13 @@
             </div>
             <div fxFlex>
               <md-input-container class="full-width">
-                <input mdInput formControlName="fname" id="fname" type="text" class="validate" placeholder="First Name" />
+                <input mdInput formControlName="fname" id="fname" type="text" class="validate" placeholder="First Name*" />
                 <md-hint align="start" class="full-width">
                   <div *ngIf="userForm.get('fname').hasError('required') && userForm.get('fname').touched" class="errorStyle">
                     First Name is required
+                  </div>
+                  <div *ngIf="userForm.get('fname').hasError('pattern')" class="errorStyle">
+                    First Name should be more than 1 letters
                   </div>
                 </md-hint>
               </md-input-container>
@@ -61,10 +67,13 @@
             </div>
             <div fxFlex>
               <md-input-container class="full-width">
-                <input mdInput formControlName="lname" id="lname" type="text" class="validate" placeholder="Last Name" />
+                <input mdInput formControlName="lname" id="lname" type="text" class="validate" placeholder="Last Name*" />
                 <md-hint align="start" class="full-width">
                   <div *ngIf="userForm.get('lname').hasError('required') && userForm.get('lname').touched" class="errorStyle">
                     Last Name is required
+                  </div>
+                  <div *ngIf="userForm.get('lname').hasError('pattern')" class="errorStyle">
+                    Last Name should be more than 1 letters
                   </div>
                 </md-hint>
               </md-input-container>
@@ -88,27 +97,11 @@
           <div class="division">
             Account Details
           </div>
-          <!--Registration ID-->
-          <div fxLayout="row" fxLayoutAlign="start end">
-            <div fxFlex="35px">
-              <i class="material-icons formIcons">assignment_ind</i>
-            </div>
-            <div fxFlex>
-              <md-input-container class="full-width">
-                <input mdInput formControlName="regId" id="regId" type="text" class="validate" placeholder="Registration Id" />
-                <md-hint align="start" class="full-width">
-                  <div *ngIf="userForm.get('regId').hasError('required') && userForm.get('regId').touched" class="errorStyle">
-                    Registration ID is required
-                  </div>
-                </md-hint>
-              </md-input-container>
-            </div>
-          </div>
 
           <!--Date of Birth-->
           <div fxLayout="row" fxLayoutAlign="start end">
             <div fxFlex>
-              <md2-datepicker formControlName="dob" [min]="minDate" [max]="maxDate" id="dob" placeholder="Date Of Birth" [(ngModel)]="date"
+              <md2-datepicker formControlName="dob" [min]="minDate" [max]="maxDate" id="dob" placeholder="Date Of Birth*" [(ngModel)]="date"
                 class="full-width">date</md2-datepicker>
             </div>
             <div *ngIf="userForm.get('dob').hasError('required')" class="errorStyle">
@@ -122,7 +115,7 @@
             </div>
             <div fxFlex>
               <md-input-container class="full-width">
-                <input mdInput formControlName="email" id="email" [readonly]="emailDisable" type="text" class="validate" placeholder="Email"
+                <input mdInput formControlName="email" id="email" [readonly]="emailDisable" type="text" class="validate" placeholder="Email*"
                 />
                 <md-hint align="start" class="full-width">
                 </md-hint>
@@ -139,7 +132,7 @@
               <md-input-container class="full-width">
                 <input mdInput formControlName="aadhar" id="aadhar" type="text" class="validate" placeholder="Aadhar No." />
                 <md-hint align="start" class="full-width">
-                  <div *ngIf="userForm.get('aadhar').hasError('pattern')" class="errorStyle">Invaild Aadhar</div>
+                  <div *ngIf="userForm.get('aadhar').hasError('pattern')" class="errorStyle">Aadhar should be 12 digits(eg:123412341234)</div>
                 </md-hint>
               </md-input-container>
             </div>
@@ -153,7 +146,7 @@
             <div fxFlex>
               <md-input-container class="full-width">
                 <input mdInput formControlName="password" id="password" type="password" class="validate" #password (blur)="passwordValue(password.value)"
-                  placeholder="Password" />
+                  placeholder="Password*" />
                 <md-hint align="start" class="full-width">
                   <div *ngIf="userForm.get('password').hasError('required') && userForm.get('password').touched" class="errorStyle">
                     Password is required
@@ -174,14 +167,56 @@
             <div fxFlex>
               <md-input-container class="full-width">
                 <input mdInput formControlName="conPassword" id="conPassword" type="password" class="validate" #conPassword (keyup)="conPasswordValue(conPassword.value)"
-                  placeholder="Confirm Password" />
+                  placeholder="Confirm Password*" />
                 <md-hint align="start" class="full-width">
+                                    <div *ngIf="passwordMatchWarning" class="errorStyle">{{passwordMatchWarning}}</div>
                   <div *ngIf="userForm.get('conPassword').hasError('required') && userForm.get('conPassword').touched" class="errorStyle">
                     Confirm Password is required
                   </div>
-                  <div *ngIf="passwordMatchWarning" class="errorStyle">{{passwordMatchWarning}}</div>
                 </md-hint>
               </md-input-container>
+            </div>
+          </div>
+
+            <!--Placement division-->
+          <div class="division">
+            Placement Details
+          </div>
+
+           <!--Registration ID-->
+          <div fxLayout="row" fxLayoutAlign="start end">
+            <div fxFlex="35px">
+              <i class="material-icons formIcons">assignment_ind</i>
+            </div>
+            <div fxFlex>
+              <md-input-container class="full-width">
+                <input mdInput formControlName="regId" id="regId" type="text" class="validate" placeholder="Registration Id*" />
+                <md-hint align="start" class="full-width">
+                   <div *ngIf="userForm.get('regId').hasError('pattern')" class="errorStyle">
+                    Registration ID should be 6 digits(eg:123123)
+                  </div>
+                  <div *ngIf="userForm.get('regId').hasError('required') && userForm.get('regId').touched" class="errorStyle">
+                    Registration ID is required
+                  </div>
+                </md-hint>
+              </md-input-container>
+            </div>
+          </div>
+
+           <!--placementCenter-->
+          <div fxLayout="row" fxLayoutAlign="start end" class="dropdown">
+            <div fxFlex="35px">
+              <i class="material-icons formIcons levelIcon">person_pin_circle</i>
+            </div>
+            <div fxFlex>
+              <md-select placeholder="Placement Center*" formControlName="placementCenter" class="full-width">
+                <md-option *ngFor="let center of placementCenter" [value]="center.value">
+                  {{ center.name }}
+                </md-option>
+              </md-select>
+               <div *ngIf="userForm.get('placementCenter').hasError('required') && userForm.get('placementCenter').touched" class="errorStyle">
+                    Placement center is required
+                  </div>
             </div>
           </div>
 
@@ -197,9 +232,9 @@
             </div>
             <div fxFlex>
               <md-input-container class="full-width">
-                <input mdInput formControlName="mob" id="mob" type="text" class="validate" placeholder="Mobile No." />
+                <input mdInput formControlName="mob" id="mob" type="text" class="validate" placeholder="Mobile No.*" />
                 <md-hint align="start" class="full-width">
-                  <div *ngIf="userForm.get('mob').hasError('pattern')" class="errorStyle">Invaild Mobile</div>
+                  <div *ngIf="userForm.get('mob').hasError('pattern')" class="errorStyle">Mobile Number should be 10 digits(eg:1231231231)</div>
                   <div *ngIf="userForm.get('mob').hasError('required') && userForm.get('mob').touched" class="errorStyle">
                     Mobile No. is required
                   </div>
@@ -214,11 +249,14 @@
               <i class="material-icons formIcons levelIcon">layers</i>
             </div>
             <div fxFlex>
-              <md-select placeholder="Profession" formControlName="profession" class="full-width">
+              <md-select placeholder="Profession*" formControlName="profession" class="full-width">
                 <md-option *ngFor="let pro of profession" color="accent" [value]="pro.value">
                   {{ pro.name }}
                 </md-option>
               </md-select>
+              <div *ngIf="userForm.get('profession').hasError('required') && userForm.get('profession').touched" class="errorStyle">
+                    Profession is required
+                  </div>
             </div>
           </div>
 
@@ -229,10 +267,10 @@
             </div>
             <div fxFlex>
               <md-input-container class="full-width">
-                <input mdInput formControlName="pincode" id="pincode" type="text" class="validate" placeholder="Pincode" (keyup)="getPincode()"
+                <input mdInput formControlName="pincode" id="pincode" type="text" class="validate" placeholder="Pincode*" (keyup)="getPincode()"
                   [(ngModel)]="pincode" />
                 <md-hint align="start" class="full-width">
-                  <div *ngIf="userForm.get('pincode').hasError('pattern')" class="errorStyle">Invaild Pincode</div>
+                  <div *ngIf="userForm.get('pincode').hasError('pattern')" class="errorStyle">Pincode should be 6 digits(eg:636006)</div>
                   <div *ngIf="userForm.get('pincode').hasError('required') && userForm.get('pincode').touched" class="errorStyle">
                     Pincode is required
                   </div>
@@ -247,25 +285,14 @@
               <i class="material-icons formIcons levelIcon">my_location</i>
             </div>
             <div fxFlex>
-              <md-select formControlName="location" placeholder="Select Location" class="full-width">
+              <md-select formControlName="location" placeholder="Select Location*" class="full-width">
                 <md-option *ngFor="let area of areaList" [value]="area">
                   {{ area }}
                 </md-option>
               </md-select>
-            </div>
-          </div>
-
-          <!--placementCenter-->
-          <div fxLayout="row" fxLayoutAlign="start end" class="dropdown">
-            <div fxFlex="35px">
-              <i class="material-icons formIcons levelIcon">person_pin_circle</i>
-            </div>
-            <div fxFlex>
-              <md-select placeholder="Placement Center" formControlName="placementCenter" class="full-width">
-                <md-option *ngFor="let center of placementCenter" [value]="center.value">
-                  {{ center.name }}
-                </md-option>
-              </md-select>
+              <div *ngIf="userForm.get('location').hasError('required') && userForm.get('location').touched" class="errorStyle">
+                    Location is required
+                  </div>
             </div>
           </div>
 
