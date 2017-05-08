@@ -71,19 +71,10 @@
           </div>
         </div>
 
-        <!--social media button-->
-        <!--<div fxLayout.gt-sm="row" fxLayout.sm="column" fxHide.sm>-->
-        <div fxLayout="row" fxLayout.xs="column">
-          <div fxFlex="48">
-            <a href="http://localhost:8080/auth/google/" md-raised-button class="full-width largeBtn googleBtn">
-              <i class="zmdi zmdi-google zmdi-hc-lg"></i> Login with <b>Google</b>
-            </a>
-          </div>
-          <div fxFlex></div>
-          <div fxFlex="48">
-            <a href="http://localhost:8080/auth/facebook" md-raised-button class="full-width largeBtn fbBtn">
-              <i class="zmdi zmdi-facebook-box zmdi-hc-lg"></i> Login with <b>Facebook</b>
-            </a>
+        <!--Sign Up button-->
+        <div fxLayout="row">
+          <div fxFlex>
+                        <button md-button color="primary" (click)="verifyEmail()" class="full-width largeBtn googleBtn"> Sign Up</button>        
           </div>
         </div>
       </md-card-content>

@@ -172,6 +172,8 @@ export class CandidateRegisterComponent implements OnInit {
 
   // on form submit
   onRegister(userdata: any) {
+    let dobOfUser = new Date(userdata.get('dobControl').value) ;
+   dobOfUser.setDate(dobOfUser.getDate() + 1);
     this.loading = true;
     // check who is creating user
     let createdUser = this.authenticationService.getCreatedBy();
@@ -200,7 +202,7 @@ export class CandidateRegisterComponent implements OnInit {
           fname: userdata.get('fname').value,
           lname: userdata.get('lname').value,
           gender: userdata.get('gender').value,
-          dob: userdata.get('dob').value,
+          dob: dobOfUser,
           email: userdata.get('email').value,
           contact: {
             I: userdata.get('mob').value

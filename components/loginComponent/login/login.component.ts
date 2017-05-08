@@ -70,6 +70,10 @@ export class LoginComponent implements OnInit {
       );
   }
 
+  public verifyEmail() {
+    this.router.navigate(['/verifyEmail']);
+  }
+
   redirect() {
     // console.log('redirect');
     this.router.navigate(['/']);
