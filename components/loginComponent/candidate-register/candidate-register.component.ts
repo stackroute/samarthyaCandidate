@@ -131,11 +131,8 @@ export class CandidateRegisterComponent implements OnInit {
     this.profession = jsonData;
   }
 
-  // password confirm Validators
-  passwordValue(pass: string) {
+  conPasswordValue(conPass: string,pass:string) {
     this.password = pass;
-  }
-  conPasswordValue(conPass: string) {
     if (this.password !== conPass) {
       this.passwordMatchWarning = 'Password Not Match';
       (<HTMLInputElement>document.getElementById('resetBtn')).disabled = true;

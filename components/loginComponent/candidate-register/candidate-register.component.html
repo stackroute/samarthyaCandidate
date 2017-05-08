@@ -145,7 +145,7 @@
             </div>
             <div fxFlex>
               <md-input-container class="full-width">
-                <input mdInput formControlName="password" id="password" type="password" class="validate" #password (blur)="passwordValue(password.value)"
+                <input mdInput formControlName="password" id="password" type="password" class="validate" (keyup)="conPasswordValue(conPassword.value,password.value)" #password
                   placeholder="Password*" />
                 <md-hint align="start" class="full-width">
                   <div *ngIf="userForm.get('password').hasError('required') && userForm.get('password').touched" class="errorStyle">
@@ -166,12 +166,16 @@
             </div>
             <div fxFlex>
               <md-input-container class="full-width">
-                <input mdInput formControlName="conPassword" id="conPassword" type="password" class="validate" #conPassword (keyup)="conPasswordValue(conPassword.value)"
+                <input mdInput formControlName="conPassword" id="conPassword" type="password" class="validate" #conPassword (keyup)="conPasswordValue(conPassword.value,password.value)"
                   placeholder="Confirm Password*" />
                 <md-hint align="start" class="full-width">
-                                    <div *ngIf="passwordMatchWarning" class="errorStyle">{{passwordMatchWarning}}</div>
+                                    <div *ngIf="passwordMatchWarning && userForm.get('password').touched" class="errorStyle">{{passwordMatchWarning}}</div>
                   <div *ngIf="userForm.get('conPassword').hasError('required') && userForm.get('conPassword').touched" class="errorStyle">
                     Confirm Password is required
+                  </div>
+                   <!--Confirm Password length validation-->
+                  <div class="errorStyle" *ngIf="!userForm.get('password').valid && userForm.get('conPassword').valid ">
+                    Mismatch Password
                   </div>
                 </md-hint>
               </md-input-container>
