@@ -19,16 +19,16 @@ export class JsonDataService {
   private urlNavlinks = 'auth/nav-menus';
 
   // url to get langauges
-  private urlLanguages = 'resources/languages';
+  private urlLanguages = '/languages';
 
   // url to get profession
-  private urlProfession = 'resources/profession';
+  private urlProfession = '/professions';
 
   // url to get locations
   private urlLocations = 'resources/locations';
 
   // url to get placementCenter
-  private urlPlacementCenter = 'resources/placementCenter';
+  private urlPlacementCenter = '/centres';
 
   constructor(private http: Http, private snackBar: MdSnackBar, private router: Router) { }
 

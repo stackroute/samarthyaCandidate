@@ -214,7 +214,7 @@
             </div>
             <div fxFlex>
               <md-select placeholder="Placement Center*" formControlName="placementCenter" class="full-width">
-                <md-option *ngFor="let center of placementCenter" [value]="center.value">
+                <md-option *ngFor="let center of placementCenter" [value]="center.name">
                   {{ center.name }}
                 </md-option>
               </md-select>
@@ -254,7 +254,7 @@
             </div>
             <div fxFlex>
               <md-select placeholder="Profession*" formControlName="profession" class="full-width">
-                <md-option *ngFor="let pro of profession" color="accent" [value]="pro.value">
+                <md-option *ngFor="let pro of profession" color="accent" [value]="pro.name">
                   {{ pro.name }}
                 </md-option>
               </md-select>
