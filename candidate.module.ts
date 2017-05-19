@@ -10,7 +10,7 @@ import { MainComponent } from './mainComponent';
 import { ModuleWithProviders } from '@angular/core';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { QualificationFormRender } from './components/profileSectionForm/qualificationForm/qualificationFormRender/qualificationFormRender.component';
-
+import {AuthGuard} from './Guard/auth.guard';
 
 // local services
 import { UserService } from './services/user.service';
@@ -125,6 +125,7 @@ export class CandidateModule {
       ngModule: CandidateModule,
       providers: [
         AuthenticationService,
+        AuthGuard,
         Data,
         EmailService,
         JsonDataService,

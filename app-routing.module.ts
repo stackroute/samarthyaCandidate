@@ -14,14 +14,14 @@ import { LayoutComponent } from './components/layout/layout.component';
 // routes
 const routes: Routes = [
   {
-    path: 'home', component: LayoutComponent,
+    path: 'home', component: LayoutComponent, canActivateChild: [AuthGuard],
     children: [
-      { path: '', component: DashboardComponent, canActivate: [AuthGuard] },
-      { path: 'aboutUs', component: AboutUsComponent, canActivate: [AuthGuard] },
-      { path: 'passwordReset/:reset', component: PasswordResetComponent, canActivate: [AuthGuard] }
+      { path: '', component: DashboardComponent },
+      { path: 'aboutUs', component: AboutUsComponent },
+      { path: 'passwordReset/:reset', component: PasswordResetComponent }
     ]
   },
-  { path: 'home', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'home', component: DashboardComponent, canActivateChild: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'forgotPassword', component: ForgotPasswordComponent },
   { path: 'register', component: CandidateRegisterComponent },
