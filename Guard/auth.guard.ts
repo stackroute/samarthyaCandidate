@@ -22,9 +22,10 @@ export class AuthGuard implements CanActivateChild {
                     }
                 }).catch(response => {
                     this.router.navigate(['/login']);
+                    localStorage.removeItem('currentUser');
                     this.data.openSnackBar('Please Login!!', 'OK');
                     return false;
                 });
-}
+        }
     }
 }
