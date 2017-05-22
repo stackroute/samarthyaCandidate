@@ -48,27 +48,30 @@
       </md-list>
     </md-menu>
     <!--user account button-->
-    <a md-icon-button [mdMenuTriggerFor]="menuAccount">
-      <i class="material-icons">account_circle</i>
-    </a>
-    <md-menu #menuAccount x-position="before">
-      <md-nav-list>
-        <md-list-item>
-          <p md-line><b>User</b></p>
-        </md-list-item>
-        <md-list-item>
-          <p md-line (click)="profile()" routerLinkActive="active">Profile</p>
-        </md-list-item>
-        <md-list-item>
-          <p md-line (click)="changePassword()" routerLinkActive="active">Change Password</p>
-        </md-list-item>
-        <md-list-item>
-          <p md-line (click)="logout()" routerLinkActive="active">
-            Log Out
-          </p>
-        </md-list-item>
-      </md-nav-list>
-    </md-menu>
+    <button md-icon-button [mdMenuTriggerFor]="menuAccount">
+                <i class="material-icons">account_circle</i>  
+            </button>
+            <md-menu #menuAccount x-position="before">
+                <md-nav-list  class="menu">
+                    <md-list-item>
+    
+                        <p md-line><b>User</b></p>
+                    </md-list-item>
+                   
+                    <md-list-item (click)="profile()" routerLinkActive="active">
+                         <i class="material-icons navIcon">face</i> 
+                        <p>Profile</p>
+                    </md-list-item>
+                    <md-list-item (click)="changePassword()" routerLinkActive="active">
+                        <i class="material-icons navIcon">lock</i> 
+                        <p>Change Password</p>
+                    </md-list-item>
+                    <md-list-item (click)="logout()" routerLinkActive="active">
+                        <i class="material-icons navIcon">power_settings_new</i> 
+                        <p>Log Out</p>
+                    </md-list-item>
+                </md-nav-list>
+            </md-menu>
   </md-toolbar>
   <!--main appbar starts-->
   <!--add the components tags here....-->

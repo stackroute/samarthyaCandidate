@@ -163,7 +163,6 @@ export class DashboardComponent implements OnInit {
 
     this.SamProfileService.getProfile(JSON.parse(localStorage.getItem('currentUser'))['username'])
       .subscribe((resEmployeeData: any) => {
-        console.log(resEmployeeData)
         this.profileData = resEmployeeData,
           this.jobpreferenceInfoData = resEmployeeData.jobPreferences,
           this.personalInfoData = resEmployeeData.personalInfo,
